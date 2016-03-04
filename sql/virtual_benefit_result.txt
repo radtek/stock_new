@@ -1,0 +1,4 @@
+select  t.user_id,format(t.dttm,'yyyy/MM') as yyyyMM,sum(t.benefit) as benefit  from virtual_current_buy_his t
+where t.finished='T'
+group by t.user_id,format(t.dttm,'yyyy/MM')
+order by format(t.dttm,'yyyy/MM') desc,sum(t.benefit) desc

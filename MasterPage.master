@@ -1,0 +1,123 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+    Namespace="System.Web.UI" TagPrefix="asp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<script runat="server">
+
+</script>
+
+<script type="text/javascript"> 
+document.write('<div id="loadDiv" style="padding-top:150; padding-left:150; font-size:13pt;  ">'+ '頁面正在載入中...... <img src="images/ajax-loader.gif"/></div>'); 
+function window.onload() 
+{ 
+hiddenDiv.style.display=""; 
+loadDiv.removeNode(true); 
+} 
+</script>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>SOS</title>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+     <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+       
+        <div id='hiddenDiv'>
+            <table hight="100%" width="100%">
+                <tr>
+                    <td align='center' valign='middle'>
+                        <div>
+                            <span style="font-size: 9pt"></span>
+                            <table hight="100%" width="100%">
+                                <tr>
+                                    <td align='center' valign='middle'>
+                                        <table style="width: 1024px; height: 269px">
+                                            <tr>
+                                                <td colspan="3" style="border-left-color: darkgray; border-bottom-color: darkgray;
+                                                    border-top-style: solid; border-top-color: darkgray; border-right-style: solid;
+                                                    border-left-style: solid; border-right-color: darkgray; border-bottom-style: solid;
+                                                    text-align: left;">
+                                                    <asp:Image ID="Image1" runat="server" Height="106px" ImageUrl="~/images/Banner/stock_1.gif" /><br />
+                                                    現在是 &nbsp;<asp:Label ID="Label3" runat="server" Width="141px"></asp:Label>&nbsp;
+                                                    <asp:Label ID="Label4" runat="server" Width="50px"></asp:Label>&nbsp; 第 &nbsp;
+                                                    <asp:Label ID="Label5" runat="server" Width="10px"></asp:Label>
+                                                    週 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/login.aspx">登出</asp:HyperLink>&nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style="border-left-color: darkgray; border-bottom-color: darkgray;
+                                                    border-top-style: solid; border-top-color: darkgray; border-right-style: solid;
+                                                    border-left-style: solid; text-align: left; border-right-color: darkgray; border-bottom-style: solid">
+                                                    <span style="color: #ff33ff">速報&gt;&gt;<iframe frameborder="0" height="10" marginheight="0"
+                                                        marginwidth="0" scrolling="no" src="http://www.nownews.com/common/ticker.htm"
+                                                        style="vertical-align: middle; width: 479px; height: 20px"></iframe>
+                                                        &nbsp;&nbsp;
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        <%-- <tr>
+                                                <td colspan="3" style="border-left-color: darkgray; border-bottom-color: darkgray;
+                                                    border-top-style: solid; border-top-color: darkgray; border-right-style: solid;
+                                                    border-left-style: solid; text-align: left; border-right-color: darkgray; border-bottom-style: solid">
+                                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                                                    <iframe frameborder="0" height="10" marginheight="0" marginwidth="0" scrolling="no"
+                                                        src="http://old.tw.news.yahoo.com/biz/iframe_ticker_stock.html" style="vertical-align: middle;
+                                                        height: 20px"></iframe>
+                                                </td>
+                                            </tr>--%>
+                                           <%-- <tr>
+                                                <td colspan="3" style="border-left-color: darkgray; border-bottom-color: darkgray;
+                                                    border-top-style: solid; border-top-color: darkgray; border-right-style: solid;
+                                                    border-left-style: solid; text-align: left; border-right-color: darkgray; border-bottom-style: solid">
+                                                    <span style="color: #ff33ff"><iframe frameborder="0" height="10" marginheight="0"
+                                                        marginwidth="0" scrolling="no" src="http://justdata1.kgieworld.com.tw/marquee.asp"
+                                                        style="vertical-align: middle; width: 479px; height: 20px"></iframe>
+                                                    </span>
+                                                </td>
+                                            </tr>--%>
+                                            <tr>
+                                                <td colspan="3" style="border-left-color: darkgray; border-bottom-color: darkgray;
+                                                    border-top-style: solid; border-top-color: darkgray; border-right-style: solid;
+                                                    border-left-style: solid; text-align: left; border-right-color: darkgray; border-bottom-style: solid">
+                                                    金融=&gt;<iframe frameborder="0" height="10" marginheight="0"
+                                                        marginwidth="0" scrolling="no" src="http://justdata1.kgieworld.com.tw/marquee.asp"
+                                                        style="vertical-align: middle; width: 930px; height: 20px"></iframe>
+                                                </td>
+                                            </tr>
+                                             
+                                            
+                                            <tr>
+                                                <td rowspan="2" style="border-left-color: darkgray; border-bottom-color: darkgray;
+                                                    width: 1px; border-top-style: solid; border-top-color: darkgray; border-right-style: solid;
+                                                    border-left-style: solid; border-right-color: darkgray; border-bottom-style: solid;
+                                                    vertical-align: top;">
+                                                    <asp:PlaceHolder ID="PlaceHolder1" runat="server">
+                                                        <asp:TreeView ID="TreeView1" runat="server">
+                                                        </asp:TreeView>
+                                                    </asp:PlaceHolder>
+                                                </td>
+                                                <td colspan="2" rowspan="2" style="border-left-color: darkgray; border-bottom-color: darkgray;
+                                                    border-top-style: solid; border-top-color: darkgray; border-right-style: solid;
+                                                    border-left-style: solid; border-right-color: darkgray; border-bottom-style: solid">
+                                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                    </asp:ContentPlaceHolder>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+    </form>
+</body>
+</html>
