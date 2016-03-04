@@ -54,7 +54,7 @@ loadDiv.removeNode(true);
                                                     border-top-style: solid; border-top-color: darkgray; border-right-style: solid;
                                                     border-left-style: solid; text-align: left; border-right-color: darkgray; border-bottom-style: solid">
                                                     <span style="color: #ff33ff">速報&gt;&gt;<iframe frameborder="0" height="10" marginheight="0"
-                                                        marginwidth="0" scrolling="no" src="http://www.nownews.com/common/ticker.htm"
+                                                        marginwidth="0" scrolling="no" src="http://www.ettoday.net/ticker.htm"
                                                         style="vertical-align: middle; width: 479px; height: 20px"></iframe>
                                                         &nbsp;&nbsp;
                                                     </span>
