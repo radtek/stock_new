@@ -103,7 +103,7 @@ window.close();
 
             openExcel();
         }
-        if (Convert.ToInt32(today_DD) == 4 && Convert.ToInt32(today_HH) == 22)
+        if (Convert.ToInt32(today_DD) == 4 && Convert.ToInt32(today_HH) == 19)
         {
             initailExcel();
 
