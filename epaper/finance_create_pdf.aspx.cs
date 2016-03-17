@@ -159,6 +159,24 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
 
         }
 
+        if (today_HH.Equals("22"))
+        {
+            oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
+
+            //oscar.tool = Server.MapPath("..\\") + "\\wkhtmltopdf\\bin\\wkhtmltopdf.exe";
+            oscar.tool = Server.MapPath("..\\") + "\\siteshoter\\SiteShoter.exe";
+
+
+            oscar.website = "http://www.etf.com/etfanalytics/etf-fund-flows-tool";
+
+            oscar.title = " ETF<現金流>快遞【" + today_yyyymmdd + "】";
+
+            oscar.strHTML = "投資的路上 平安喜樂<br>http://www.etf.com/etfanalytics/etf-fund-flows-tool";
+            oscar.mail_list = "vsoscar0115@gmail.com";
+            PIC_FACTORY(oscar);
+
+        }
+
         if (today_DD.Equals("20"))
         {
             //oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
@@ -176,7 +194,7 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
             //PIC_FACTORY(oscar);
 
         }
-        if (today_DD.Equals("20"))
+        if (today_DD.Equals("20")||today_HH.Equals("18"))
         {
             oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
 
