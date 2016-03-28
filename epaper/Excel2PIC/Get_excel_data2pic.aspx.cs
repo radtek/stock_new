@@ -97,6 +97,27 @@ window.close();
         }
 
 
+
+        if ( Convert.ToInt32(today_HH) == 19)
+        {
+            initailExcel();
+
+            openExcel3();
+
+        }
+
+
+        if ( Convert.ToInt32(today_HH) == 19)
+        {
+            initailExcel();
+
+            openExcel4();
+
+        }
+
+
+
+
         if (Convert.ToInt32(today_HH)==19)
         {
             initailExcel();
@@ -109,7 +130,7 @@ window.close();
 
             openExcel2();
         }
-        
+
        
        
         try
@@ -292,6 +313,135 @@ window.close();
 
 
     }
+    public void openExcel3()
+    {
+        member oscar = new member();
+
+        oscar.title = " 台指選盤後<週分析>快遞【" + today_yyyymmdd + "】";
+
+        oscar.strHTML = "Oscar Group 投資的路上 平安喜樂";
+        oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com,aq3283@gmail.com";
+
+
+        oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
+        oscar.file_from = Server.MapPath(".") + "\\OPTION_WEEK_NONTH_20160327.xls";
+        //oscar.file_from = @"C:\\TAIWAN_BANK_OutSite_Salary_FA_20160111.xls";
+        oscar.save_to = Server.MapPath("..\\") + "..\\File\\" + oscar.today_detail + ".jpg";
+        //oscar.save_to = @"c:\\" + today_detail+".jpg";
+
+        Excel1.Workbook book = null;
+        Excel1.Worksheet sheet = null;
+
+
+        string MapPath = Server.MapPath(".");
+        //string path = MapPath + @"\T2Cell_Noon_20150722171337.xls";
+        string path = oscar.file_from;
+        try
+        {
+            book = this.ExcelWorkbookOpen(path);//開啟Excel檔
+
+
+            book.Save();
+
+            //string QQ = _Excel.Version.ToString();
+
+
+
+
+            sheet = (Excel1.Worksheet)book.Sheets[1];//轉換的Sheet
+
+
+            System.Drawing.Image a = this.SheetToImage(sheet, "A1", "K30");//Sheet轉圖檔
+            a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
+            //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
+            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+
+        }
+        catch (Exception ex)
+        {
+            Response.Write(ex.ToString());
+
+        }
+        finally
+        {
+
+            //book = null;
+            //sheet = null;
+            //releaseObject(book);
+            //releaseObject(sheet);
+            //releaseObject(_Excel);
+
+
+        }
+
+
+
+    }
+    public void openExcel4()
+    {
+        member oscar = new member();
+
+        oscar.title = " 台指選盤後<月分析>快遞【" + today_yyyymmdd + "】";
+
+        oscar.strHTML = "Oscar Group 投資的路上 平安喜樂";
+        oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com,aq3283@gmail.com";
+
+
+        oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
+        oscar.file_from = Server.MapPath(".") + "\\OPTION_WEEK_NONTH_20160327.xls";
+        //oscar.file_from = @"C:\\TAIWAN_BANK_OutSite_Salary_FA_20160111.xls";
+        oscar.save_to = Server.MapPath("..\\") + "..\\File\\" + oscar.today_detail + ".jpg";
+        //oscar.save_to = @"c:\\" + today_detail+".jpg";
+
+        Excel1.Workbook book = null;
+        Excel1.Worksheet sheet = null;
+
+
+        string MapPath = Server.MapPath(".");
+        //string path = MapPath + @"\T2Cell_Noon_20150722171337.xls";
+        string path = oscar.file_from;
+        try
+        {
+            book = this.ExcelWorkbookOpen(path);//開啟Excel檔
+
+
+            book.Save();
+
+            //string QQ = _Excel.Version.ToString();
+
+
+
+
+            sheet = (Excel1.Worksheet)book.Sheets[2];//轉換的Sheet
+
+
+            System.Drawing.Image a = this.SheetToImage(sheet, "A1", "K50");//Sheet轉圖檔
+            a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
+            //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
+            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+
+        }
+        catch (Exception ex)
+        {
+            Response.Write(ex.ToString());
+
+        }
+        finally
+        {
+
+            //book = null;
+            //sheet = null;
+            //releaseObject(book);
+            //releaseObject(sheet);
+            //releaseObject(_Excel);
+
+
+        }
+
+
+
+    }
+
 
     public void openExcel2()
     {
