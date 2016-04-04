@@ -1,0 +1,56 @@
+Create log file
+2016-04-02 00:01:01Z Send 國際股市==>  Program Start
+2016-04-02 00:01:01Z Send 國際股市==>  Program END 
+
+Create log file
+2016-04-02 01:01:03Z Send 國際股市==>  Program Start
+2016-04-02 01:01:03Z Send 國際股市==>  Program END 
+
+Create log file
+2016-04-02 10:53:02Z Query Stock_id is 1326 Program Start
+2016-04-02 10:53:02Z Query Stock_id is 1326 Program END 
+
+Create log file
+2016-04-02 10:53:02Z Query Stock_id is 1310 Program Start
+2016-04-02 10:53:02Z Query Stock_id is 1310 Program END 
+
+Create log file
+2016-04-02 10:53:02Z Query Stock_id is 1536 Program Start
+2016-04-02 10:53:02Z Query Stock_id is 1536 Program END 
+
+Create log file
+2016-04-02 10:53:02Z Query Stock_id is 5349 Program Start
+2016-04-02 10:53:02Z Query Stock_id is 5349 Program END 
+
+Create log file
+2016-04-02 10:53:02Z Query Stock_id is 2377 Program Start
+2016-04-02 10:53:02Z Query Stock_id is 2377 Program END 
+
+Create log file
+2016-04-02 10:53:03Z Query Stock_id is 3481 Program Start
+2016-04-02 10:53:03Z Query Stock_id is 3481 Program END 
+
+Create log file
+2016-04-02 17:22:37Z Query Stock_id is 1326 Program Start
+2016-04-02 17:22:37Z Query Stock_id is 1326 Program END 
+
+Create log file
+2016-04-02 17:22:37Z Query Stock_id is 1310 Program Start
+2016-04-02 17:22:37Z Query Stock_id is 1310 Program END 
+
+Create log file
+2016-04-02 17:22:37Z Query Stock_id is 1536 Program Start
+2016-04-02 17:22:37Z Query Stock_id is 1536 Program END 
+
+Create log file
+2016-04-02 17:22:37Z Query Stock_id is 5349 Program Start
+2016-04-02 17:22:37Z Query Stock_id is 5349 Program END 
+
+Create log file
+2016-04-02 17:22:37Z Query Stock_id is 2377 Program Start
+2016-04-02 17:22:37Z Query Stock_id is 2377 Program END 
+
+Create log file
+2016-04-02 17:22:38Z Query Stock_id is 3481 Program Start
+2016-04-02 17:22:38Z Query Stock_id is 3481 Program END 
+
