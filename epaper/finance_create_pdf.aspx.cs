@@ -117,6 +117,7 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
        }
 
 
+
         //if (1==1)
         if (today_HH.Equals("18") )
         {
@@ -173,6 +174,25 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
 
             oscar.strHTML = "投資的路上 平安喜樂<br>http://www.etf.com/etfanalytics/etf-fund-flows-tool";
             oscar.mail_list = "vsoscar0115@gmail.com";
+            PIC_FACTORY(oscar);
+
+        }
+
+
+        if (today_HH.Equals("19") || today_HH.Equals("08"))
+        {
+            oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
+
+            //oscar.tool = Server.MapPath("..\\") + "\\wkhtmltopdf\\bin\\wkhtmltopdf.exe";
+            oscar.tool = Server.MapPath("..\\") + "\\siteshoter\\SiteShoter.exe";
+
+
+            oscar.website = "http://histock.tw/stock/foreign.aspx";
+
+            oscar.title = " 期貨<法人成本>快遞【" + today_yyyymmdd + "】";
+
+            oscar.strHTML = "投資的路上 平安喜樂<br>http://histock.tw/stock/foreign.aspx";
+            oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com,aq3283@gmail.com";
             PIC_FACTORY(oscar);
 
         }
