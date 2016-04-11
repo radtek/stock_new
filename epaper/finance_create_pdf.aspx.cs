@@ -63,7 +63,7 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
             oscar.website = "http://stock.wearn.com/taifexphoto.asp";
 
             oscar.strHTML = "投資的路上 平安喜樂<br>http://stock.wearn.com/taifexphoto.asp";
-            oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com";
+            oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com,aq3283@gmail.com";
             PIC_FACTORY(oscar);
 
 
