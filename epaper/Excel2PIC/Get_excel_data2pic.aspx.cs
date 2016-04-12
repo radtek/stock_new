@@ -87,12 +87,17 @@ window.close();
 
        
 
-      
-            if ((Convert.ToInt32(today_HH) >= 8 && Convert.ToInt32(today_HH) <= 14) || Convert.ToInt32(today_HH) == 19)
+         //if(1==1)
+           if ((Convert.ToInt32(today_HH) >= 8 && Convert.ToInt32(today_HH) <= 14) || Convert.ToInt32(today_HH) == 19)
         {
             initailExcel();
 
             openExcel1();
+          
+            initailExcel();
+
+            openExcel5();
+         
 
         }
 
@@ -256,7 +261,7 @@ window.close();
         oscar.title = " 台指選<分析>快遞【" + today_yyyymmdd + "】";
 
         oscar.strHTML = "Oscar Group 投資的路上 平安喜樂";
-        oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com,kiken46@msn.com";
+        oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com,aq3283@gmail.com";
 
 
         oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
@@ -416,6 +421,70 @@ window.close();
 
 
             System.Drawing.Image a = this.SheetToImage(sheet, "A1", "K50");//Sheet轉圖檔
+            a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
+            //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
+            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+
+        }
+        catch (Exception ex)
+        {
+            Response.Write(ex.ToString());
+
+        }
+        finally
+        {
+
+            //book = null;
+            //sheet = null;
+            //releaseObject(book);
+            //releaseObject(sheet);
+            //releaseObject(_Excel);
+
+
+        }
+
+
+
+    }
+    public void openExcel5()
+    {
+        member oscar = new member();
+
+        oscar.title = " 台指選<週分析>快遞【" + today_yyyymmdd + "】";
+
+        oscar.strHTML = "Oscar Group 投資的路上 平安喜樂";
+        oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com,aq3283@gmail.com";
+
+
+        oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
+        oscar.file_from = Server.MapPath(".") + "\\WEEK_DATA_SAMPLE.xls";
+        //oscar.file_from = @"C:\\TAIWAN_BANK_OutSite_Salary_FA_20160111.xls";
+        oscar.save_to = Server.MapPath("..\\") + "..\\File\\" + oscar.today_detail + ".jpg";
+        //oscar.save_to = @"c:\\" + today_detail+".jpg";
+
+        Excel1.Workbook book = null;
+        Excel1.Worksheet sheet = null;
+
+
+        string MapPath = Server.MapPath(".");
+        //string path = MapPath + @"\T2Cell_Noon_20150722171337.xls";
+        string path = oscar.file_from;
+        try
+        {
+            book = this.ExcelWorkbookOpen(path);//開啟Excel檔
+
+
+            book.Save();
+
+            //string QQ = _Excel.Version.ToString();
+
+
+
+
+            sheet = (Excel1.Worksheet)book.Sheets[1];//轉換的Sheet
+
+
+            System.Drawing.Image a = this.SheetToImage(sheet, "A4", "V52");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
