@@ -92,6 +92,7 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
 
         }
 
+
        if( today_HH.Equals("22") || today_HH.Equals("08"))
        {
 
