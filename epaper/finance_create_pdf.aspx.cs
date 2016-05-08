@@ -92,6 +92,30 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
 
         }
 
+        if (today_HH.Equals("19"))
+        {
+
+            oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
+
+            oscar.tool = Server.MapPath("..\\") + "\\siteshoter\\SiteShoter.exe";
+
+            //oscar.website = "http://www.cnyes.com/futures/flashchart/TX1.html";
+
+
+
+            oscar.title = "台股盤後多空<技術指標>快遞【" + today_yyyymmdd + "】";
+
+            oscar.website = "http://stock.wearn.com/finance_chart.asp?stockid=&timekind=0&timeblock=180&sma1=5&sma2=23&sma3=35&volume=0&indicator1=RSI&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp";
+
+            oscar.strHTML = "投資的路上 平安喜樂<br>http://stock.wearn.com/finance_chart.asp?stockid=&timekind=0&timeblock=180&sma1=5&sma2=23&sma3=35&volume=0&indicator1=RSI&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp";
+            oscar.mail_list = "vsoscar0115@gmail.com";
+            PIC_FACTORY(oscar);
+
+
+
+        }
+
+
 
        if( today_HH.Equals("22") || today_HH.Equals("08"))
        {
