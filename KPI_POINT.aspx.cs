@@ -52,7 +52,11 @@ public partial class KPI_POINT : System.Web.UI.Page
             Label27.Text = "";
             Label28.Text = "";
             Label29.Text = "";
-
+            Label30.Text = "";
+            Label31.Text = "";
+            Label32.Text = "";
+            Label33.Text = "";
+            TextBox5.Text = "0.17";
 
         }
 
@@ -324,4 +328,30 @@ protected void  Button1_Click(object sender, EventArgs e)
 }
 
 
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Double NowPrice = Convert.ToDouble(TextBox4.Text);
+        Double WaveRate = Convert.ToDouble(TextBox5.Text);
+        Double DueDay = Convert.ToDouble(TextBox6.Text);
+
+        Double LowerPrice = 0;
+        Double UpperPrice = 0;
+
+        LowerPrice = NowPrice * Math.Pow(1 + WaveRate / 16, DueDay / 3);
+        UpperPrice = NowPrice * Math.Pow(1 - WaveRate / 16, DueDay / 3);
+        Label31.Text=LowerPrice.ToString("N0");
+        Label30.Text=UpperPrice.ToString("N0");
+
+
+
+        LowerPrice = Math.Round(LowerPrice / 100, MidpointRounding.AwayFromZero) * 100;
+        UpperPrice = Math.Round(UpperPrice / 100, MidpointRounding.AwayFromZero) * 100;
+
+
+        Label33.Text = LowerPrice.ToString("N0");
+        Label32.Text = UpperPrice.ToString("N0");
+
+
+    }
 }
