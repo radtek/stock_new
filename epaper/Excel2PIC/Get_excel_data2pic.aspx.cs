@@ -107,7 +107,7 @@ window.close();
 
         if ( Convert.ToInt32(today_HH) == 19)
         {
-            initailExcel();
+            //initailExcel();
 
             //openExcel3();
 
@@ -119,7 +119,7 @@ window.close();
 
 
 
-        if (Convert.ToInt32(today_HH)==19)
+        if (Convert.ToInt32(today_HH)==18)
         {
             initailExcel();
 
