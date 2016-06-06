@@ -142,6 +142,8 @@ public partial class KPI_POINT : System.Web.UI.Page
     
 protected void  Button1_Click(object sender, EventArgs e)
 {
+
+    TextBox4.Text = TextBox3.Text;
     Calculator _cal = new Calculator(TextBox1.Text, TextBox2.Text, TextBox3.Text);
     _cal.DoCalculate();
     Label1.Text = _cal.breakout1.ToString("N0");
