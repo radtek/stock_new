@@ -222,6 +222,24 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
 
         }
 
+        if (today_HH.Equals("19"))
+        {
+            oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
+
+            //oscar.tool = Server.MapPath("..\\") + "\\wkhtmltopdf\\bin\\wkhtmltopdf.exe";
+            oscar.tool = Server.MapPath("..\\") + "\\siteshoter\\SiteShoter.exe";
+
+
+            oscar.website = "http://histock.tw/stock/broker8.aspx";
+
+            oscar.title = " 現貨<八大官股銀行>快遞【" + today_yyyymmdd + "】";
+
+            oscar.strHTML = "投資的路上 平安喜樂<br>http://histock.tw/stock/broker8.aspx";
+            oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com,aq3283@gmail.com";
+            PIC_FACTORY(oscar);
+
+        }
+
         if (today_DD.Equals("20"))
         {
             //oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
