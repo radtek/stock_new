@@ -46,7 +46,7 @@ public partial class epaper_stock_strong_up_epaper : System.Web.UI.Page
 
         WebClient w = new WebClient();
         w.Encoding = Encoding.GetEncoding("Big5");
-        string strHTML = w.DownloadString("http://vsoscar.ddns.net:8080/Stock_new/Stock_strong_volume1.aspx?page=1");
+        string strHTML = w.DownloadString("http://localhost:8080/Stock_new/Stock_strong_volume1.aspx?page=1");
 
         string sql=" select count(*) as count_num  from (                                                                       "+
 "                                                                                                        "+

@@ -113,7 +113,7 @@ window.close();
 
             initailExcel();
 
-            openExcel4();
+            //openExcel4();
 
         }
 

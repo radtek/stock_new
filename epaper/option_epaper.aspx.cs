@@ -20,7 +20,7 @@ public partial class epaper_option_epaper : System.Web.UI.Page
         WebClient w = new WebClient();
         //GetEncoding depend on get html web site character set
         w.Encoding = Encoding.GetEncoding("Big5");
-        string strHTML = w.DownloadString("http://vsoscar.ddns.net:8080/Stock_new/option_query1.aspx");
+        string strHTML = w.DownloadString("http://localhost:8080/Stock_new/option_query1.aspx");
         string title = "股市氣象台電子報-今日我最夯<==Option_OIV==>" + DateTime.Now.ToString("yyyy/MM/dd");
 
         ArrayList maillist = func.FileToArray(Server.MapPath("..\\") + "\\maillist\\bituz_maillist.txt");
