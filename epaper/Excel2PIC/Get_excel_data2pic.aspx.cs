@@ -32,14 +32,14 @@ public partial class epaper_Excel2PIC_Get_excel_data2pic : System.Web.UI.Page
     string title = "";
     string strHTML = "";
     string mail_list = "";
-   
+    
     
    
     protected void Page_Load(object sender, EventArgs e)
     {
-       
-        
-        
+
+
+        Session["ForceFlag"] = Request.QueryString["FF"].ToString();
         // System.Threading.Thread.CurrentThread.ApartmentState = System.Threading.ApartmentState.STA;
         try
         {
@@ -88,7 +88,7 @@ window.close();
        
 
          //if(1==1)
-           if ((Convert.ToInt32(today_HH) >= 8 && Convert.ToInt32(today_HH) <= 14) || Convert.ToInt32(today_HH) == 19)
+        if ((Convert.ToInt32(today_HH) >= 8 && Convert.ToInt32(today_HH) <= 14) || Convert.ToInt32(today_HH) == 19 || Session["ForceFlag"].ToString().Equals("Y"))
         {
            
             // During Market time   
