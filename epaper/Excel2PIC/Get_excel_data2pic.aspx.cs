@@ -288,10 +288,10 @@ window.close();
             sheet = (Excel1.Worksheet)book.Sheets[2];//轉換的Sheet
 
 
-            System.Drawing.Image a = this.SheetToImage(sheet, "A1", "AG72");//Sheet轉圖檔
+            System.Drawing.Image a = this.SheetToImage(sheet, "A1", "AH82");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
-             SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+            SendEmail("vsoscar0115@gmail.com,alex9tw@gmail.com,aq3283@gmail.com", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
 
         }
         catch (Exception ex)
