@@ -130,9 +130,9 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
 
             oscar.title = "台股盤後多空<技術指標>快遞【" + today_yyyymmdd + "】";
 
-            oscar.website = "http://stock.wearn.com/finance_chart.asp?stockid=&timekind=0&timeblock=180&sma1=5&sma2=23&sma3=58&volume=0&indicator1=RSI&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp";
+            oscar.website = "http://stock.wearn.com/finance_chart.asp?stockid=&timekind=0&timeblock=180&sma1=5&sma2=58&sma3=100&volume=0&indicator1=RSI&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp";
 
-            oscar.strHTML = "投資的路上 平安喜樂<br>http://stock.wearn.com/finance_chart.asp?stockid=&timekind=0&timeblock=180&sma1=5&sma2=23&sma3=58&volume=0&indicator1=RSI&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp";
+            oscar.strHTML = "投資的路上 平安喜樂<br>http://stock.wearn.com/finance_chart.asp?stockid=&timekind=0&timeblock=180&sma1=5&sma2=58&sma3=100&volume=0&indicator1=RSI&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp";
             oscar.mail_list = "vsoscar0115@gmail.com";
             PIC_FACTORY(oscar);
 
