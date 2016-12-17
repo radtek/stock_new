@@ -224,7 +224,7 @@ window.close();
             System.Drawing.Image a = this.SheetToImage(sheet, "A1", "M88");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
-            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list + ",0936dino@yahoo.com.tw,Cobie0922@yahoo.com.tw,feng8936@gmail.com", oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list , oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
 
         }
         catch (Exception ex)

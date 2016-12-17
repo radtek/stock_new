@@ -37,12 +37,12 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
         oscar.tool = Server.MapPath("..\\") + "\\siteshoter\\SiteShoter.exe";
 
 
-        oscar.website = "http://www.wantgoo.com/global/";
+        oscar.website = "http://histock.tw/index";
 
         oscar.title = " 國際股市快遞【" + today_yyyymmdd + "】";
 
 
-        oscar.strHTML = "投資的路上 平安喜樂<br>http://www.wantgoo.com/global/";
+        oscar.strHTML = "投資的路上 平安喜樂<br>http://histock.tw/index";
         oscar.mail_list = "vsoscar0115@gmail.com,oscar0115.iim01g@g2.nctu.edu.tw";
 
         PIC_FACTORY(oscar);
@@ -103,11 +103,11 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
 
 
 
-            oscar.title = " 台指選<三大法人未平倉>快遞【" + today_yyyymmdd + "】";
+            oscar.title = " 台指選<前十大交易人未平倉>快遞【" + today_yyyymmdd + "】";
 
-            oscar.website = "http://www.cnyes.com/twoption/closing2.aspx";
+            oscar.website = "http://www.cnyes.com/twoption/closing3.aspx";
 
-            oscar.strHTML = "投資的路上 平安喜樂<br>http://www.cnyes.com/twoption/closing2.aspx";
+            oscar.strHTML = "投資的路上 平安喜樂<br>http://www.cnyes.com/twoption/closing3.aspx";
             oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com,aq3283@gmail.com";
             PIC_FACTORY(oscar);
 
