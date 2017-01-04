@@ -18,28 +18,36 @@ public partial class Default8 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        Double ABC = 0;
+        
+        for (int i = 0; i <= 99999; i++)
+        {
+            ABC = ABC + i;
+        }
+
+        Response.Write(ABC);
         //func.start_processdelete("net use z: \\192.168.1.22\report 1234 /USER:192.168.1.22\administrator "); 
 
        
         //DirectoryInfo dir = new DirectoryInfo( Server.MapPath("..\\mynb"));
 
         //DirectoryInfo dir = new DirectoryInfo(@"z:");
-        Microsoft.VisualBasic.Devices.Network Network = new Microsoft.VisualBasic.Devices.Network();
+        //Microsoft.VisualBasic.Devices.Network Network = new Microsoft.VisualBasic.Devices.Network();
 
-        string fileName = "";
-        fileName = "A.txt";
-        string sourcefile = @"\\192.168.1.22\report\" + fileName;
-        string destinationfile = Server.MapPath(".") + "\\RUN_LOG\\" + fileName;
-        try
-        {
-            Network.DownloadFile(sourcefile, destinationfile, "Administrator", "12345678", false, 100, true);
+        //string fileName = "";
+        //fileName = "A.txt";
+        //string sourcefile = @"\\192.168.1.22\report\" + fileName;
+        //string destinationfile = Server.MapPath(".") + "\\RUN_LOG\\" + fileName;
+        //try
+        //{
+        //    Network.DownloadFile(sourcefile, destinationfile, "Administrator", "12345678", false, 100, true);
 
-        }
-        catch (Exception)
-        {
+        //}
+        //catch (Exception)
+        //{
             
-            throw;
-        }
+        //    throw;
+        //}
 
 
         //DirectoryInfo dir = new DirectoryInfo(@"\\192.168.1.22\\report");

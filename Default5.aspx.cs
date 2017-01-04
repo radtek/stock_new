@@ -13,6 +13,19 @@ public partial class Default5 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+       
+        Int32 fix=9;
+        Int32 counter = 0;
+        for (int i = 0; i <= 10000; i++)
+        {
+            if (i % fix == 0)
+            {
+                counter++;
+                // Response.Write(i);
+              //  Response.Write("<br>");
+            
+            }
+        }
+        Response.Write(counter);
     }
 }

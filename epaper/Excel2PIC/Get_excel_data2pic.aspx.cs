@@ -32,14 +32,14 @@ public partial class epaper_Excel2PIC_Get_excel_data2pic : System.Web.UI.Page
     string title = "";
     string strHTML = "";
     string mail_list = "";
-   
+    
     
    
     protected void Page_Load(object sender, EventArgs e)
     {
-       
-        
-        
+
+
+        Session["ForceFlag"] = Request.QueryString["FF"].ToString();
         // System.Threading.Thread.CurrentThread.ApartmentState = System.Threading.ApartmentState.STA;
         try
         {
@@ -88,15 +88,17 @@ window.close();
        
 
          //if(1==1)
-           if ((Convert.ToInt32(today_HH) >= 8 && Convert.ToInt32(today_HH) <= 14) || Convert.ToInt32(today_HH) == 19)
+        if ((Convert.ToInt32(today_HH) >= 8 && Convert.ToInt32(today_HH) <= 14) || Convert.ToInt32(today_HH) == 19 || Session["ForceFlag"].ToString().Equals("Y"))
         {
+           
+            // During Market time   
             initailExcel();
 
             openExcel1();
           
             initailExcel();
 
-            openExcel5();
+            //openExcel5();
          
 
         }
@@ -105,25 +107,19 @@ window.close();
 
         if ( Convert.ToInt32(today_HH) == 19)
         {
+            //initailExcel();
+
+            //openExcel3();
+
             initailExcel();
 
-            openExcel3();
-
-        }
-
-
-        if ( Convert.ToInt32(today_HH) == 19)
-        {
-            initailExcel();
-
-            openExcel4();
+            //openExcel4();
 
         }
 
 
 
-
-        if (Convert.ToInt32(today_HH)==19)
+        if (Convert.ToInt32(today_HH)==18)
         {
             initailExcel();
 
@@ -228,7 +224,7 @@ window.close();
             System.Drawing.Image a = this.SheetToImage(sheet, "A1", "M88");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
-            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list + ",0936dino@yahoo.com.tw,Cobie0922@yahoo.com.tw", oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list , oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
 
         }
         catch (Exception ex)
@@ -292,10 +288,10 @@ window.close();
             sheet = (Excel1.Worksheet)book.Sheets[2];//轉換的Sheet
 
 
-            System.Drawing.Image a = this.SheetToImage(sheet, "A1", "AG72");//Sheet轉圖檔
+            System.Drawing.Image a = this.SheetToImage(sheet, "A1", "AH82");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
-             SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
 
         }
         catch (Exception ex)
@@ -329,7 +325,7 @@ window.close();
 
 
         oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
-        oscar.file_from = Server.MapPath(".") + "\\OPTION_WEEK_NONTH_20160327.xls";
+        oscar.file_from = Server.MapPath(".") + "\\OPTION_WEEK_MONTH_20160327.xls";
         //oscar.file_from = @"C:\\TAIWAN_BANK_OutSite_Salary_FA_20160111.xls";
         oscar.save_to = Server.MapPath("..\\") + "..\\File\\" + oscar.today_detail + ".jpg";
         //oscar.save_to = @"c:\\" + today_detail+".jpg";
@@ -356,7 +352,7 @@ window.close();
             sheet = (Excel1.Worksheet)book.Sheets[1];//轉換的Sheet
 
 
-            System.Drawing.Image a = this.SheetToImage(sheet, "A1", "K30");//Sheet轉圖檔
+            System.Drawing.Image a = this.SheetToImage(sheet, "A1", "M30");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
@@ -393,7 +389,7 @@ window.close();
 
 
         oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
-        oscar.file_from = Server.MapPath(".") + "\\OPTION_WEEK_NONTH_20160327.xls";
+        oscar.file_from = Server.MapPath(".") + "\\OPTION_WEEK_MONTH_20160327.xls";
         //oscar.file_from = @"C:\\TAIWAN_BANK_OutSite_Salary_FA_20160111.xls";
         oscar.save_to = Server.MapPath("..\\") + "..\\File\\" + oscar.today_detail + ".jpg";
         //oscar.save_to = @"c:\\" + today_detail+".jpg";
@@ -420,7 +416,7 @@ window.close();
             sheet = (Excel1.Worksheet)book.Sheets[2];//轉換的Sheet
 
 
-            System.Drawing.Image a = this.SheetToImage(sheet, "A1", "K50");//Sheet轉圖檔
+            System.Drawing.Image a = this.SheetToImage(sheet, "A1", "M50");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
@@ -458,6 +454,7 @@ window.close();
 
         oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
         oscar.file_from = Server.MapPath(".") + "\\WEEK_DATA_SAMPLE.xls";
+        //oscar.file_from = Server.MapPath(".") + "\\MONTH_DATA_SAMPLE.xls";
         //oscar.file_from = @"C:\\TAIWAN_BANK_OutSite_Salary_FA_20160111.xls";
         oscar.save_to = Server.MapPath("..\\") + "..\\File\\" + oscar.today_detail + ".jpg";
         //oscar.save_to = @"c:\\" + today_detail+".jpg";
@@ -484,7 +481,7 @@ window.close();
             sheet = (Excel1.Worksheet)book.Sheets[1];//轉換的Sheet
 
 
-            System.Drawing.Image a = this.SheetToImage(sheet, "A4", "V52");//Sheet轉圖檔
+            System.Drawing.Image a = this.SheetToImage(sheet, "A4", "X82");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
@@ -737,6 +734,52 @@ window.close();
         smtp.Send(email);
 
 
-    } 
+    }
+
+
+    public class GetData
+    {
+        // Field
+        public string name;
+        public string flag;
+        // Constructor that takes no arguments.
+        public GetData()
+        {
+            name = "unknown";
+        }
+
+        // Constructor that takes one argument.
+        public GetData(string nm)
+        {
+            name = nm;
+        }
+
+        // Method
+        public void GetWeekDayFlag()
+        {
+            Int32 WeekDay=0;
+
+            int weeknow = 0;
+            
+            //name = newName;
+            string date1 = DateTime.Now.AddDays(+0).ToString("yyyyMMdd");
+
+            string date2 = DateTime.Now.AddDays(+0).ToString("yyyyMM")+"01";
+            DateTime dt1 = Convert.ToDateTime(date1);
+            DateTime dt2 = Convert.ToDateTime(date2);
+
+            TimeSpan difftime = dt1.Subtract(dt2); //日期相減
+            // Get Month Week
+            // Delete zero point
+            WeekDay = Convert.ToInt32(Math.Floor(Convert.ToDouble(difftime.Days.ToString()) / 7)) + 1;
+
+            // Getvweek
+
+            weeknow = Convert.ToInt32(dt1.DayOfWeek);//今天星期几 
+
+ 
+
+        }
+    }
 
 }
