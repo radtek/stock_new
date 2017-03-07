@@ -110,13 +110,14 @@ window.close();
 
 
 
-        if ( Convert.ToInt32(today_HH) == 19)
+        if ( Convert.ToInt32(today_HH) == 08)
         {
             //initailExcel();
 
             //openExcel3();
 
             initailExcel();
+            openExcelDelta();
 
             //openExcel4();
 
@@ -129,6 +130,9 @@ window.close();
             initailExcel();
 
             openExcel();
+            initailExcel();
+
+            openExcelDelta();
         }
         if (Convert.ToInt32(today_DD) == 4 && Convert.ToInt32(today_HH) == 20)
         {
