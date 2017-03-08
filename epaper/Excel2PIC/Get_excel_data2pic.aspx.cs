@@ -330,7 +330,7 @@ window.close();
         oscar.title = " 台指選Delta<分析>快遞【" + today_yyyymmdd + "】";
 
         oscar.strHTML = "Oscar Group 投資的路上 平安喜樂!!!";
-        oscar.mail_list = "vsoscar0115@gmail.com";
+        oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com,aq3283@gmail.com";
 
 
         oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
