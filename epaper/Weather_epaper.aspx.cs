@@ -28,7 +28,7 @@ public partial class epaper_Weather_epaper : System.Web.UI.Page
         string title = "中央氣象電子報-" + DateTime.Now.ToString("yyyy/MM/dd");
         ArrayList maillist = func.FileToArray(Server.MapPath("..\\") + "\\maillist\\money_link_maillist.txt");
 
-        SendEmail("vsoscar@ms26.url.com.tw", "vsoscar@ms26.url.com.tw", title, strHTML, "");//
+        func.SendEmail("vsoscar@ms26.url.com.tw", "vsoscar@ms26.url.com.tw", title, strHTML, "","");//
         //SendEmail("vsoscar@ms26.url.com.tw", "vsoscar2003@yahoo.com.hk", title, strHTML, "");//測試寄送程式
         //jrrsc@ms96.url.com.tw
         //fdlsongyy888@hotmail.com,vsoscar2003@yahoo.com.hk,liu.chang@msa.hinet.net,phyllis0531@hotmail.com,m8903157@yahoo.com.tw,benjamin6522@hotmail.com,dai.ww@msa.hinet.net,vrmouse@hotmail.com,roger.liu@infomax.com.tw,Yu.ChiaHao@gmail.com,chin-1520@yahoo.com.tw,heavenlibra@yahoo.com.tw,scm.shen@msa.hinet.net,bakery1202@gmail.com

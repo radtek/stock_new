@@ -360,14 +360,15 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
 
     private void PDF_FACTORY(member oscar)
     {
+        
         Send_PDF(oscar.tool, oscar.title, oscar.strHTML, oscar.title, oscar.website,oscar.today_detail);
-        SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\") + "\\File\\" + oscar.today_detail + ".pdf");//
+        func.SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\") + "\\File\\" + oscar.today_detail + ".pdf");//
 
     }
     private void PIC_FACTORY(member oscar)
     {
         Send_PIC(oscar.tool, oscar.title, oscar.strHTML, oscar.title, oscar.website, oscar.today_detail);
-        SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+        func.SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
 
     }
     public class member 
@@ -446,7 +447,11 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
   
     public static void SendEmail(string from, string to, string subject, string body, string cca, string file_path)
     {
-        SmtpClient smtp = new SmtpClient("ms28.hinet.net");
+        //smtp.gmail.com 
+        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 25);
+
+        smtp.Credentials = new System.Net.NetworkCredential("vsoscar0115@gmail.com", "oscar0115");
+        smtp.EnableSsl = true;
         MailMessage email = new MailMessage(from, to, subject, body);
         if (cca == "")
         {
@@ -465,9 +470,8 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
 
         }
 
-
-
         email.IsBodyHtml = true;
+      
         smtp.Send(email);
 
 

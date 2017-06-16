@@ -233,7 +233,7 @@ window.close();
             System.Drawing.Image a = this.SheetToImage(sheet, "A1", "M88");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
-            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list , oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+            func.SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list , oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
 
         }
         catch (Exception ex)
@@ -300,7 +300,7 @@ window.close();
             System.Drawing.Image a = this.SheetToImage(sheet, "A1", "AH82");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
-            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+            func.SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
 
         }
         catch (Exception ex)
@@ -364,7 +364,7 @@ window.close();
             System.Drawing.Image a = this.SheetToImage(sheet, "B1", "M330");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
-            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+            func.SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
 
         }
         catch (Exception ex)
@@ -428,7 +428,7 @@ window.close();
             System.Drawing.Image a = this.SheetToImage(sheet, "A1", "M30");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
-            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+            func.SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
 
         }
         catch (Exception ex)
@@ -492,7 +492,7 @@ window.close();
             System.Drawing.Image a = this.SheetToImage(sheet, "A1", "M50");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
-            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+            func.SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
 
         }
         catch (Exception ex)
@@ -557,7 +557,7 @@ window.close();
             System.Drawing.Image a = this.SheetToImage(sheet, "A4", "X82");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
-            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+            func.SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
 
         }
         catch (Exception ex)
@@ -623,7 +623,7 @@ window.close();
             System.Drawing.Image a = this.SheetToImage(sheet, "A1", "J27");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
-            SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+            func.SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
 
         }
         catch (Exception ex)
@@ -780,9 +780,13 @@ window.close();
         }
     }
 
-     public static void SendEmail(string from, string to, string subject, string body, string cca, string file_path)
+    public static void SendEmail(string from, string to, string subject, string body, string cca, string file_path)
     {
-        SmtpClient smtp = new SmtpClient("ms28.hinet.net");
+        //smtp.gmail.com 
+        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 25);
+
+        smtp.Credentials = new System.Net.NetworkCredential("vsoscar0115@gmail.com", "oscar0115");
+        smtp.EnableSsl = true;
         MailMessage email = new MailMessage(from, to, subject, body);
         if (cca == "")
         {
@@ -801,13 +805,12 @@ window.close();
 
         }
 
-
-
         email.IsBodyHtml = true;
+
         smtp.Send(email);
 
 
-    }
+    } 
 
 
     public class GetData

@@ -32,6 +32,38 @@ public class func
         //
     }
 
+    public static void SendEmail(string from, string to, string subject, string body, string cca, string file_path)
+    {
+        //smtp.gmail.com 
+        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 25);
+
+        smtp.Credentials = new System.Net.NetworkCredential("vsoscar0115@gmail.com", "oscar0115");
+        smtp.EnableSsl = true;
+        MailMessage email = new MailMessage(from, to, subject, body);
+        if (cca == "")
+        {
+        }
+        else
+        {
+            email.CC.Add(cca);
+            //email.Bcc.Add(cca);
+        }
+
+        if (!file_path.Equals(""))
+        {
+            System.Net.Mail.Attachment attachment;
+            attachment = new System.Net.Mail.Attachment(file_path);
+            email.Attachments.Add(attachment);
+
+        }
+
+        email.IsBodyHtml = true;
+
+        smtp.Send(email);
+
+
+    } 
+
     public static void start_process(string cmd_string)
     {
 
