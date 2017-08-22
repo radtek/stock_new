@@ -88,7 +88,7 @@ window.close();
        
 
          //if(1==1)
-        if ((Convert.ToInt32(today_HH) >= 8 && Convert.ToInt32(today_HH) <= 14) || Convert.ToInt32(today_HH) == 19 || Session["ForceFlag"].ToString().Equals("Y"))
+        if ((Convert.ToInt32(today_HH) >= 8 && Convert.ToInt32(today_HH) <= 15) || Convert.ToInt32(today_HH) == 19 || Session["ForceFlag"].ToString().Equals("Y"))
         {
            
             // During Market time   
