@@ -361,7 +361,7 @@ window.close();
             sheet = (Excel1.Worksheet)book.Sheets[1];//轉換的Sheet
 
 
-            System.Drawing.Image a = this.SheetToImage(sheet, "B1", "M330");//Sheet轉圖檔
+            System.Drawing.Image a = this.SheetToImage(sheet, "B1", "Q330");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             func.SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
