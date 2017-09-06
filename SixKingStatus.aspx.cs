@@ -13,7 +13,7 @@ public partial class SixKingStatus : System.Web.UI.Page
 {
     string month = "";
     string day = "";
-    string today = DateTime.Now.AddDays(+0).ToString("yyyy/MM/dd");
+    string today = DateTime.Now.AddDays(-30).ToString("yyyy/MM/dd");
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,6 +25,9 @@ public partial class SixKingStatus : System.Web.UI.Page
         if (!IsPostBack)
         {
             txtCalendar1.Text = today;
+            HyperLink1.Text = "農民曆";
+            HyperLink1.Target = "_blank";
+            HyperLink1.NavigateUrl = "http://www.nongli.info/huangli/";
         }
       
        month= txtCalendar1.Text.Replace("/", "").Substring(4,2);

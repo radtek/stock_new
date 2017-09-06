@@ -32,7 +32,8 @@
                 <td class="xl63" style="border-right: windowtext 0.5pt solid; border-top: windowtext 0.5pt solid;
                     border-left: windowtext; width: 87pt; border-bottom: windowtext 0.5pt solid;
                     font-family: 新細明體; background-color: transparent" width="116">
-                    狀態</td>
+                    狀態<br />
+                    <asp:HyperLink ID="HyperLink1" runat="server">HyperLink</asp:HyperLink></td>
             </tr>
             <tr height="22" style="font-family: 新細明體; height: 16.5pt">
                 <td class="xl63" height="22" style="border-right: windowtext 0.5pt solid; border-top: windowtext;
@@ -109,15 +110,14 @@
                     <asp:Label ID="LabelA4" runat="server" Text="Label"></asp:Label></td>
             </tr>
             <tr height="22" style="font-family: 新細明體; height: 16.5pt">
-                <td class="xl63" height="22" style="border-right: windowtext 0.5pt solid; border-top: windowtext;
-                    border-left: windowtext 0.5pt solid; border-bottom: windowtext 0.5pt solid; height: 16.5pt;
-                    background-color: transparent; width: 80pt;">
+                <td class="xl63" height="22" style="border-right: windowtext 0.5pt solid; border-bottom: windowtext 0.5pt solid;
+                    background-color: #ffff99; border-left-color: windowtext; border-top-color: windowtext;">
                     辰</td>
                 <td class="xl63" style="border-right: windowtext 0.5pt solid; border-top: windowtext;
-                    border-left: windowtext; border-bottom: windowtext 0.5pt solid; background-color: transparent">
+                    border-left: windowtext; border-bottom: windowtext 0.5pt solid; background-color: #ffff99">
                     07~09</td>
                 <td class="xl63" style="border-right: windowtext 0.5pt solid; border-top: windowtext;
-                    border-left: windowtext; border-bottom: windowtext 0.5pt solid; background-color: transparent">
+                    border-left: windowtext; border-bottom: windowtext 0.5pt solid; background-color: #ffff99">
                     <asp:Label ID="LabelA5" runat="server" Text="Label"></asp:Label></td>
             </tr>
             <tr height="22" style="font-family: 新細明體; height: 16.5pt">
@@ -147,15 +147,14 @@
                     <asp:Label ID="LabelA7" runat="server" Text="Label"></asp:Label></td>
             </tr>
             <tr height="22" style="font-family: 新細明體; height: 16.5pt">
-                <td class="xl63" height="22" style="border-right: windowtext 0.5pt solid; border-top: windowtext;
-                    border-left: windowtext 0.5pt solid; border-bottom: windowtext 0.5pt solid; height: 16.5pt;
-                    background-color: transparent; width: 80pt;">
+                <td class="xl63" height="22" style="border-right: windowtext 0.5pt solid; border-bottom: windowtext 0.5pt solid;
+                    background-color: #ffcc66; border-left-color: windowtext; border-top-color: windowtext;">
                     未</td>
                 <td class="xl63" style="border-right: windowtext 0.5pt solid; border-top: windowtext;
-                    border-left: windowtext; border-bottom: windowtext 0.5pt solid; background-color: transparent">
+                    border-left: windowtext; border-bottom: windowtext 0.5pt solid; background-color: #ffcc66">
                     13~15</td>
                 <td class="xl63" style="border-right: windowtext 0.5pt solid; border-top: windowtext;
-                    border-left: windowtext; border-bottom: windowtext 0.5pt solid; background-color: transparent">
+                    border-left: windowtext; border-bottom: windowtext 0.5pt solid; background-color: #ffcc66">
                     <asp:Label ID="LabelA8" runat="server" Text="Label"></asp:Label></td>
             </tr>
             <tr height="22" style="font-family: 新細明體; height: 16.5pt">
