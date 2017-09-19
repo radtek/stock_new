@@ -8,18 +8,48 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using CNCalendar;
+
 
 public partial class SixKingStatus : System.Web.UI.Page
 {
     string month = "";
     string day = "";
     string today = DateTime.Now.AddDays(-30).ToString("yyyy/MM/dd");
-
+    string today1 = DateTime.Now.AddDays(-0).ToString("yyyy/MM/dd");
+    string nexttoday1 = DateTime.Now.AddDays(+30).ToString("yyyy/MM/dd");
+    string sDate = "2010/05/04";
+   
+ 
     protected void Page_Load(object sender, EventArgs e)
     {
-         
+        
+        //DateTime NewDate = DateTime.ParseExact(sDate, "yyyyMMdd", null, System.Globalization.DateTimeStyles.AllowWhiteSpaces);
 
-  
+        LunarCalender Getlunardate = new LunarCalender();
+        string lnc = Getlunardate.GetLunarCalendarstring(DateTime.Now);
+
+        NthTradeday GetNtradedays = new NthTradeday();
+
+
+
+        GetNtradedays.Calculate(today1, "6");
+
+        
+
+
+        
+        //CNCalendar.CNDate cd = new CNCalendar.CNDate(DateTime.Today.AddDays(-0));
+
+        Response.Write("今天的農曆日期：" + lnc + "<br/>");
+
+        Response.Write("本月下月第6交易日：" + GetNtradedays.desdate );
+
+        GetNtradedays.Calculate(nexttoday1, "6");
+
+
+        Response.Write("~" + GetNtradedays.desdate );
+
         
         //2017/09/06
         if (!IsPostBack)
@@ -28,6 +58,8 @@ public partial class SixKingStatus : System.Web.UI.Page
             HyperLink1.Text = "農民曆";
             HyperLink1.Target = "_blank";
             HyperLink1.NavigateUrl = "http://www.nongli.info/huangli/";
+
+            txtCalendar1.Text = lnc;
         }
       
        month= txtCalendar1.Text.Replace("/", "").Substring(4,2);
@@ -71,7 +103,7 @@ public partial class SixKingStatus : System.Web.UI.Page
 
     public class SixKingE
     {
-
+        
         public string[] status ={ "大安", "留連", "速喜", "赤口", "小吉", "空亡" };    
         
         public string tmpa;
@@ -128,4 +160,62 @@ public partial class SixKingStatus : System.Web.UI.Page
 
         Label3.Text = sk.cvalue.ToString();
     }
+    public class NthTradeday
+    {
+       private string pdate;
+       private string pdays;
+       public string desdate;
+       private DateTime Datetime1;
+       
+        Int32 counter;
+      
+       public NthTradeday()
+        {
+
+          
+        }
+
+
+    
+
+        public void Calculate(string sdate, string sdays)
+
+        {
+            pdate = sdate.Replace("/", "").Substring(0, 6);
+            pdays = sdays;
+
+            Datetime1 = DateTime.ParseExact(pdate, "yyyyMM", System.Globalization.CultureInfo.InvariantCulture);
+            
+            Int32 counter=0;
+
+            for (int i = 0; i <= Convert.ToInt32(pdays) - 1; i++)
+            {
+                if (Datetime1.AddDays(+i).DayOfWeek == DayOfWeek.Saturday || Datetime1.AddDays(+i).DayOfWeek == DayOfWeek.Sunday)
+                {
+
+                    counter++;
+                }
+                   
+                                 
+            }
+            if (Datetime1.AddDays(counter + Convert.ToInt32(pdays) - 1).DayOfWeek == DayOfWeek.Saturday )
+            {
+                counter++;
+            }
+
+            if (Datetime1.AddDays(counter + Convert.ToInt32(pdays) - 1).DayOfWeek == DayOfWeek.Sunday)
+            {
+                counter++;
+            }
+           
+            desdate = Datetime1.AddDays(counter + Convert.ToInt32(pdays) - 1).ToString("yyyy/MM/dd");
+
+
+        }
+
+
+    
+    }
+
+    
 }
