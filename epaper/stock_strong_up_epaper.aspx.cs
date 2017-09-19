@@ -75,7 +75,7 @@ public partial class epaper_stock_strong_up_epaper : System.Web.UI.Page
 
         BindGridView();
 
-        SendEmail("vsoscar@ms26.url.com.tw", "vsoscar0115@gmail.com", title, strHTML, mail_list);//
+        SendEmail("vsoscar@ms26.url.com.tw", "vsoscar0115@gmail.com", title, strHTML, "", "");//
         //SendEmail("vsoscar@ms26.url.com.tw", "vsoscar2003@yahoo.com.hk", title, strHTML, "");//測試寄送程式
         //jrrsc@ms96.url.com.tw
         //fdlsongyy888@hotmail.com,vsoscar2003@yahoo.com.hk,liu.chang@msa.hinet.net,phyllis0531@hotmail.com,m8903157@yahoo.com.tw,benjamin6522@hotmail.com,dai.ww@msa.hinet.net,vrmouse@hotmail.com,roger.liu@infomax.com.tw,Yu.ChiaHao@gmail.com,chin-1520@yahoo.com.tw,heavenlibra@yahoo.com.tw,scm.shen@msa.hinet.net,bakery1202@gmail.com
@@ -90,24 +90,37 @@ public partial class epaper_stock_strong_up_epaper : System.Web.UI.Page
         Response.Write("<script language=\"javascript\">setTimeout(\"window.opener=null;window.open('','_self');  window.close();\",null)</script>");
     }
 
-    public static void SendEmail(string from, string to, string subject, string body, string cca)
+    public static void SendEmail(string from, string to, string subject, string body, string cca, string file_path)
     {
-        SmtpClient smtp = new SmtpClient("ms28.hinet.net");
+        //smtp.gmail.com 
+        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 25);
+
+        smtp.Credentials = new System.Net.NetworkCredential("vsoscar0115@gmail.com", "oscar0115");
+        smtp.EnableSsl = true;
         MailMessage email = new MailMessage(from, to, subject, body);
         if (cca == "")
         {
         }
         else
         {
-            //email.CC.Add(cca);
-            email.Bcc.Add(cca);
+            email.CC.Add(cca);
+            //email.Bcc.Add(cca);
+        }
+
+        if (!file_path.Equals(""))
+        {
+            System.Net.Mail.Attachment attachment;
+            attachment = new System.Net.Mail.Attachment(file_path);
+            email.Attachments.Add(attachment);
+
         }
 
         email.IsBodyHtml = true;
+
         smtp.Send(email);
 
 
-    }
+    } 
 
     public void BindGridView()
     {

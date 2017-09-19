@@ -78,6 +78,21 @@
 			</authorization>
 		</system.web>
 	</location>
+  <location path="Default5.aspx">
+    <system.web>
+      <authorization>
+        <allow users="*"/>
+      </authorization>
+    </system.web>
+  </location>
+  
+  <location path="iching.aspx">
+    <system.web>
+      <authorization>
+        <allow users="*"/>
+      </authorization>
+    </system.web>
+  </location>
 	<location path="SemaphoreDemo.aspx">
 		<system.web>
 			<authorization>
@@ -207,15 +222,31 @@
 
   <location path="epaper/Excel2PIC/Get_excel_data2pic.aspx">
     <system.web>
-      <identity impersonate="true" userName="administrator"
-      password="12345678">
-      </identity>
+     
       <authorization>
         <allow users="*"/>
       </authorization>
     </system.web>
   </location>
-	<location path="epaper/bituz_epaper.aspx">
+
+  <location path="KPI_POINT.aspx">
+    <system.web>
+
+      <authorization>
+        <allow users="*"/>
+      </authorization>
+    </system.web>
+  </location>
+  <location path="Default6.aspx">
+    <system.web>
+
+      <authorization>
+        <allow users="*"/>
+      </authorization>
+    </system.web>
+  </location>
+
+  <location path="epaper/bituz_epaper.aspx">
 		<system.web>
 			<authorization>
 				<allow users="*"/>

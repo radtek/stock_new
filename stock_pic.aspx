@@ -25,7 +25,7 @@ function IMG1_onclick() {
 </script>  
 
 </head>
-<body onload="JavaScript:timedRefresh(60000)">
+<body onload="JavaScript:timedRefresh(120000)">
     <form id="form1" runat="server"  >
     
     <div>
@@ -117,13 +117,41 @@ function IMG1_onclick() {
 </table>
          <br />
          <br />
+         <table width="900" border="5" bordercolor="#8080FF" bgcolor="#FFCCFF">
+             <tr>
+                 <td style="width: 990px">
+                <iframe src="http://so.cnyes.com/JavascriptGraphic/chartstudy.aspx?country=future&market=future&code=TWCON&divwidth=990&divheight=300&mychartname=%E6%91%A9%E6%A0%B9%E5%8F%B0%E8%82%A1%E6%8C%87%E6%95%B8%E8%BF%91%E6%9C%88" id='Iframe1' scrolling=yes style="width: 990px; height: 512px" ></iframe>
+                 </td>
+                
+             </tr>
+             <tr>
+                 <td style="width: 990px">
+                     <%--<img src="http://ichart.yahoo.com/b?s=^DJI" />--%>
+                 <iframe src="http://so.cnyes.com/JavascriptGraphic/chartstudy.aspx?country=future&market=future&code=YMCON&divwidth=990&divheight=300&mychartname=%E9%80%A3%E7%BA%8C%E6%9C%88E-Mini%E9%81%93%E7%93%8A%E6%8C%87%E6%95%B8(YMU7)" id='Iframe2' scrolling=yes style="width: 990px; height: 512px" ></iframe>
+                 </td>
+                
+             </tr>
+              <tr>
+                 <td style="width: 990px">
+                     <%--<img src="http://ichart.yahoo.com/b?s=^DJI" />--%>
+               <iframe src="http://so.cnyes.com/JavascriptGraphic/chartstudy.aspx?country=future&market=future&code=DAX&divwidth=990&divheight=300&mychartname=%E5%BE%B7%E5%9C%8BDAX%E6%8C%87%E6%95%B8" id='Iframe3' scrolling=yes style="width: 990px; height: 512px" ></iframe>
+                 </td>
+                
+             </tr>
+         </table>
+         <br />
+         <br />
         <table width="200" border="10" bordercolor="#FF0000" bgcolor="#FFFFCC">
 <tr>
 <td>
   <strong>
-目前台股大盤指數<br><br><br><br><br><br><br><br>
+目前台股摩台指數<br><br><br><br><br><br><br>
+<iframe src="http://so.cnyes.com/JavascriptGraphic/chartstudy.aspx?country=future&market=future&code=TWCON&divwidth=990&divheight=300&mychartname=%E6%91%A9%E6%A0%B9%E5%8F%B0%E8%82%A1%E6%8C%87%E6%95%B8%E8%BF%91%E6%9C%88" id='inneriframe' scrolling=yes style="width: 698px; height: 512px" ></iframe>
+<br>
  </strong>
-<img src="http://yamstock.megatime.com.tw:8080/asp/mcs/ws.asp?w=700&h=400&fmt=png&rt=on&min=1&mode=detail&id=M_010300&style=totalmean&dot=2"  />&nbsp;</td>
+ 
+<div id='outerdiv '>
+    &nbsp;</div>&nbsp;</td>
 <td>
 <strong>
 近期台股大盤K線圖 &nbsp;&nbsp;<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="http://schrts.co/8GbnjL"

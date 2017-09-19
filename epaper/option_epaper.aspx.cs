@@ -24,8 +24,9 @@ public partial class epaper_option_epaper : System.Web.UI.Page
         string title = "股市氣象台電子報-今日我最夯<==Option_OIV==>" + DateTime.Now.ToString("yyyy/MM/dd");
 
         ArrayList maillist = func.FileToArray(Server.MapPath("..\\") + "\\maillist\\bituz_maillist.txt");
+        func.SendEmail("vsoscar@ms26.url.com.tw", maillist[0].ToString(), title, strHTML, "", "");
 
-        SendEmail("vsoscar@ms26.url.com.tw", maillist[0].ToString(), title, strHTML, "", "");//
+        //SendEmail("vsoscar@ms26.url.com.tw", maillist[0].ToString(), title, strHTML, "", "");//
 
         func.write_log("Send Option_OIV_daily", Server.MapPath("..\\") + "\\RUN_LOG\\", "log");
         func.delete_log_file(Server.MapPath("..\\") + "\\RUN_LOG\\", "*.log", -30);
