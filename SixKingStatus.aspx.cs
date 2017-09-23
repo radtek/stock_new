@@ -35,20 +35,26 @@ public partial class SixKingStatus : System.Web.UI.Page
 
         GetNtradedays.Calculate(today1, "6");
 
-        
 
+       
 
         
         //CNCalendar.CNDate cd = new CNCalendar.CNDate(DateTime.Today.AddDays(-0));
+        Response.Write("今天的國曆日期：" + today1 + "<br/>");
 
         Response.Write("今天的農曆日期：" + lnc + "<br/>");
 
-        Response.Write("本月下月第6交易日：" + GetNtradedays.desdate );
-
+        Response.Write("本月下月第6交易日：" + GetNtradedays.desdate) ;
+       
         GetNtradedays.Calculate(nexttoday1, "6");
 
 
-        Response.Write("~" + GetNtradedays.desdate );
+        Response.Write("~" + GetNtradedays.desdate + "<br/>");
+
+        DateTime date1 = DateTime.ParseExact(GetNtradedays.desdate.Replace("/", ""), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture); ;
+        DateTime date2 = DateTime.Now;
+        TimeSpan s = new TimeSpan(date1.Ticks - date2.Ticks);
+        Response.Write("距離剩餘：" + s.Days.ToString() + " 天");
 
         
         //2017/09/06
