@@ -1,0 +1,9 @@
+20170924
+提供 選擇權策略 盈虧計算公式
+
+S︰到期指數；X︰履約價格；p︰權利金
+PL:到期損益
+BUY  CALL  PL: MAX(S－X－p, －p)
+SELL CALL  PL: MIN(X－S＋p, p)
+BUY  PUT   PL: MAX(X－S－p, －p)
+SELL PUT   PL: MIN(S－X＋p, p)
