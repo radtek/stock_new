@@ -160,7 +160,7 @@ function IMG1_onclick() {
             Target="_blank">Weekly Info</asp:HyperLink>&nbsp; &nbsp;<asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="http://stockcharts.com/h-sc/ui?s=%24GOLD&p=W&b=4&g=0&id=p62030242769"
             Target="_blank">Weekly Gold Info</asp:HyperLink></strong><br />
     <%--<img src="http://stockcharts.com/c-sc/sc?s=%24TWII&p=D&b=4&g=0&i=p26407678585&r=1437312741461" />--%>
-    <img src="http://stock.wearn.com/finance_chart.asp?stockid=&timekind=0&timeblock=180&sma1=5&sma2=58&sma3=100&volume=0&indicator1=RSI&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp" /></td>
+    <img src="http://stock.wearn.com/finance_chart.asp?stockid=&timekind=0&timeblock=180&sma1=5&sma2=58&sma3=100&volume=0&indicator1=Aroon&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp" /></td>
 </tr>
 <tr>
 <td>
