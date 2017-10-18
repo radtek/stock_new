@@ -7,3 +7,8 @@ BUY  CALL  PL: MAX(S－X－p, －p)
 SELL CALL  PL: MIN(X－S＋p, p)
 BUY  PUT   PL: MAX(X－S－p, －p)
 SELL PUT   PL: MIN(S－X＋p, p)
+
+
+*************************************************
+可快速驗證
+相差多少才有效果
