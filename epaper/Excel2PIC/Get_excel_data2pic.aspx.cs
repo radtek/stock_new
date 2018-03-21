@@ -40,6 +40,7 @@ public partial class epaper_Excel2PIC_Get_excel_data2pic : System.Web.UI.Page
 
 
         Session["ForceFlag"] = Request.QueryString["FF"].ToString();
+        //Session["ForceFlag"] = "Y";
         // System.Threading.Thread.CurrentThread.ApartmentState = System.Threading.ApartmentState.STA;
         try
         {
@@ -90,7 +91,7 @@ window.close();
          //if(1==1)
         if ((Convert.ToInt32(today_HH) >= 8 && Convert.ToInt32(today_HH) <= 15) || Convert.ToInt32(today_HH) == 19 || Session["ForceFlag"].ToString().Equals("Y"))
         {
-           
+            
             // During Market time   
             initailExcel();
 
@@ -99,6 +100,11 @@ window.close();
             if(Session["ForceFlag"].ToString().Equals("Y"))
             {
                 openExcelDelta();
+                initailExcel();
+                openExcelBuy();
+                initailExcel();
+                openExcelSell();
+                
             }
            
             //initailExcel();
@@ -118,13 +124,26 @@ window.close();
 
             initailExcel();
             openExcelDelta();
-
+            initailExcel();
+            openExcelBuy();
+            initailExcel();
+            openExcelSell();
             //openExcel4();
+
+        }
+        //if(1==1)
+        if (Convert.ToInt32(today_HH) == 17)
+        {
+           
+            initailExcel();
+            openExcelBuy();
+            initailExcel();
+            openExcelSell();
 
         }
 
 
-
+        //if(1==1)
         if (Convert.ToInt32(today_HH)==18)
         {
             initailExcel();
@@ -133,6 +152,8 @@ window.close();
             initailExcel();
 
             openExcelDelta();
+          
+
         }
         if (Convert.ToInt32(today_DD) == 4 && Convert.ToInt32(today_HH) == 20)
         {
@@ -362,6 +383,135 @@ window.close();
 
 
             System.Drawing.Image a = this.SheetToImage(sheet, "B1", "Q330");//Sheet轉圖檔
+            a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
+            //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
+            func.SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+
+        }
+        catch (Exception ex)
+        {
+            Response.Write(ex.ToString());
+
+        }
+        finally
+        {
+
+            //book = null;
+            //sheet = null;
+            //releaseObject(book);
+            //releaseObject(sheet);
+            //releaseObject(_Excel);
+
+
+        }
+
+
+
+    }
+
+    public void openExcelBuy()
+    {
+        member oscar = new member();
+
+        oscar.title = " 台指選籌碼未平倉<買權>快遞【" + today_yyyymmdd + "】";
+
+        oscar.strHTML = "Oscar Group 投資的路上 平安喜樂!!!";
+        oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com,aq3283@gmail.com";
+
+
+        oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
+        oscar.file_from = Server.MapPath(".") + "\\買賣權分析.xls";
+        //oscar.file_from = @"C:\\TAIWAN_BANK_OutSite_Salary_FA_20160111.xls";
+        oscar.save_to = Server.MapPath("..\\") + "..\\File\\" + oscar.today_detail + ".jpg";
+        //oscar.save_to = @"c:\\" + today_detail+".jpg";
+
+        Excel1.Workbook book = null;
+        Excel1.Worksheet sheet = null;
+
+
+        string MapPath = Server.MapPath(".");
+        //string path = MapPath + @"\T2Cell_Noon_20150722171337.xls";
+        string path = oscar.file_from;
+        try
+        {
+            book = this.ExcelWorkbookOpen(path);//開啟Excel檔
+
+
+            book.Save();
+
+            //string QQ = _Excel.Version.ToString();
+
+
+
+
+            sheet = (Excel1.Worksheet)book.Sheets[2];//轉換的Sheet
+
+
+            System.Drawing.Image a = this.SheetToImage(sheet, "A1", "O50");//Sheet轉圖檔
+            a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
+            //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
+            func.SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
+
+        }
+        catch (Exception ex)
+        {
+            Response.Write(ex.ToString());
+
+        }
+        finally
+        {
+
+            //book = null;
+            //sheet = null;
+            //releaseObject(book);
+            //releaseObject(sheet);
+            //releaseObject(_Excel);
+
+
+        }
+
+
+
+    }
+    public void openExcelSell()
+    {
+        member oscar = new member();
+
+        oscar.title = " 台指選籌碼未平倉<賣權>快遞【" + today_yyyymmdd + "】";
+
+        oscar.strHTML = "Oscar Group 投資的路上 平安喜樂!!!";
+        oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com,aq3283@gmail.com";
+
+
+        oscar.today_detail = DateTime.Now.AddDays(+0).ToString("yyyyMMddHHmmss");
+        oscar.file_from = Server.MapPath(".") + "\\買賣權分析.xls";
+        //oscar.file_from = @"C:\\TAIWAN_BANK_OutSite_Salary_FA_20160111.xls";
+        oscar.save_to = Server.MapPath("..\\") + "..\\File\\" + oscar.today_detail + ".jpg";
+        //oscar.save_to = @"c:\\" + today_detail+".jpg";
+
+        Excel1.Workbook book = null;
+        Excel1.Worksheet sheet = null;
+
+
+        string MapPath = Server.MapPath(".");
+        //string path = MapPath + @"\T2Cell_Noon_20150722171337.xls";
+        string path = oscar.file_from;
+        try
+        {
+            book = this.ExcelWorkbookOpen(path);//開啟Excel檔
+
+
+            book.Save();
+
+            //string QQ = _Excel.Version.ToString();
+
+
+
+
+            sheet = (Excel1.Worksheet)book.Sheets[3];//轉換的Sheet
+
+
+            System.Drawing.Image a = this.SheetToImage(sheet, "A1", "O50");//Sheet轉圖檔
             a.Save(oscar.save_to, System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             //a.Save(MapPath + @"\20160112_QOO.Jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);//儲存圖檔
             func.SendEmail("vsoscar@ms26.url.com.tw", oscar.mail_list, oscar.title, oscar.strHTML, "", Server.MapPath("..\\..\\") + "\\File\\" + oscar.today_detail + ".jpg");//
