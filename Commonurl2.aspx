@@ -14,6 +14,8 @@
         <asp:HyperLink ID="HyperLink1" target="_blank" Text="台指期貨日盤走勢"  runat="server" NavigateUrl="http://mis.twse.com.tw/stock/futures.jsp"></asp:HyperLink><br />
        <br />
         <asp:HyperLink ID="HyperLink2" target="_blank" Text="台指期盤後盤"  runat="server" NavigateUrl="http://info512ah.taifex.com.tw/Future/FusaQuote_Norl.aspx"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="https://stock.wearn.com/taifexphoto.asp" Target="_blank">期貨法人未平倉</asp:HyperLink><br />
          <br />
         <asp:HyperLink ID="HyperLink15" target="_blank" Text="GAN9"  runat="server" NavigateUrl="http://www.pivottrading.co.in/pages/gannSquareof9.php"></asp:HyperLink><br />
         
