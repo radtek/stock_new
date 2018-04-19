@@ -45,7 +45,7 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
         oscar.strHTML = "投資的路上 平安喜樂<br>http://histock.tw/index";
         oscar.mail_list = "vsoscar0115@gmail.com,oscar0115.iim01g@g2.nctu.edu.tw";
 
-        PIC_FACTORY(oscar);
+        //PIC_FACTORY(oscar);
 
         if (today_HH.Equals("19"))
         {
@@ -284,7 +284,7 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
 
             oscar.strHTML = "投資的路上 平安喜樂<br>http://histock.tw/stock/broker8.aspx";
             oscar.mail_list = "vsoscar0115@gmail.com,alex9tw@gmail.com,aq3283@gmail.com";
-            PIC_FACTORY(oscar);
+            //PIC_FACTORY(oscar);
 
         }
 
@@ -319,7 +319,7 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
 
             oscar.strHTML = "投資的路上 平安喜樂<br>http://fund.cnyes.com/detail/%E5%BE%B7%E7%9B%9B%E5%AE%89%E8%81%AF%E6%94%B6%E7%9B%8A%E6%88%90%E9%95%B7%E5%9F%BA%E9%87%91-AM%E7%A9%A9%E5%AE%9A%E6%9C%88%E6%94%B6%E9%A1%9E%E8%82%A1%EF%BC%88%E7%BE%8E%E5%85%83/b20,073/holdings/";
             oscar.mail_list = "vsoscar0115@gmail.com";
-            PIC_FACTORY(oscar);
+            //PIC_FACTORY(oscar);
 
         }
          //if (1==1)

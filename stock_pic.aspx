@@ -146,7 +146,7 @@ function IMG1_onclick() {
 <td>
   <strong>
 目前台股摩台指數<br><br><br><br><br><br><br>
-<iframe src="http://so.cnyes.com/JavascriptGraphic/chartstudy.aspx?country=future&market=future&code=TWCON&divwidth=990&divheight=300&mychartname=%E6%91%A9%E6%A0%B9%E5%8F%B0%E8%82%A1%E6%8C%87%E6%95%B8%E8%BF%91%E6%9C%88" id='inneriframe' scrolling=yes style="width: 698px; height: 512px" ></iframe>
+<iframe src="http://info512.taifex.com.tw/Future/ImgChart.aspx?type=1&contract=TX&CommodityName=%E8%87%BA%E6%8C%87%E9%81%B8" id='inneriframe' scrolling=yes style="width: 698px; height: 512px" ></iframe>
 <br>
  </strong>
  
@@ -158,22 +158,24 @@ function IMG1_onclick() {
     Target="_blank">RSI</asp:HyperLink>&nbsp; &nbsp;<asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="http://stockcharts.com/def/servlet/SharpChartv05.ServletDriver?c=%24TWII,PWTADANRRO[PA][D][F1!3!!!2!20]&pnf=y"
             Target="_blank">PF Pattern</asp:HyperLink>&nbsp; &nbsp;<asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="http://stockcharts.com/h-sc/ui?s=%24TWII&p=W&st=2008-06-15&en=(today)&id=p29044150490"
             Target="_blank">Weekly Info</asp:HyperLink>&nbsp; &nbsp;<asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="http://stockcharts.com/h-sc/ui?s=%24GOLD&p=W&b=4&g=0&id=p62030242769"
-            Target="_blank">Weekly Gold Info</asp:HyperLink></strong><br />
+            Target="_blank">Weekly Gold Info</asp:HyperLink>&nbsp; &nbsp;<asp:HyperLink ID="HyperLink9" runat="server" NavigateUrl="http://mis.twse.com.tw/stock/futures.jsp"
+            Target="_blank">委買委賣</asp:HyperLink>&nbsp; &nbsp;<asp:HyperLink ID="HyperLink10" runat="server" NavigateUrl="http://info512ah.taifex.com.tw/Future/FusaQuote_Norl.aspx"
+            Target="_blank">盤後</asp:HyperLink></strong><br />
     <%--<img src="http://stockcharts.com/c-sc/sc?s=%24TWII&p=D&b=4&g=0&i=p26407678585&r=1437312741461" />--%>
-    <img src="http://stock.wearn.com/finance_chart.asp?stockid=&timekind=0&timeblock=180&sma1=5&sma2=58&sma3=100&volume=0&indicator1=Aroon&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp" /></td>
+    <img src="http://stock.wearn.com/finance_chart.asp?stockid=&timekind=0&timeblock=180&sma1=5&sma2=58&sma3=100&volume=0&indicator1=ADX&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp" /></td>
 </tr>
 <tr>
 <td>
 <strong>
 電子類股
  </strong>
-<img src="http://stock.wearn.com/finance_chart.asp?stockid=IDX23&timekind=0&timeblock=180&sma1=5&sma2=58&sma3=100&volume=0&indicator1=DPO&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp" />
+<img src="http://stock.wearn.com/finance_chart.asp?stockid=IDX23&timekind=0&timeblock=180&sma1=5&sma2=58&sma3=100&volume=0&indicator1=ADX&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp" />
 </td>
 <td>
 <strong>
 金融類股
  </strong>
-<img src="http://stock.wearn.com/finance_chart.asp?stockid=IDX28&timekind=0&timeblock=180&sma1=5&sma2=58&sma3=100&volume=0&indicator1=DPO&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp" />
+<img src="http://stock.wearn.com/finance_chart.asp?stockid=IDX28&timekind=0&timeblock=180&sma1=5&sma2=58&sma3=100&volume=0&indicator1=ADX&indicator2=MACD&indicator3=Vol&=http%3A//stock.wearn.com/CallAjaxStock.asp" />
 </td>
 </tr>
 </table>
