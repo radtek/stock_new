@@ -16,6 +16,12 @@
         <asp:HyperLink ID="HyperLink2" target="_blank" Text="台指期盤後盤"  runat="server" NavigateUrl="http://info512ah.taifex.com.tw/Future/FusaQuote_Norl.aspx"></asp:HyperLink><br />
         <br />
         <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="https://stock.wearn.com/taifexphoto.asp" Target="_blank">期貨法人未平倉</asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink17" runat="server" NavigateUrl="https://www.wantgoo.com/stock/futures/optionstoday"
+            Target="_blank" Text="選擇權支撐壓力表"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink18" runat="server" NavigateUrl="https://www.wantgoo.com/stock/futures/threefuturescost?type=1"
+            Target="_blank" Text="外資持倉成本/未平倉口數"></asp:HyperLink><br />
          <br />
         <asp:HyperLink ID="HyperLink15" target="_blank" Text="GAN9"  runat="server" NavigateUrl="http://www.pivottrading.co.in/pages/gannSquareof9.php"></asp:HyperLink><br />
         
@@ -52,8 +58,11 @@
          
          <br />
         <asp:HyperLink ID="HyperLink13" target="_blank" Text="國發會景氣燈號"  runat="server" NavigateUrl="https://index.ndc.gov.tw//n/zh_tw"></asp:HyperLink><br />
-         
-        
+        <br />
+        <asp:HyperLink ID="HyperLink16" runat="server" NavigateUrl="https://www.wantgoo.com/global"
+            Target="_blank" Text="全球指數"></asp:HyperLink><br />
+        <br />
+        <br />
         <br />
         <br />
         <br />
