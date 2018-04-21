@@ -29,7 +29,7 @@ public partial class Commonurl2 : System.Web.UI.Page
         //HyperLink hy13 = new HyperLink();
         //HyperLink hy14 = new HyperLink();
         //HyperLink hy15 = new HyperLink();
-        
+
         //hy1.Text = "台指期貨日盤走勢";
         //hy1.NavigateUrl = "http://mis.twse.com.tw/stock/futures.jsp";
         //hy1.Target = "_Blank";
@@ -125,6 +125,9 @@ public partial class Commonurl2 : System.Web.UI.Page
         //hy15.Target = "_Blank";
 
         //Page.Controls.Add(hy15);
+
+
+
 
 
 
