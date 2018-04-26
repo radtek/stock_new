@@ -18,6 +18,9 @@
         <asp:HyperLink ID="HyperLink19" runat="server" NavigateUrl="https://www.wantgoo.com/option/futures/quotes?StockNo=WTXM%26"
             Target="_blank" Text="台指多空力道"></asp:HyperLink><br />
         <br />
+        <asp:HyperLink ID="HyperLink18" runat="server" NavigateUrl="https://www.wantgoo.com/stock/marketbidsellchart/index"
+            Target="_blank" Text="台股多空力道即時監控"></asp:HyperLink><br />
+        <br />
         <asp:HyperLink ID="HyperLink20" runat="server" NavigateUrl="https://www.wantgoo.com/global/stockindex?stockno=B1YM%26"
             Target="_blank" Text="小道瓊多空力道"></asp:HyperLink><br />
         <br />
@@ -26,11 +29,11 @@
         <br />
         <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="https://stock.wearn.com/taifexphoto.asp" Target="_blank">期貨法人未平倉</asp:HyperLink><br />
         <br />
+        <asp:HyperLink ID="HyperLink22" runat="server" NavigateUrl="https://www.wantgoo.com/stock/futures/threefuturescost?type=1"
+            Target="_blank">期貨-外資持倉成本/未平倉口數</asp:HyperLink><br />
+        <br />
         <asp:HyperLink ID="HyperLink17" runat="server" NavigateUrl="https://www.wantgoo.com/stock/futures/optionstoday"
             Target="_blank" Text="選擇權支撐壓力表"></asp:HyperLink><br />
-        <br />
-        <asp:HyperLink ID="HyperLink18" runat="server" NavigateUrl="https://www.wantgoo.com/stock/futures/threefuturescost?type=1"
-            Target="_blank" Text="外資持倉成本/未平倉口數"></asp:HyperLink><br />
          <br />
         <asp:HyperLink ID="HyperLink15" target="_blank" Text="GAN9"  runat="server" NavigateUrl="http://www.pivottrading.co.in/pages/gannSquareof9.php"></asp:HyperLink><br />
         
