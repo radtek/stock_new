@@ -74,6 +74,18 @@
         <asp:HyperLink ID="HyperLink16" runat="server" NavigateUrl="https://www.wantgoo.com/global"
             Target="_blank" Text="全球指數"></asp:HyperLink><br />
         <br />
+        <asp:HyperLink ID="HyperLink23" runat="server" NavigateUrl="https://hk.investing.com/technical/futures-technical-analysis"
+            Target="_blank" Text="道瓊30技術分析"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink24" runat="server" NavigateUrl="https://hk.investing.com/technical/germany-30-futures-technical-analysis"
+            Target="_blank" Text="德國技術技術分析"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink25" runat="server" NavigateUrl="https://hk.investing.com/indices/sgx-msci-taiwan-futures-technical"
+            Target="_blank" Text="摩台技術分析"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink26" runat="server" NavigateUrl="https://hk.investing.com/economic-calendar/adp-nonfarm-employment-change-1"
+            Target="_blank" Text="美國小非農ADP(每月第一個禮拜三)"></asp:HyperLink><br />
+        <br />
         <br />
         <br />
         <br />
