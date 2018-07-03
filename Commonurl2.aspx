@@ -38,7 +38,7 @@
         <asp:HyperLink ID="HyperLink15" target="_blank" Text="GAN9"  runat="server" NavigateUrl="http://www.pivottrading.co.in/pages/gannSquareof9.php"></asp:HyperLink><br />
         
          <br />
-        <asp:HyperLink ID="HyperLink3" target="_blank" Text="鉅亨網"  runat="server" NavigateUrl="http://www.cnyes.com/twoption/?ga=nav"></asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink3" target="_blank" Text="鉅亨網"  runat="server" NavigateUrl="http://www.cnyes.com/twoption/closing.aspx"></asp:HyperLink><br />
         
          
          <br />
@@ -63,7 +63,7 @@
         <asp:HyperLink ID="HyperLink10" target="_blank" Text="凱基期貨"  runat="server" NavigateUrl="https://www.kgifutures.com.tw/content/research01.asp"></asp:HyperLink><br />
          
          <br />
-        <asp:HyperLink ID="HyperLink11" target="_blank" Text="黑手指標"  runat="server" NavigateUrl="https://www.phigroup.com.tw/2017/03/■黑手指標：3-20-政府基金護盤指標-八大公股行庫買/#more-92824"></asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink11" target="_blank" Text="選擇權大額交易人未沖銷部位"  runat="server" NavigateUrl="http://www.taifex.com.tw/chinese/3/7_9.asp"></asp:HyperLink><br />
          
          <br />
         <asp:HyperLink ID="HyperLink12" target="_blank" Text="東方財富"  runat="server" NavigateUrl="http://quote.eastmoney.com/centerv2/hszs"></asp:HyperLink><br />
