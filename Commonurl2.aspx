@@ -48,10 +48,10 @@
         <asp:HyperLink ID="HyperLink5" target="_blank" Text="期貨 P/C Ratio"  runat="server" NavigateUrl="http://www.taifex.com.tw/chinese/3/PCRatio.asp"></asp:HyperLink><br />
          
          <br />
-        <asp:HyperLink ID="HyperLink6" target="_blank" Text="大台指小台指總未平倉量(*未沖銷契約量)"  runat="server" NavigateUrl="http://www.taifex.com.tw/chinese/3/3_1_1.asp"></asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink6" target="_blank" Text="小台指總未平倉量(*未沖銷契約量)"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/futDailyMarketExcel?commodity_id=MTX"></asp:HyperLink><br />
          
          <br />
-        <asp:HyperLink ID="HyperLink7" target="_blank" Text="三大法人區分各區期貨未平倉餘額"  runat="server" NavigateUrl="http://www.taifex.com.tw/chinese/3/7_12_3.asp"></asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink7" target="_blank" Text="三大法人區分各區期貨未平倉餘額"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/futContractsDate"></asp:HyperLink><br />
          
          <br />
         <asp:HyperLink ID="HyperLink8" target="_blank" Text="選擇權多空未平倉"  runat="server" NavigateUrl="http://www.taifex.com.tw/chinese/3/7_12_4.asp"></asp:HyperLink><br />
