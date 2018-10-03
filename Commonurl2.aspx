@@ -45,7 +45,7 @@
         <asp:HyperLink ID="HyperLink4" target="_blank" Text="現貨三大法人"  runat="server" NavigateUrl="http://www.tse.com.tw/zh/page/trading/fund/BFI82U.html"></asp:HyperLink><br />
          
          <br />
-        <asp:HyperLink ID="HyperLink5" target="_blank" Text="期貨 P/C Ratio"  runat="server" NavigateUrl="http://www.taifex.com.tw/chinese/3/PCRatio.asp"></asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink5" target="_blank" Text="期貨 P/C Ratio"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/pcRatio"></asp:HyperLink><br />
          
          <br />
         <asp:HyperLink ID="HyperLink6" target="_blank" Text="小台指總未平倉量(*未沖銷契約量)"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/futDailyMarketExcel?commodity_id=MTX"></asp:HyperLink><br />
@@ -63,7 +63,7 @@
         <asp:HyperLink ID="HyperLink10" target="_blank" Text="凱基期貨"  runat="server" NavigateUrl="https://www.kgifutures.com.tw/content/research01.asp"></asp:HyperLink><br />
          
          <br />
-        <asp:HyperLink ID="HyperLink11" target="_blank" Text="選擇權大額交易人未沖銷部位"  runat="server" NavigateUrl="http://www.taifex.com.tw/chinese/3/7_9.asp"></asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink11" target="_blank" Text="選擇權大額交易人未沖銷部位"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/largeTraderOptQry"></asp:HyperLink><br />
          
          <br />
         <asp:HyperLink ID="HyperLink12" target="_blank" Text="東方財富"  runat="server" NavigateUrl="http://quote.eastmoney.com/centerv2/hszs"></asp:HyperLink><br />
