@@ -26,7 +26,7 @@
         加密KEY<br />
         <asp:TextBox ID="TextBox3" runat="server" Width="173px"></asp:TextBox><br />
         <br />
-        加密IV<br />
+        加密IV(演算法初始向量)<br />
         <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox><br />
         <br />
         <asp:Button ID="Button1" runat="server" Text="執行加密" Width="83px" OnClick="Button1_Click" /><br />
@@ -46,7 +46,7 @@
         解密KEY<br />
         <asp:TextBox ID="TextBox6" runat="server" Width="173px"></asp:TextBox><br />
         <br />
-        解密IV<br />
+        解密IV(演算法初始向量)<br />
         <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox><br />
         <br />
         <asp:Button ID="Button2" runat="server" Text="執行解密" OnClick="Button2_Click" /><br />

@@ -22,7 +22,7 @@ public partial class stock_data_daily_create_file : System.Web.UI.Page
     {
       
 
-        get_loader_data_RSI("");
+        //get_loader_data_RSI("");
         counter = 1;
         get_loader_data("");
 
@@ -61,7 +61,7 @@ window.close();
         // 下載 Yahoo 奇摩股市資料 (範例為 2317 鴻海)
         WebClient client = new WebClient();
         MemoryStream ms = new MemoryStream(client.DownloadData(
-   "http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0_1470_1.djhtm" + stock_id + ""));
+   "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zg_DD_0_3.djhtm" + stock_id + ""));
         
     //    MemoryStream ms = new MemoryStream(client.DownloadData(
     //"http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0_1360_1.djhtm" + stock_id + ""));
@@ -88,14 +88,17 @@ window.close();
         HtmlNodeCollection nodeHeaders =
      docStockContext.DocumentNode.SelectNodes("./tr");
         // 取得個股數值
-        Int32 j = 4;  //from tr[4] to tr[i-4]
-        for (int i = 0; i <= nodeHeaders.Count - 4; i++)
+        Int32 j = 3;  //from tr[4] to tr[i-4]
+        for (int i = 0; i <= nodeHeaders.Count - 3; i++)
         {
 
             string[] values = docStockContext.DocumentNode.SelectSingleNode(
   "./tr[" + j + "]").InnerText.Trim().Split('\r');
 
-            write_loader_file("stock_today", Server.MapPath(".\\") + "config\\", "txt", values[0].ToString().Replace("加到投資組合", ""));
+            write_loader_file("stock_today", Server.MapPath(".\\") + "config\\", "txt", values[1].ToString().Replace(@"
+&nbsp;", "").Replace(@"
+
+", ""));
 
             Response.Write("Header:" + values[0].ToString().Replace("加到投資組合", "") + "<br>");
             j++;
@@ -139,7 +142,7 @@ window.close();
         // 下載 Yahoo 奇摩股市資料 (範例為 2317 鴻海)
         WebClient client = new WebClient();
         MemoryStream ms = new MemoryStream(client.DownloadData(
-   "http://www.esunsec.com.tw/z/zk/zkf/zkResult.asp?D=1&A=x@270,a@5000;x@1001,a@50;x@1000,a@50&site=" + stock_id + ""));
+   "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zg_DD_0_3.djhtm" + stock_id + ""));
 
         //    MemoryStream ms = new MemoryStream(client.DownloadData(
         //"http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0_1360_1.djhtm" + stock_id + ""));

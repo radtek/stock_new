@@ -95,15 +95,15 @@ window.close();
             // During Market time   
             initailExcel();
 
-            openExcel1();
+            //openExcel1();
             initailExcel();
             if(Session["ForceFlag"].ToString().Equals("Y"))
             {
-                openExcelDelta();
-                initailExcel();
-                openExcelBuy();
-                initailExcel();
-                openExcelSell();
+                //openExcelDelta();
+                //initailExcel();
+                //openExcelBuy();
+                //initailExcel();
+                //openExcelSell();
                 
             }
            
@@ -122,12 +122,12 @@ window.close();
 
             //openExcel3();
 
-            initailExcel();
-            openExcelDelta();
-            initailExcel();
-            openExcelBuy();
-            initailExcel();
-            openExcelSell();
+            //initailExcel();
+            //openExcelDelta();
+            //initailExcel();
+            //openExcelBuy();
+            //initailExcel();
+            //openExcelSell();
             //openExcel4();
 
         }
@@ -135,27 +135,27 @@ window.close();
         if (Convert.ToInt32(today_HH) == 17)
         {
            
-            initailExcel();
-            openExcelBuy();
-            initailExcel();
-            openExcelSell();
+            //initailExcel();
+            //openExcelBuy();
+            //initailExcel();
+            //openExcelSell();
 
         }
 
 
         //if(1==1)
-        if (Convert.ToInt32(today_HH)==18)
+        if (Convert.ToInt32(today_HH)==17)
         {
             initailExcel();
 
             openExcel();
-            initailExcel();
+            //initailExcel();
 
-            openExcelDelta();
+            //openExcelDelta();
           
 
         }
-        if (Convert.ToInt32(today_DD) == 4 && Convert.ToInt32(today_HH) == 20)
+        if (Convert.ToInt32(today_DD) == 4 && Convert.ToInt32(today_HH) == 18)
         {
             initailExcel();
 

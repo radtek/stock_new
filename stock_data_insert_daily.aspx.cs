@@ -33,7 +33,7 @@ public partial class stock_data_insert_daily : System.Web.UI.Page
 
         Arr_list = func.FileToArray(Server.MapPath(".") + "\\config\\stock_today.txt");
 
-        Arr_list_rsi = func.FileToArray(Server.MapPath(".") + "\\config\\stock_rsi.txt");
+        //Arr_list_rsi = func.FileToArray(Server.MapPath(".") + "\\config\\stock_rsi.txt");
 
         // judge  both appear first use dictionary  case a
 
@@ -49,36 +49,37 @@ public partial class stock_data_insert_daily : System.Web.UI.Page
 
         }
 
-        for (int k = 0; k <= Arr_list_rsi.Count-1; k++)
-        {
-
-
-            if (dict.ContainsKey(Arr_list_rsi[k].ToString()) == true)
-            {
-                Check_function(Arr_list_rsi[k].ToString().Substring(0, 4), 0);
-              
-            }
-
-        }
-
-        //  case b  use two loop to find out both appear
-
-        //for (int m = 0; m <= Arr_list.Count-1; m++)
+        //for (int k = 0; k <= Arr_list_rsi.Count-1; k++)
         //{
 
 
-        //    for (int n = 0; n <= Arr_list_rsi.Count-1; n++)
+        //    if (dict.ContainsKey(Arr_list_rsi[k].ToString()) == true)
         //    {
-        //        if (Arr_list[m].ToString().Equals(Arr_list_rsi[n].ToString()))
-
-        //        {
-
-        //            Check_function(Arr_list[m].ToString().Substring(0, 4), 0);
-        //        }
-
-
+        //        Check_function(Arr_list_rsi[k].ToString().Substring(0, 4), 0);
+              
         //    }
+
         //}
+
+        //  case b  use two loop to find out both appear
+
+        for (int m = 0; m <= Arr_list.Count - 1; m++)
+        {
+
+
+            //for (int n = 0; n <= Arr_list_rsi.Count - 1; n++)
+            //{
+            //    if (Arr_list[m].ToString().Equals(Arr_list_rsi[n].ToString()))
+            //    {
+
+            //        Check_function(Arr_list[m].ToString().Substring(0, 4), 0);
+            //    }
+
+
+            //}
+
+            Check_function(Arr_list[m].ToString().Substring(0, 4), 0);
+        }
 
 
         func.write_log("stock_data_insert_daily", Server.MapPath(".\\") + "\\RUN_LOG\\", "log");
@@ -96,7 +97,10 @@ public partial class stock_data_insert_daily : System.Web.UI.Page
         WebClient client = new WebClient();
         ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
         MemoryStream ms = new MemoryStream(client.DownloadData(
-    "https://tw.stock.yahoo.com/q/q?s=" + stock_id + ""));
+    "http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date=20180914&stockNo=" + stock_id + ""));
+
+
+        //"http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date=20180914&stockNo="+stock_id
 
         // 使用預設編碼讀入 HTML
         HtmlDocument doc = new HtmlDocument();
@@ -107,8 +111,12 @@ public partial class stock_data_insert_daily : System.Web.UI.Page
 
         try
         {
+//            docStockContext.LoadHtml(doc.DocumentNode.SelectSingleNode(
+//"/html[1]/body[1]/center[1]/table[2]/tr[1]/td[1]/table[1]").InnerHtml);
+            
             docStockContext.LoadHtml(doc.DocumentNode.SelectSingleNode(
-"/html[1]/body[1]/center[1]/table[2]/tr[1]/td[1]/table[1]").InnerHtml);
+"/html[1]/body[1]/div[1]/table[1]").InnerHtml);
+
            
         }
         catch (Exception)
@@ -150,9 +158,9 @@ public partial class stock_data_insert_daily : System.Web.UI.Page
         string sql_insert = "";
 
 
-        sql_insert = " INSERT INTO strong_up_myself (stock_id, dttm, price,buy_price,sell_price,up_down,volume,yesturday_price,first_price,top_price,low_price,stock_name)" +
-" VALUES ('" + abc0.Substring(0, 4) + "', date(), " + abc2 + "," + abc3 + "," + abc4 + ",'" + abc5 + "'," + abc6 + "," + abc7 + "," + abc8 + "," + abc9 + "," + abc10 + ",'" + abc0 + "')                                                                                                         ";
-        func.get_sql_execute(sql_insert, conn);
+//        sql_insert = " INSERT INTO strong_up_myself (stock_id, dttm, price,buy_price,sell_price,up_down,volume,yesturday_price,first_price,top_price,low_price,stock_name)" +
+//" VALUES ('" + abc0.Substring(0, 4) + "', date(), " + abc2 + "," + abc3 + "," + abc4 + ",'" + abc5 + "'," + abc6 + "," + abc7 + "," + abc8 + "," + abc9 + "," + abc10 + ",'" + abc0 + "')                                                                                                         ";
+//        func.get_sql_execute(sql_insert, conn);
 
         Double last_price = System.Convert.ToDouble(abc2);
 

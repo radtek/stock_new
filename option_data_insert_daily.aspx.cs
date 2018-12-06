@@ -52,11 +52,14 @@ public partial class option_data_insert_daily : System.Web.UI.Page
         // 下載 Yahoo 奇摩股市資料 (範例為 2317 鴻海)
         WebClient client = new WebClient();
         MemoryStream ms = new MemoryStream(client.DownloadData(
-    "http://www.taifex.com.tw/chinese/3/3_2_2_tbl.asp" + stock_id + ""));
+    "http://www.taifex.com.tw/cht/3/optDailyMarketReport" + stock_id + ""));
 
+    //http://www.taifex.com.tw/cht/3/optDailyMarketReport
+        
         // 使用預設編碼讀入 HTML
         HtmlDocument doc = new HtmlDocument();
-        doc.Load(ms, Encoding.Default);
+        //doc.Load(ms, Encoding.Default);
+        doc.Load(ms, Encoding.UTF8);
 
         // 裝載第一層查詢結果
         HtmlDocument docStockContext = new HtmlDocument();
@@ -64,7 +67,7 @@ public partial class option_data_insert_daily : System.Web.UI.Page
         try
         {
             docStockContext.LoadHtml(doc.DocumentNode.SelectSingleNode(
-"/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/table[1]").InnerHtml);
+"/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/table[1]/").InnerHtml);
 
         }
         catch (Exception)
@@ -160,7 +163,7 @@ public partial class option_data_insert_daily : System.Web.UI.Page
 
             }
 
-            if (myArrayList1.Count>=18)
+            if (myArrayList1.Count>=19)
             {
 
                 Response.Write("Over column");
@@ -182,11 +185,11 @@ public partial class option_data_insert_daily : System.Web.UI.Page
 
             string UP_DOWN = myArrayList1[9].ToString().Trim().Replace("▼", "").Replace("▲", "").Replace("??","0");
 
-            string volume = myArrayList1[11].ToString().Trim();
-            string OI_volume = myArrayList1[12].ToString().Trim();
+            string volume = myArrayList1[13].ToString().Trim();
+            string OI_volume = myArrayList1[14].ToString().Trim();
 
-            string HIS_HIGH_PRICE = myArrayList1[15].ToString().Trim();
-            string HIS_LOW_PRICE = myArrayList1[16].ToString().Trim();
+            string HIS_HIGH_PRICE = myArrayList1[17].ToString().Trim();
+            string HIS_LOW_PRICE = myArrayList1[18].ToString().Trim();
 
             string sql_insert = "";
 

@@ -130,7 +130,7 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
 
             oscar.title = "選擇權未平倉<P/C Ratio>快遞【" + today_yyyymmdd + "】";
 
-            oscar.website = "https://www.taifex.com.tw/chinese/3/PCRatio_tbl.asp";
+            oscar.website = "http://www.taifex.com.tw/cht/3/pcRatio";
 
             oscar.strHTML = "投資的路上 平安喜樂<br>https://www.taifex.com.tw/chinese/3/PCRatio_tbl.asp";
             oscar.mail_list = "vsoscar0115@gmail.com";

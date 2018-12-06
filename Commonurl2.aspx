@@ -11,12 +11,30 @@
     <div>
         常用的網址<br />
         <br />
+        <asp:HyperLink ID="HyperLink28" runat="server" NavigateUrl="https://www.moneydj.com/funddj/ya/YP051000.djhtm?a=FA000004"
+            Target="_blank" Text="市場風向球"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink24" runat="server" NavigateUrl="https://www.chinatimes.com/newspapers/2602"
+            Target="_blank" Text="中時電子報"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink30" runat="server" NavigateUrl="https://money.udn.com/money/index"
+            Target="_blank" Text="經濟日報"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink31" runat="server" NavigateUrl="http://ec.ltn.com.tw/"
+            Target="_blank" Text="自由時報財經版"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink32" runat="server" NavigateUrl="https://tw.appledaily.com/daily"
+            Target="_blank" Text="蘋果財經"></asp:HyperLink><br />
+        <br />
         <asp:HyperLink ID="HyperLink1" target="_blank" Text="台指期貨日盤走勢"  runat="server" NavigateUrl="http://mis.twse.com.tw/stock/futures.jsp"></asp:HyperLink><br />
        <br />
         <asp:HyperLink ID="HyperLink2" target="_blank" Text="台指期盤後盤"  runat="server" NavigateUrl="http://info512ah.taifex.com.tw/Future/FusaQuote_Norl.aspx"></asp:HyperLink><br />
         <br />
         <asp:HyperLink ID="HyperLink25" runat="server" NavigateUrl="https://hk.investing.com/indices/sgx-msci-taiwan-futures-technical"
             Target="_blank" Text="摩台技術分析"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink17" runat="server" NavigateUrl="https://www.wantgoo.com/stock/futures/optionstoday"
+            Target="_blank" Text="選擇權支撐壓力表"></asp:HyperLink><br />
         <br />
         <asp:HyperLink ID="HyperLink7" target="_blank" Text="三大法人區分各區期貨未平倉餘額"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/futContractsDate"></asp:HyperLink><br />
         <br />
@@ -26,7 +44,12 @@
         <br />
         <asp:HyperLink ID="HyperLink8" target="_blank" Text="選擇權多空未平倉"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/optContractsDate"></asp:HyperLink><br />
         <br />
+        <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="https://stock.wearn.com/taifexphoto.asp" Target="_blank">期貨法人未平倉</asp:HyperLink><br />
+        <br />
         <asp:HyperLink ID="HyperLink4" target="_blank" Text="現貨三大法人"  runat="server" NavigateUrl="http://www.tse.com.tw/zh/page/trading/fund/BFI82U.html"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink27" runat="server" NavigateUrl="https://goodinfo.tw/StockInfo/ShowBearishChart.asp?STOCK_ID=%E5%8A%A0%E6%AC%8A%E6%8C%87%E6%95%B8&CHT_CAT=DATE"
+            Target="_blank" Text="融資融卷餘額"></asp:HyperLink><br />
         <br />
         <asp:HyperLink ID="HyperLink19" runat="server" NavigateUrl="https://www.wantgoo.com/option/futures/quotes?StockNo=WTXM%26"
             Target="_blank" Text="台指多空力道"></asp:HyperLink><br />
@@ -40,16 +63,8 @@
         <asp:HyperLink ID="HyperLink21" runat="server" NavigateUrl="https://www.wantgoo.com/global/stockindex?StockNo=tsm"
             Target="_blank" Text="台積ADR多空力道"></asp:HyperLink><br />
         <br />
-        <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="https://stock.wearn.com/taifexphoto.asp" Target="_blank">期貨法人未平倉</asp:HyperLink><br />
-        <br />
         <asp:HyperLink ID="HyperLink22" runat="server" NavigateUrl="https://www.wantgoo.com/stock/futures/threefuturescost?type=1"
             Target="_blank">期貨-外資持倉成本/未平倉口數</asp:HyperLink><br />
-        <br />
-        <asp:HyperLink ID="HyperLink17" runat="server" NavigateUrl="https://www.wantgoo.com/stock/futures/optionstoday"
-            Target="_blank" Text="選擇權支撐壓力表"></asp:HyperLink><br />
-        <br />
-        <asp:HyperLink ID="HyperLink27" runat="server" NavigateUrl="https://goodinfo.tw/StockInfo/ShowBearishChart.asp?STOCK_ID=%E5%8A%A0%E6%AC%8A%E6%8C%87%E6%95%B8&CHT_CAT=DATE"
-            Target="_blank" Text="融資融卷餘額"></asp:HyperLink><br />
          <br />
         <asp:HyperLink ID="HyperLink15" target="_blank" Text="GAN9"  runat="server" NavigateUrl="http://www.pivottrading.co.in/pages/gannSquareof9.php"></asp:HyperLink><br />
         
@@ -77,11 +92,18 @@
         <asp:HyperLink ID="HyperLink23" runat="server" NavigateUrl="https://hk.investing.com/technical/futures-technical-analysis"
             Target="_blank" Text="道瓊30技術分析"></asp:HyperLink><br />
         <br />
-        <asp:HyperLink ID="HyperLink24" runat="server" NavigateUrl="https://hk.investing.com/technical/germany-30-futures-technical-analysis"
-            Target="_blank" Text="德國技術技術分析"></asp:HyperLink><br />
-        <br />
         <asp:HyperLink ID="HyperLink26" runat="server" NavigateUrl="https://hk.investing.com/economic-calendar/adp-nonfarm-employment-change-1"
             Target="_blank" Text="美國小非農ADP(每月第一個禮拜三)"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink29" runat="server" NavigateUrl="http://jow.win168.com.tw/z/zg/zg_DD_0_3.djhtm"
+            Target="_blank" Text="投信三日買超"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink33" runat="server" NavigateUrl="http://acer2266.com/blog/"
+            Target="_blank" Text="交易醫生"></asp:HyperLink><br />
+        <br />
+        <br />
+        <br />
+        <br />
         <br />
         <br />
         <br />
