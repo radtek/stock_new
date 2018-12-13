@@ -132,7 +132,7 @@ public partial class epaper_finance_create_pdf : System.Web.UI.Page
 
             oscar.website = "http://www.taifex.com.tw/cht/3/pcRatio";
 
-            oscar.strHTML = "投資的路上 平安喜樂<br>https://www.taifex.com.tw/chinese/3/PCRatio_tbl.asp";
+            oscar.strHTML = "投資的路上 平安喜樂<br>http://www.taifex.com.tw/cht/3/pcRatio";
             oscar.mail_list = "vsoscar0115@gmail.com";
             PIC_FACTORY(oscar);
 
