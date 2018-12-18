@@ -11,6 +11,14 @@
     <div>
         常用的網址<br />
         <br />
+        <asp:HyperLink ID="HyperLink34" runat="server" NavigateUrl="http://quote.eastmoney.com/gb/zsTWII.html"
+            Target="_blank" Text="台灣加權指數(東方)"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink35" runat="server" NavigateUrl="http://quote.eastmoney.com/globalfuture/YM00Y.html"
+            Target="_blank" Text="小道期貨(東方)"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink36" runat="server" NavigateUrl="http://quote.eastmoney.com/gb/zsGDAXI.html"
+            Target="_blank" Text="DAX指數(東方)"></asp:HyperLink><br /><br />
         <asp:HyperLink ID="HyperLink28" runat="server" NavigateUrl="https://www.moneydj.com/funddj/ya/YP051000.djhtm?a=FA000004"
             Target="_blank" Text="市場風向球"></asp:HyperLink><br />
         <br />
