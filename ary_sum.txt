@@ -1,5 +1,13 @@
 create or replace package body EM_IDXSUM_ARY is
------------------------------------------------------------ 
+/*---------------------------------------------------------- 
+HISTORY         : TimeStamp     Author               Desc
+                  tag20161115   Hungyin.Wang         Change EQPstatus Case 
+                  tag20161116   Hungyin.Wang         E15      => E18
+                                                     D_MQC    => EQ_WarmUp
+                                                     ENG_D    => ENG_Down
+                                                     PM_MQC   => PM_Warmup
+                                                     TTL_Down => EQ_Down
+-----------------------------------------------------------*/ 
 procedure Idx_Hourly is
    vProcedureName varchar2(30):='EM_IDXSUM_ARY.IDX_HOURLY'; 
    vPreProcedureName varchar2(30):='EM_EQP_ARY.EQP_EVENT'; 
@@ -272,7 +280,7 @@ procedure Idx_Monthly is
    end Idx_Monthly; 
 -----------------------------------------------------------  
 procedure onMakeSumIdxHourly(vStartdttm varchar2, vEnddttm varchar2) IS 
-   IdxSum_Hourly_REC em_idxsumhourly%ROWTYPE;
+  IdxSum_Hourly_REC em_idxsumhourly%ROWTYPE;
    vMOVE_Start_Dttm varchar2(32);
    vMOVE_End_Dttm varchar2(32);
    
@@ -280,7 +288,7 @@ procedure onMakeSumIdxHourly(vStartdttm varchar2, vEnddttm varchar2) IS
       select line,equipmentid,motherequipmentid,'H' as CUTOFFCYCLE,
       substr(Startdttm,1,8)||substr(Startdttm,10,2) as CUTOFFKEY,      
       sum(time) as TTM,     
-     sum(decode(semioldstateid,'RUN',TIME,0)) as RUN,
+      sum(decode(semioldstateid,'RUN',TIME,0)) as RUN,
       sum(decode(semioldstateid,'IDLE',TIME,0)) as IDLE,
       sum(decode(semioldstateid,'AMHS',TIME,0)) as AMHS,
       sum(decode(semioldstateid,'ERUN',TIME,0)) as ERUN,
@@ -288,27 +296,25 @@ procedure onMakeSumIdxHourly(vStartdttm varchar2, vEnddttm varchar2) IS
       sum(decode(semioldstateid,'P_SET',TIME,0)) as P_SET,
       sum(decode(semioldstateid,'E_SET',TIME,0)) as E_SET,
       sum(decode(semioldstateid,'PM',TIME,0)) as PM,
-      sum(decode(semioldstateid,'PM_WarmUp',TIME,0)) as PM_WARMUP,
+      sum(decode(semioldstateid,'PM_WarmUp',TIME,'PM_MQC',TIME,0)) as PM_WARMUP, --tag20161116
       sum(decode(semioldstateid,'CHMT',TIME,0)) as CHMT,
-      sum(decode(semioldstateid,'EQ_Down',TIME,0)) as EQ_DOWN,
-      sum(decode(semioldstateid,'ENG_Down',TIME,0)) as ENG_DOWN,
+      sum(decode(semioldstateid,'EQ_Down',TIME,'TTL_Down',TIME,0)) as EQ_DOWN,--tag20161116
+      sum(decode(semioldstateid,'ENG_Down',TIME,'ENG_D',TIME,0)) as ENG_DOWN, --tag20161116
       sum(decode(semioldstateid,'ALARM',TIME,0)) as ALARM,
-      sum(decode(semioldstateid,'EQ_WarmUp',TIME,0)) as EQ_WARMUP,
+      sum(decode(semioldstateid,'EQ_WarmUp',TIME,'D_MQC',TIME,0)) as EQ_WARMUP, --tag20161116
       sum(decode(semioldstateid,'OFF',TIME,0)) as OFF,
       sum(decode(semioldstateid,'PE_Down',TIME,0)) as PE_DOWN,
-      sum(decode(semioldstateid,'PE_WarmUp',TIME,0)) as PE_WARMUP,
+      sum(decode(semioldstateid,'PE_WarmUp',TIME,0)) as PE_WarmUp,
       sum(decode(semioldstateid,'ENG_Down_WarmUp',TIME,0)) as ENG_DOWN_WARMUP,
-      --sum(decode(semioldstateid,'RUN',TIME,'IDLE',TIME,'AMHS',TIME ,'ERUN',TIME,'MRUN',TIME,'P_SET',TIME,'E_SET',TIME,'CHMT',TIME,0))as UPTIME,
+      
       sum(case when semioldstateid in ('RUN' , 'IDLE' , 'AMHS' , 'ERUN' , 'MRUN' , 'P_SET' , 'E_SET' , 'CHMT') then TIME 
           else 0 end )as UPTIME,
+      sum(case when semioldstateid in ('PM','PM_WarmUp','PM_MQC','EQ_Down','TTL_Down','ENG_Down','ENG_D','ALARM','EQ_WarmUp','D_MQC','OFF','PE_Down','PE_WarmUp','ENG_Down_WarmUp') then TIME 
+          else 0 end )as DOWNTIME,--tag20161115 tag20161116
       
-      --sum(decode(semioldstateid,'PM',TIME,'PM_MQC',TIME,'TTL_Down',TIME ,'ENG_D',TIME,'ALARM',TIME,'D_MQC',TIME,'OFF',TIME,0))as DOWNTIME,
-      
-      sum(case when semioldstateid in ('PM' , 'EQ_Down_Warmup' , 'EQ_DOWN' , 'ENG_Down' , 'PE_Down', 'ALARM' , 'EQ_Warmup' , 'PE_Warmup', 'PM_Warmup', 'OFF') then TIME 
-          else 0 end )as DOWNTIME,
-      --sum(decode(semioldstateid,'RUN',TIME,'ERUN',TIME,'P_SET',TIME ,'E_SET',TIME,0))as RUNTIME,
       sum(case when semioldstateid in ('RUN' , 'ERUN' , 'P_SET' , 'E_SET', 'MRUN') then TIME 
           else 0 end )as RUNTIME,
+      
       round(sum(decode(semioldstateid,'RUN',TIME,0))/sum(time),4)*100 as RUN_PCT,
       round(sum(decode(semioldstateid,'IDLE',TIME,0))/sum(time),4)*100 as IDLE_PCT,
       round(sum(decode(semioldstateid,'AMHS',TIME,0))/sum(time),4)*100 as AMHS_PCT,
@@ -317,40 +323,48 @@ procedure onMakeSumIdxHourly(vStartdttm varchar2, vEnddttm varchar2) IS
       round(sum(decode(semioldstateid,'P_SET',TIME,0))/sum(time),4)*100 as P_SET_PCT,
       round(sum(decode(semioldstateid,'E_SET',TIME,0))/sum(time),4)*100 as E_SET_PCT,
       round(sum(decode(semioldstateid,'PM',TIME,0))/sum(time),4)*100 as PM_PCT,
-      round(sum(decode(semioldstateid,'PM_WarmUp',TIME,0))/sum(time),4)*100 as PM_WARMUP_PCT,
+      round(sum(decode(semioldstateid,'PM_WarmUp',TIME,'PM_MQC',TIME,0))/sum(time),4)*100 as PM_WARMUP_PCT, --tag20161116
       round(sum(decode(semioldstateid,'CHMT',TIME,0))/sum(time),4)*100 as CHMT_PCT,
-      round(sum(decode(semioldstateid,'EQ_Down',TIME,0))/sum(time),4)*100 as EQ_DOWN_PCT,
-      round(sum(decode(semioldstateid,'ENG_Down',TIME,0))/sum(time),4)*100 as ENG_DOWN_PCT,
+      round(sum(decode(semioldstateid,'EQ_Down',TIME,'TTL_Down',TIME,0))/sum(time),4)*100 as EQ_DOWN_PCT, --tag20161116
+      round(sum(decode(semioldstateid,'ENG_Down',TIME,'ENG_D',TIME,0))/sum(time),4)*100 as ENG_DOWN_PCT,--tag20161116
       round(sum(decode(semioldstateid,'ALARM',TIME,0))/sum(time),4)*100 as ALARM_PCT,
-      round(sum(decode(semioldstateid,'EQ_WarmUp',TIME,0))/sum(time),4)*100 as EQ_WARMUP_PCT,
+      round(sum(decode(semioldstateid,'EQ_WarmUp',TIME,'D_MQC',TIME,0))/sum(time),4)*100 as EQ_WARMUP_PCT, --tag20161116
       round(sum(decode(semioldstateid,'OFF',TIME,0))/sum(time),4)*100 as OFF_PCT,
+      
       round(sum(decode(semioldstateid,'PE_Down',TIME,0))/sum(time),4)*100 as PE_DOWN_PCT,
       round(sum(decode(semioldstateid,'PE_WarmUp',TIME,0))/sum(time),4)*100 as PE_WARMUP_PCT,
       round(sum(decode(semioldstateid,'ENG_Down_WarmUp',TIME,0))/sum(time),4)*100 as ENG_DOWN_WARMUP_PCT,
       
+      case when  sum(time)-sum(case when semioldstateid in ('ENG_Down','ENG_Down_WarmUp') then time else 0 end) =0 then 0 else
+      round(sum(case when semioldstateid in ('PM','PM_WarmUp','PM_MQC','EQ_Down','TTL_Down','ENG_Down','ENG_D','ALARM','EQ_WarmUp','D_MQC','OFF','PE_Down','PE_WarmUp','ENG_Down_WarmUp') then TIME 
+          else 0 end )/(sum(time)-sum(case when semioldstateid in ('ENG_Down','ENG_Down_WarmUp') then time else 0 end)),4)*100 end as DOWNTIME_PCT,
+      
+          case when  sum(time)-sum(case when semioldstateid in ('ENG_Down','ENG_Down_WarmUp') then time else 0 end) =0 then 0 else
       round(sum(case when semioldstateid in ('RUN' , 'IDLE' , 'AMHS' , 'ERUN' , 'MRUN' , 'P_SET' , 'E_SET' , 'CHMT') then TIME 
-          else 0 end )/sum(time),4)*100 as UPTIME_PCT,
+          else 0 end )/(sum(time)-sum(case when semioldstateid in ('ENG_Down','ENG_Down_WarmUp') then time else 0 end)),4)*100 end as UPTIME_PCT, 
+      
+   /*   round(sum(case when semioldstateid in ('RUN' , 'IDLE' , 'AMHS' , 'ERUN' , 'MRUN' , 'P_SET' , 'E_SET' , 'CHMT') then TIME 
+          else 0 end )/sum(time),4)*100 as UPTIME_PCT,*/
       
       --round(sum(decode(semioldstateid,'RUN',TIME,'IDLE',TIME,'AMHS',TIME ,'ERUN',TIME,'MRUN',TIME,'P_SET',TIME,'E_SET',TIME,'CHMT',TIME,0))/sum(time),4)*100 as UPTIME_PCT,
       --round(sum(decode(semioldstateid,'PM',TIME,'PM_MQC',TIME,'TTL_Down',TIME ,'ENG_D',TIME,'ALARM',TIME,'D_MQC',TIME,'OFF',TIME,0))/sum(time),4)*100 as DOWNTIME_PCT,
       
-      round(sum(case when semioldstateid in ('PM' , 'EQ_Down_Warmup' , 'EQ_DOWN' , 'ENG_Down' , 'PE_Down', 'ALARM' , 'EQ_Warmup' , 'PE_Warmup', 'PM_Warmup', 'OFF') then TIME 
-          else 0 end )/sum(time),4)*100 as DOWNTIME_PCT,
-          
+     /* round(sum(case when semioldstateid in ('PM','PM_WarmUp','PM_MQC','EQ_Down','TTL_Down','ENG_Down','ENG_D','ALARM','EQ_WarmUp','D_MQC','OFF','PE_Down','PE_WarmUp','ENG_Down_WarmUp') then TIME 
+          else 0 end )/sum(time),4)*100 as DOWNTIME_PCT, --tag20161115 tag20161116
+          */
       case when 
           sum(case when semioldstateid in ('RUN' , 'IDLE' , 'AMHS' , 'ERUN' , 'MRUN' , 'P_SET' , 'E_SET' , 'CHMT') then TIME 
           else 0 end )=0 then 0 else
       round(sum(case when semioldstateid in ('RUN' , 'ERUN' , 'P_SET' , 'E_SET', 'MRUN') then TIME 
           else 0 end )/sum(case when semioldstateid in ('RUN' , 'IDLE' , 'AMHS' , 'ERUN' , 'MRUN' , 'P_SET' , 'E_SET' , 'CHMT') then TIME 
           else 0 end ),4)*100 end  RUNTIME_PCT,  
-          
-      
-      /*round(sum(case when semioldstateid in ('RUN' , 'ERUN' , 'P_SET' , 'E_SET', 'MRUN') then TIME 
-          else 0 end )/sum(case when semioldstateid in ('RUN' , 'IDLE' , 'AMHS' , 'ERUN' , 'MRUN' , 'P_SET' , 'E_SET' , 'CHMT') then TIME 
-          else 0 end ),4)*100 as RUNTIME_PCT,*/
       
       
-      --round(decode(sum(decode(semioldstateid,'RUN',TIME,'IDLE',TIME,'AMHS',TIME ,'ERUN',TIME,'MRUN',TIME,'P_SET',TIME,'E_SET',TIME,'CHMT',TIME,0)),0,0,sum(decode(semioldstateid,'RUN',TIME,'ERUN',TIME,'P_SET',TIME ,'E_SET',TIME,0))/sum(decode(semioldstateid,'RUN',TIME,'IDLE',TIME,'AMHS',TIME ,'ERUN',TIME,'MRUN',TIME,'P_SET',TIME,'E_SET',TIME,'CHMT',TIME,0))),4)*100 as RUNTIME_PCT,
+      --round(decode(sum(time)-sum(decode(semioldstateid,'OFF',TIME,0)),0,0,sum(decode(semioldstateid,'RUN',TIME,'IDLE',TIME,'ENG',TIME ,'ERUN',TIME,'MRUN',TIME,'P_SET',TIME,'E_SET',TIME,'CHMT',TIME,0))/(sum(time)-sum(decode(semioldstateid,'OFF',TIME,0)))),4)*100 as UPTIME_PCT,
+      --round(decode(sum(time)-sum(decode(semioldstateid,'OFF',TIME,0)),0,0,sum(decode(semioldstateid,'PM',TIME,'PM_MQC',TIME,'SETUP',TIME ,'EQ_D',TIME,'ALARM',TIME,'D_MQC',TIME,0))/(sum(time)-sum(decode(semioldstateid,'OFF',TIME,0)))),4)*100 as DOWNTIME_PCT,
+      --round(decode(sum(decode(semioldstateid,'RUN',TIME,'IDLE',TIME,'ENG',TIME ,'ERUN',TIME,'MRUN',TIME,'P_SET',TIME,'E_SET',TIME,'CHMT',TIME,0)),0,0,sum(decode(semioldstateid,'RUN',TIME,0))/sum(decode(semioldstateid,'RUN',TIME,'IDLE',TIME,'ENG',TIME ,'ERUN',TIME,'MRUN',TIME,'P_SET',TIME,'E_SET',TIME,'CHMT',TIME,0))),4)*100 as RUNTIME_PCT,
+      
+      
       sum(ALARM_CNT) as ALARM_CNT ,
       sum(FAILURE_CNT) as FAILURE_CNT,
       0 as MTBA       ,
@@ -364,7 +378,7 @@ procedure onMakeSumIdxHourly(vStartdttm varchar2, vEnddttm varchar2) IS
       0 as MOVE_QTY   ,
       0 as REWORK_QTY ,
       0 as SCRAP_QTY  ,
-      sysdate as SAVEDTIME 
+      sysdate as SAVEDTIME  
       from(
           select t1.line,t1.equipmentid,t1.motherequipmentid,t1.semioldstateid,
                  sum((to_date(substr(t1.triggerdatetime,1,15),'yyyymmdd hh24miss')-to_date(substr(t1.previousdatetime,1,15),'yyyymmdd hh24miss'))*60*60*24) as TIME,
@@ -372,7 +386,7 @@ procedure onMakeSumIdxHourly(vStartdttm varchar2, vEnddttm varchar2) IS
                  sum(t1.FAILURE_CNT) as FAILURE_CNT
           from(select a.*,
                   case when seminewstateid ='ALARM' and semioldstateid <> seminewstateid then 1 else 0 end as ALARM_CNT, 
-                  case when seminewstateid in ('EQ_Down','ALARM','EQ_WarmUp') and semioldstateid <> seminewstateid then 1 else 0 end as FAILURE_CNT
+                  case when seminewstateid in ('EQ_Down','PE_Down') and semioldstateid <> seminewstateid then 1 else 0 end as FAILURE_CNT --tag20161116
                   from(
                   select  t.line,t.equipmentid,t.motherequipmentid,t.semioldstateid,
                          case when t.triggerdatetime >Enddttm then t.semioldstateid else t.seminewstateid end as seminewstateid,
@@ -403,7 +417,8 @@ procedure onMakeSumIdxHourly(vStartdttm varchar2, vEnddttm varchar2) IS
           )t1
           group by t1.line,t1.equipmentid,t1.motherequipmentid,t1.semioldstateid
       )
-      group by line,equipmentid,motherequipmentid;
+      group by line,equipmentid,motherequipmentid
+       having sum(time) > 0;
       
       cursor idxsum_hourly_Move_cursor(Startdttm varchar2,Enddttm varchar2,ShiftType varchar2) is   
         select t.lineid as line,
@@ -421,7 +436,10 @@ procedure onMakeSumIdxHourly(vStartdttm varchar2, vEnddttm varchar2) IS
            AND LOWER (STEPID) NOT LIKE '%complete%' 
            AND LOWER (STEPID) NOT LIKE '%ship%' 
          group by t.lineid, t.eqpid;
-      
+         
+         
+             
+   
       
       begin
       --delete first
@@ -449,9 +467,9 @@ procedure onMakeSumIdxHourly(vStartdttm varchar2, vEnddttm varchar2) IS
             IdxSum_Hourly_REC.PM_WARMUP         :=idxsum_hourly_C.PM_WARMUP           ;
             IdxSum_Hourly_REC.CHMT              :=idxsum_hourly_C.CHMT             ;
             IdxSum_Hourly_REC.EQ_DOWN           :=idxsum_hourly_C.EQ_DOWN         ;
-            IdxSum_Hourly_REC.ENG_DOWN          :=idxsum_hourly_C.ENG_DOWN         ;
+            IdxSum_Hourly_REC.ENG_DOWN          :=idxsum_hourly_C.ENG_DOWN            ;
             IdxSum_Hourly_REC.ALARM             :=idxsum_hourly_C.ALARM            ;
-            IdxSum_Hourly_REC.EQ_WARMUP         :=idxsum_hourly_C.EQ_WARMUP         ;
+            IdxSum_Hourly_REC.EQ_WARMUP         :=idxsum_hourly_C.EQ_WARMUP            ;
             IdxSum_Hourly_REC.OFF               :=idxsum_hourly_C.OFF              ;
             IdxSum_Hourly_REC.PE_DOWN           :=idxsum_hourly_C.PE_DOWN              ;
             IdxSum_Hourly_REC.PE_WARMUP         :=idxsum_hourly_C.PE_WARMUP              ;
@@ -469,17 +487,14 @@ procedure onMakeSumIdxHourly(vStartdttm varchar2, vEnddttm varchar2) IS
             IdxSum_Hourly_REC.PM_PCT            :=idxsum_hourly_C.PM_PCT           ;
             IdxSum_Hourly_REC.PM_WARMUP_PCT     :=idxsum_hourly_C.PM_WARMUP_PCT       ;
             IdxSum_Hourly_REC.CHMT_PCT          :=idxsum_hourly_C.CHMT_PCT         ;
-            IdxSum_Hourly_REC.EQ_DOWN_PCT       :=idxsum_hourly_C.EQ_DOWN_PCT      ;
+            IdxSum_Hourly_REC.EQ_DOWN_PCT       :=idxsum_hourly_C.EQ_DOWN_PCT     ;
             IdxSum_Hourly_REC.ENG_DOWN_PCT      :=idxsum_hourly_C.ENG_DOWN_PCT        ;
             IdxSum_Hourly_REC.ALARM_PCT         :=idxsum_hourly_C.ALARM_PCT        ;
             IdxSum_Hourly_REC.EQ_WARMUP_PCT     :=idxsum_hourly_C.EQ_WARMUP_PCT        ;
             IdxSum_Hourly_REC.OFF_PCT           :=idxsum_hourly_C.OFF_PCT          ;
-            
             IdxSum_Hourly_REC.PE_DOWN_PCT       :=idxsum_hourly_C.PE_DOWN_PCT          ;
             IdxSum_Hourly_REC.PE_WARMUP_PCT     :=idxsum_hourly_C.PE_WARMUP_PCT          ;
             IdxSum_Hourly_REC.ENG_DOWN_WARMUP_PCT:=idxsum_hourly_C.ENG_DOWN_WARMUP_PCT          ;
-            
-            
             IdxSum_Hourly_REC.UPTIME_PCT        :=idxsum_hourly_C.UPTIME_PCT       ;
             IdxSum_Hourly_REC.DOWNTIME_PCT      :=idxsum_hourly_C.DOWNTIME_PCT     ;
             IdxSum_Hourly_REC.RUNTIME_PCT       :=idxsum_hourly_C.RUNTIME_PCT      ;
@@ -556,6 +571,9 @@ IdxSum_Daily_REC em_idxsumdaily%ROWTYPE;
         sum(t.ALARM   ) as ALARM   ,
         sum(t.EQ_WARMUP   ) as EQ_WARMUP   ,
         sum(t.OFF     ) as OFF     ,
+        sum(t.PE_DOWN     ) as PE_DOWN     ,
+        sum(t.PE_WARMUP     ) as PE_WARMUP     ,
+        sum(t.ENG_DOWN_WARMUP     ) as ENG_DOWN_WARMUP     ,
         sum(t.UPTIME  ) as UPTIME  ,
         sum(t.DOWNTIME) as DOWNTIME,
         sum(t.RUNTIME ) as RUNTIME ,
@@ -574,15 +592,24 @@ IdxSum_Daily_REC em_idxsumdaily%ROWTYPE;
         round(sum(t.ALARM   )/sum(t.TTM),4)*100 as ALARM_PCT   ,
         round(sum(t.EQ_WARMUP   )/sum(t.TTM),4)*100 as EQ_WARMUP_PCT   ,
         round(sum(t.OFF     )/sum(t.TTM),4)*100 as OFF_PCT     ,
-        round(sum(t.UPTIME  )/sum(t.TTM),4)*100 as UPTIME_PCT  ,
-        round(sum(t.DOWNTIME)/sum(t.TTM),4)*100 as DOWNTIME_PCT,
+        round(sum(t.PE_DOWN     )/sum(t.TTM),4)*100 as PE_DOWN_PCT     ,
+        round(sum(t.PE_WARMUP     )/sum(t.TTM),4)*100 as PE_WARMUP_PCT     ,
+        round(sum(t.ENG_DOWN_WARMUP     )/sum(t.TTM),4)*100 as ENG_DOWN_WARMUP_PCT     ,
+        case when sum(t.TTM-t.eng_down-t.eng_down_warmup)=0 then 0 else 
+        round(sum(t.UPTIME  )/sum(t.TTM-t.eng_down-t.eng_down_warmup),4)*100 end as UPTIME_PCT,
+        
+        --round(sum(t.UPTIME  )/sum(t.TTM),4)*100 as UPTIME_PCT  ,
+        
+        case when sum(t.TTM-t.eng_down-t.eng_down_warmup)=0 then 0 else 
+        round(sum(t.DOWNTIME  )/sum(t.TTM-t.eng_down-t.eng_down_warmup),4)*100 end as DOWNTIME_PCT,
+        --round(sum(t.DOWNTIME)/sum(t.TTM),4)*100 as DOWNTIME_PCT,
         round(decode(sum(t.UPTIME),0,0,sum(t.RUNTIME )/sum(t.UPTIME)),4)*100 as RUNTIME_PCT ,
         sum(t.alarm_cnt) as alarm_cnt,
         sum(t.failure_cnt) as failure_cnt,
         decode(sum(t.alarm_cnt),0,0,round(sum(t.TTM)/sum(t.alarm_cnt),2)) as MTBA,
         decode(sum(t.failure_cnt),0,0,round(sum(t.TTM)/sum(t.failure_cnt),2)) as MTBF_T,
-        decode(sum(t.failure_cnt),0,0,round(sum(t.RUN)/sum(t.failure_cnt),2)) as MTBF,
-        decode(sum(t.failure_cnt),0,0,round(sum(t.EQ_DOWN+t.ALARM+t.EQ_WARMUP)/sum(t.failure_cnt),2)) as MTTR,     
+        decode(sum(t.failure_cnt),0,0,round(sum(t.RUN+t.ERUN+t.MRUN)/sum(t.failure_cnt),2)) as MTBF,
+        decode(sum(t.failure_cnt),0,0,round(sum(t.EQ_Down+t.PE_Down+t.ALARM+t.Eq_Warmup+t.PE_Warmup)/sum(t.failure_cnt),2)) as MTTR,     
         round(sum(t.UPTIME)/sum(t.TTM)* decode(sum(t.UPTIME),0,0,sum(t.RUNTIME )/sum(t.UPTIME)),4)*100 as OEE,
         round(decode(sum(t.UPTIME),0,0,sum(t.RUNTIME )/sum(t.UPTIME)),4)*100 as UTILIZATION,
         100 as Quality_Eff,
@@ -610,6 +637,42 @@ IdxSum_Daily_REC em_idxsumdaily%ROWTYPE;
          AND LOWER (STEPID) NOT LIKE '%ship%' 
        group by t.lineid, t.eqpid;
        
+       
+    cursor idxsum_daily_Rework_cursor(Startdttm varchar2,Enddttm varchar2,ShiftType varchar2) is   
+     select t.lineid as line,
+             ShiftType as cutoffcycle,
+             substr(Startdttm, 1, 8) as cutoffkey,
+             t.eqpid as MOTHEREQUIPMENTID,
+             sum(t.qty) as REWORK_QTY,
+             sysdate as savedtime
+        from EES_REWORK@ARYOEE2ARS t
+       where t.txntimestamp >= Startdttm and t.txntimestamp < Enddttm
+         and t.lineid in ('T0ARRAY', 'T1ARRAY')
+         and t.eqpid is not null
+         AND LOWER (LOTTYPE) NOT LIKE '%mqc%'          
+         AND LOWER (STEPID) NOT LIKE '%buffer%'   
+         AND LOWER (STEPID) NOT LIKE '%complete%' 
+         AND LOWER (STEPID) NOT LIKE '%ship%' 
+       group by t.lineid, t.eqpid;
+       
+    cursor idxsum_daily_Scrap_cursor(Startdttm varchar2,Enddttm varchar2,ShiftType varchar2) is   
+     select t.lineid as line,
+             ShiftType as cutoffcycle,
+             substr(Startdttm, 1, 8) as cutoffkey,
+             t.eqpid as MOTHEREQUIPMENTID,
+             sum(t.qty) as SCRAP_QTY,
+             sysdate as savedtime
+        from EES_SCRAP@ARYOEE2ARS t
+       where t.txntimestamp >= Startdttm and t.txntimestamp < Enddttm
+         and t.lineid in ('T0ARRAY', 'T1ARRAY')
+         and t.eqpid is not null
+         AND LOWER (LOTTYPE) NOT LIKE '%mqc%'          
+         AND LOWER (STEPID) NOT LIKE '%buffer%'   
+         AND LOWER (STEPID) NOT LIKE '%complete%' 
+         AND LOWER (STEPID) NOT LIKE '%ship%' 
+       group by t.lineid, t.eqpid;
+      
+       
    cursor idxsum_daily_RateEFF_cursor(Startdttm varchar2,Enddttm varchar2,ShiftType varchar2) is   
      select T1.line,
       ShiftType as cutoffcycle,
@@ -619,14 +682,14 @@ IdxSum_Daily_REC em_idxsumdaily%ROWTYPE;
       sysdate as savedtime
       from (select B.line,B.Equipmentid,sum(B.glassqty*A.tacttime) as tarTT
             from empasttarget A,
-                 (select /*+  INDEX_DESC(t,EMPAGLASSHISTORY EMPAGLASSHISTORY_PK) */ 
+                 (select /*+  INDEX_DESC(t,EM_GLASSHISTORY EM_GLASSHISTORY_PK) */ 
                          t.line,
                          t.equipmentid,
                          t.stepid,
                          t.productid,
                        --  sum(t.endtacttime) as atualtacttime,
                          count(t.endtacttime) as glassqty
-                    from empaglasshistory t,(select equipmentid from equipment t
+                    from EM_GLASSHISTORY t,(select equipmentid from equipment t
                           where t.line in ('T0ARRAY','T1ARRAY')
                           and t.equipmentid=t.modulename
                           and t.moduletype='MAIN') eq
@@ -713,6 +776,9 @@ IdxSum_Daily_REC em_idxsumdaily%ROWTYPE;
             IdxSum_Daily_REC.ALARM             :=idxsum_daily_C.ALARM            ;
             IdxSum_Daily_REC.EQ_WARMUP         :=idxsum_daily_C.EQ_WARMUP            ;
             IdxSum_Daily_REC.OFF               :=idxsum_daily_C.OFF              ;
+            IdxSum_Daily_REC.PE_DOWN           :=idxsum_daily_C.PE_DOWN              ;
+            IdxSum_Daily_REC.PE_WARMUP         :=idxsum_daily_C.PE_WARMUP              ;
+            IdxSum_Daily_REC.ENG_DOWN_WARMUP   :=idxsum_daily_C.ENG_DOWN_WARMUP              ;
             IdxSum_Daily_REC.UPTIME            :=idxsum_daily_C.UPTIME           ;
             IdxSum_Daily_REC.DOWNTIME          :=idxsum_daily_C.DOWNTIME         ;
             IdxSum_Daily_REC.RUNTIME           :=idxsum_daily_C.RUNTIME          ;
@@ -731,6 +797,9 @@ IdxSum_Daily_REC em_idxsumdaily%ROWTYPE;
             IdxSum_Daily_REC.ALARM_PCT         :=idxsum_daily_C.ALARM_PCT        ;
             IdxSum_Daily_REC.EQ_WARMUP_PCT     :=idxsum_daily_C.EQ_WARMUP_PCT        ;
             IdxSum_Daily_REC.OFF_PCT           :=idxsum_daily_C.OFF_PCT          ;
+            IdxSum_Daily_REC.PE_DOWN_PCT       :=idxsum_daily_C.PE_DOWN_PCT          ;
+            IdxSum_Daily_REC.PE_WARMUP_PCT     :=idxsum_daily_C.PE_WARMUP_PCT          ;
+            IdxSum_Daily_REC.ENG_DOWN_WARMUP_PCT:=idxsum_daily_C.ENG_DOWN_WARMUP_PCT          ;
             IdxSum_Daily_REC.UPTIME_PCT        :=idxsum_daily_C.UPTIME_PCT       ;
             IdxSum_Daily_REC.DOWNTIME_PCT      :=idxsum_daily_C.DOWNTIME_PCT     ;
             IdxSum_Daily_REC.RUNTIME_PCT       :=idxsum_daily_C.RUNTIME_PCT      ;
@@ -762,6 +831,33 @@ IdxSum_Daily_REC em_idxsumdaily%ROWTYPE;
             IdxSum_Daily_REC.SAVEDTIME         :=idxsum_daily_C.SAVEDTIME        ;
             --insert or update to table
             InsUpdIdxDaily(IdxSum_Daily_REC,'MoveData');
+      End Loop;    
+      commit; 
+      
+      
+       
+      for idxsum_daily_C in idxsum_daily_REWORK_cursor(vMOVE_Start_Dttm,vMOVE_End_Dttm,vShiftType) Loop
+            IdxSum_Daily_REC.LINE              :=idxsum_daily_C.LINE             ;
+            IdxSum_Daily_REC.CUTOFFCYCLE       :=idxsum_daily_C.CUTOFFCYCLE      ;
+            IdxSum_Daily_REC.CUTOFFKEY         :=idxsum_daily_C.CUTOFFKEY        ;            
+            IdxSum_Daily_REC.MOTHEREQUIPMENTID :=idxsum_daily_C.MOTHEREQUIPMENTID;         
+            IdxSum_Daily_REC.Rework_Qty          :=idxsum_daily_C.Rework_Qty        ;                                        
+            IdxSum_Daily_REC.SAVEDTIME         :=idxsum_daily_C.SAVEDTIME        ;
+            --insert or update to table
+            InsUpdIdxDaily(IdxSum_Daily_REC,'ReworkData');
+      End Loop;    
+      commit; 
+      
+      
+      for idxsum_daily_C in idxsum_daily_Scrap_cursor(vMOVE_Start_Dttm,vMOVE_End_Dttm,vShiftType) Loop
+            IdxSum_Daily_REC.LINE              :=idxsum_daily_C.LINE             ;
+            IdxSum_Daily_REC.CUTOFFCYCLE       :=idxsum_daily_C.CUTOFFCYCLE      ;
+            IdxSum_Daily_REC.CUTOFFKEY         :=idxsum_daily_C.CUTOFFKEY        ;            
+            IdxSum_Daily_REC.MOTHEREQUIPMENTID :=idxsum_daily_C.MOTHEREQUIPMENTID;         
+            IdxSum_Daily_REC.Scrap_Qty          :=idxsum_daily_C.Scrap_Qty        ;                                        
+            IdxSum_Daily_REC.SAVEDTIME         :=idxsum_daily_C.SAVEDTIME        ;
+            --insert or update to table
+            InsUpdIdxDaily(IdxSum_Daily_REC,'ScrapData');
       End Loop;    
       commit; 
       
@@ -806,6 +902,9 @@ IdxSum_Weekly_REC em_idxsumweekly%ROWTYPE;
               sum(t.ALARM   ) as ALARM   ,
               sum(t.EQ_WARMUP   ) as EQ_WARMUP   ,
               sum(t.OFF     ) as OFF     ,
+              sum(t.PE_DOWN     ) as PE_DOWN     ,
+              sum(t.PE_WARMUP     ) as PE_WARMUP     ,
+              sum(t.ENG_DOWN_WARMUP     ) as ENG_DOWN_WARMUP     ,
               sum(t.UPTIME  ) as UPTIME  ,
               sum(t.DOWNTIME) as DOWNTIME,
               sum(t.RUNTIME ) as RUNTIME ,
@@ -824,15 +923,27 @@ IdxSum_Weekly_REC em_idxsumweekly%ROWTYPE;
               round(sum(t.ALARM   )/sum(t.TTM),4)*100 as ALARM_PCT   ,
               round(sum(t.EQ_WARMUP   )/sum(t.TTM),4)*100 as EQ_WARMUP_PCT   ,
               round(sum(t.OFF     )/sum(t.TTM),4)*100 as OFF_PCT     ,
-              round(sum(t.UPTIME  )/sum(t.TTM),4)*100 as UPTIME_PCT  ,
-              round(sum(t.DOWNTIME)/sum(t.TTM),4)*100 as DOWNTIME_PCT,
+              round(sum(t.PE_DOWN     )/sum(t.TTM),4)*100 as PE_DOWN_PCT     ,
+              round(sum(t.PE_WARMUP     )/sum(t.TTM),4)*100 as PE_WARMUP_PCT     ,
+              round(sum(t.ENG_DOWN_WARMUP     )/sum(t.TTM),4)*100 as ENG_DOWN_WARMUP_PCT     ,
+              -- 20180730 Added by oscar
+              case when sum(t.TTM-t.eng_down-t.eng_down_warmup)=0 then 0 else 
+             round(sum(t.UPTIME  )/sum(t.TTM-t.eng_down-t.eng_down_warmup),4)*100 end as UPTIME_PCT,
+        
+             case when sum(t.TTM-t.eng_down-t.eng_down_warmup)=0 then 0 else 
+              round(sum(t.DOWNTIME  )/sum(t.TTM-t.eng_down-t.eng_down_warmup),4)*100 end as DOWNTIME_PCT,
+  
+              
+              
+              --round(sum(t.UPTIME  )/sum(t.TTM),4)*100 as UPTIME_PCT  ,
+              --round(sum(t.DOWNTIME)/sum(t.TTM),4)*100 as DOWNTIME_PCT,
               round(decode(sum(t.UPTIME),0,0,sum(t.RUNTIME )/sum(t.UPTIME)),4)*100 as RUNTIME_PCT ,
               sum(t.alarm_cnt) as alarm_cnt,
               sum(t.failure_cnt) as failure_cnt,
               decode(sum(t.alarm_cnt),0,0,round(sum(t.TTM)/sum(t.alarm_cnt),2)) as MTBA,
               decode(sum(t.failure_cnt),0,0,round(sum(t.TTM)/sum(t.failure_cnt),2)) as MTBF_T,
-              decode(sum(t.failure_cnt),0,0,round(sum(t.RUN)/sum(t.failure_cnt),2)) as MTBF,
-              decode(sum(t.failure_cnt),0,0,round(sum(t.EQ_DOWN+t.ALARM+t.EQ_WARMUP)/sum(t.failure_cnt),2)) as MTTR,     
+              decode(sum(t.failure_cnt),0,0,round(sum(t.RUN+t.ERUN+t.MRUN)/sum(t.failure_cnt),2)) as MTBF,
+              decode(sum(t.failure_cnt),0,0,round(sum(t.EQ_DOWN+t.PE_DOWN+t.ALARM+t.EQ_WARMUP+t.PE_WARMUP)/sum(t.failure_cnt),2)) as MTTR,     
               round(sum(t.UPTIME)/sum(t.TTM)* decode(sum(t.UPTIME),0,0,sum(t.RUNTIME )/sum(t.UPTIME)),4)*100 as OEE,
               round(decode(sum(t.UPTIME),0,0,sum(t.RUNTIME )/sum(t.UPTIME)),4)*100 as UTILIZATION,
               round(avg(decode(t.rate_eff,0,null,t.rate_eff)),2) as rate_eff,
@@ -895,6 +1006,9 @@ IdxSum_Weekly_REC em_idxsumweekly%ROWTYPE;
             IdxSum_Weekly_REC.ALARM             :=idxsum_weekly_C.ALARM            ;
             IdxSum_Weekly_REC.EQ_WARMUP         :=idxsum_weekly_C.EQ_WARMUP            ;
             IdxSum_Weekly_REC.OFF               :=idxsum_weekly_C.OFF              ;
+            IdxSum_Weekly_REC.PE_DOWN           :=idxsum_weekly_C.PE_DOWN              ;
+            IdxSum_Weekly_REC.PE_WARMUP         :=idxsum_weekly_C.PE_WARMUP              ;
+            IdxSum_Weekly_REC.ENG_DOWN_WARMUP   :=idxsum_weekly_C.ENG_DOWN_WARMUP              ;
             IdxSum_Weekly_REC.UPTIME            :=idxsum_weekly_C.UPTIME           ;
             IdxSum_Weekly_REC.DOWNTIME          :=idxsum_weekly_C.DOWNTIME         ;
             IdxSum_Weekly_REC.RUNTIME           :=idxsum_weekly_C.RUNTIME          ;
@@ -913,6 +1027,9 @@ IdxSum_Weekly_REC em_idxsumweekly%ROWTYPE;
             IdxSum_Weekly_REC.ALARM_PCT         :=idxsum_weekly_C.ALARM_PCT        ;
             IdxSum_Weekly_REC.EQ_WARMUP_PCT     :=idxsum_weekly_C.EQ_WARMUP_PCT        ;
             IdxSum_Weekly_REC.OFF_PCT           :=idxsum_weekly_C.OFF_PCT          ;
+            IdxSum_Weekly_REC.PE_DOWN_PCT       :=idxsum_weekly_C.PE_DOWN_PCT          ;
+            IdxSum_Weekly_REC.PE_WARMUP_PCT     :=idxsum_weekly_C.PE_WARMUP_PCT          ;
+            IdxSum_Weekly_REC.ENG_DOWN_WARMUP_PCT:=idxsum_weekly_C.ENG_DOWN_WARMUP_PCT          ;
             IdxSum_Weekly_REC.UPTIME_PCT        :=idxsum_weekly_C.UPTIME_PCT       ;
             IdxSum_Weekly_REC.DOWNTIME_PCT      :=idxsum_weekly_C.DOWNTIME_PCT     ;
             IdxSum_Weekly_REC.RUNTIME_PCT       :=idxsum_weekly_C.RUNTIME_PCT      ;
@@ -975,6 +1092,9 @@ IdxSum_Monthly_REC em_idxsummonthly%ROWTYPE;
               sum(t.ALARM   ) as ALARM   ,
               sum(t.EQ_WARMUP   ) as EQ_WARMUP   ,
               sum(t.OFF     ) as OFF     ,
+              sum(t.PE_DOWN     ) as PE_DOWN     ,
+              sum(t.PE_WARMUP     ) as PE_WARMUP     ,
+              sum(t.ENG_DOWN_WARMUP     ) as ENG_DOWN_WARMUP     ,
               sum(t.UPTIME  ) as UPTIME  ,
               sum(t.DOWNTIME) as DOWNTIME,
               sum(t.RUNTIME ) as RUNTIME ,
@@ -993,15 +1113,30 @@ IdxSum_Monthly_REC em_idxsummonthly%ROWTYPE;
               round(sum(t.ALARM   )/sum(t.TTM),4)*100 as ALARM_PCT   ,
               round(sum(t.EQ_WARMUP   )/sum(t.TTM),4)*100 as EQ_WARMUP_PCT   ,
               round(sum(t.OFF     )/sum(t.TTM),4)*100 as OFF_PCT     ,
-              round(sum(t.UPTIME  )/sum(t.TTM),4)*100 as UPTIME_PCT  ,
-              round(sum(t.DOWNTIME)/sum(t.TTM),4)*100 as DOWNTIME_PCT,
+              round(sum(t.PE_DOWN     )/sum(t.TTM),4)*100 as PE_DOWN_PCT     ,
+              round(sum(t.PE_WARMUP     )/sum(t.TTM),4)*100 as PE_WARMUP_PCT     ,
+              round(sum(t.ENG_DOWN_WARMUP     )/sum(t.TTM),4)*100 as ENG_DOWN_WARMUP_PCT     ,
+              -- added by oscar 20180730
+              case when sum(t.TTM-t.eng_down-t.eng_down_warmup)=0 then 0 else 
+              round(sum(t.UPTIME  )/sum(t.TTM-t.eng_down-t.eng_down_warmup),4)*100 end as UPTIME_PCT,
+        
+              case when sum(t.TTM-t.eng_down-t.eng_down_warmup)=0 then 0 else 
+              round(sum(t.DOWNTIME  )/sum(t.TTM-t.eng_down-t.eng_down_warmup),4)*100 end as DOWNTIME_PCT,
+
+              
+              
+              --round(sum(t.UPTIME  )/sum(t.TTM),4)*100 as UPTIME_PCT  ,
+              --round(sum(t.DOWNTIME)/sum(t.TTM),4)*100 as DOWNTIME_PCT,
+              
+              
+              
               round(decode(sum(t.UPTIME),0,0,sum(t.RUNTIME )/sum(t.UPTIME)),4)*100 as RUNTIME_PCT ,
               sum(t.alarm_cnt) as alarm_cnt,
               sum(t.failure_cnt) as failure_cnt,
               decode(sum(t.alarm_cnt),0,0,round(sum(t.TTM)/sum(t.alarm_cnt),2)) as MTBA,
               decode(sum(t.failure_cnt),0,0,round(sum(t.TTM)/sum(t.failure_cnt),2)) as MTBF_T,
-              decode(sum(t.failure_cnt),0,0,round(sum(t.RUN)/sum(t.failure_cnt),2)) as MTBF,
-              decode(sum(t.failure_cnt),0,0,round(sum(t.EQ_DOWN+t.ALARM+t.EQ_WARMUP)/sum(t.failure_cnt),2)) as MTTR,     
+              decode(sum(t.failure_cnt),0,0,round(sum(t.RUN+t.ERUN+t.MRUN)/sum(t.failure_cnt),2)) as MTBF,
+              decode(sum(t.failure_cnt),0,0,round(sum(t.EQ_DOWN+t.PE_DOWN+t.ALARM+t.EQ_WARMUP+t.PE_WARMUP)/sum(t.failure_cnt),2)) as MTTR,     
               round(sum(t.UPTIME)/sum(t.TTM)* decode(sum(t.UPTIME),0,0,sum(t.RUNTIME )/sum(t.UPTIME)),4)*100 as OEE,
               round(decode(sum(t.UPTIME),0,0,sum(t.RUNTIME )/sum(t.UPTIME)),4)*100 as UTILIZATION,
               round(avg(decode(t.rate_eff,0,null,t.rate_eff)),2) as rate_eff,
@@ -1049,6 +1184,9 @@ IdxSum_Monthly_REC em_idxsummonthly%ROWTYPE;
             IdxSum_Monthly_REC.ALARM             :=idxsum_monthly_C.ALARM            ;
             IdxSum_Monthly_REC.EQ_WARMUP         :=idxsum_monthly_C.EQ_WARMUP            ;
             IdxSum_Monthly_REC.OFF               :=idxsum_monthly_C.OFF              ;
+            IdxSum_Monthly_REC.PE_DOWN           :=idxsum_monthly_C.PE_DOWN              ;
+            IdxSum_Monthly_REC.PE_WARMUP         :=idxsum_monthly_C.PE_WARMUP              ;
+            IdxSum_Monthly_REC.ENG_DOWN_WARMUP   :=idxsum_monthly_C.ENG_DOWN_WARMUP              ;
             IdxSum_Monthly_REC.UPTIME            :=idxsum_monthly_C.UPTIME           ;
             IdxSum_Monthly_REC.DOWNTIME          :=idxsum_monthly_C.DOWNTIME         ;
             IdxSum_Monthly_REC.RUNTIME           :=idxsum_monthly_C.RUNTIME          ;
@@ -1067,6 +1205,9 @@ IdxSum_Monthly_REC em_idxsummonthly%ROWTYPE;
             IdxSum_Monthly_REC.ALARM_PCT         :=idxsum_monthly_C.ALARM_PCT        ;
             IdxSum_Monthly_REC.EQ_WARMUP_PCT     :=idxsum_monthly_C.EQ_WARMUP_PCT        ;
             IdxSum_Monthly_REC.OFF_PCT           :=idxsum_monthly_C.OFF_PCT          ;
+            IdxSum_Monthly_REC.PE_DOWN_PCT       :=idxsum_monthly_C.PE_DOWN_PCT          ;
+            IdxSum_Monthly_REC.PE_WARMUP_PCT     :=idxsum_monthly_C.PE_WARMUP_PCT          ;
+            IdxSum_Monthly_REC.ENG_DOWN_WARMUP_PCT:=idxsum_monthly_C.ENG_DOWN_WARMUP_PCT          ;
             IdxSum_Monthly_REC.UPTIME_PCT        :=idxsum_monthly_C.UPTIME_PCT       ;
             IdxSum_Monthly_REC.DOWNTIME_PCT      :=idxsum_monthly_C.DOWNTIME_PCT     ;
             IdxSum_Monthly_REC.RUNTIME_PCT       :=idxsum_monthly_C.RUNTIME_PCT      ;
@@ -1106,16 +1247,19 @@ procedure InsUpdIdxHourly(IdxSum_Hourly_REC IdxSum_Hourly_REC_Type ) IS
           t.P_SET       =IdxSum_Hourly_REC.P_SET          ,
           t.E_SET       =IdxSum_Hourly_REC.E_SET          ,
           t.PM          =IdxSum_Hourly_REC.PM             ,
-          t.PM_WARMUP      =IdxSum_Hourly_REC.PM_WARMUP         ,
+          t.PM_WARMUP   =IdxSum_Hourly_REC.PM_WARMUP         ,
           t.CHMT        =IdxSum_Hourly_REC.CHMT           ,
-          t.EQ_DOWN    =IdxSum_Hourly_REC.EQ_DOWN       ,
-          t.ENG_DOWN       =IdxSum_Hourly_REC.ENG_DOWN          ,
+          t.EQ_DOWN     =IdxSum_Hourly_REC.EQ_DOWN       ,
+          t.ENG_DOWN    =IdxSum_Hourly_REC.ENG_DOWN          ,
           t.ALARM       =IdxSum_Hourly_REC.ALARM          ,
-          t.EQ_WARMUP       =IdxSum_Hourly_REC.EQ_WARMUP          ,
+          t.EQ_WARMUP   =IdxSum_Hourly_REC.EQ_WARMUP          ,
           t.OFF         =IdxSum_Hourly_REC.OFF            ,
-          t.PE_DOWN         =IdxSum_Hourly_REC.PE_DOWN            ,
-          t.PE_WARMUP         =IdxSum_Hourly_REC.PE_WARMUP            ,
-          t.ENG_Down_WARMUP         =IdxSum_Hourly_REC.ENG_Down_WARMUP            ,
+          
+          t.PE_DOWN     =IdxSum_Hourly_REC.PE_DOWN            ,
+          t.PE_WARMUP   =IdxSum_Hourly_REC.PE_WARMUP            ,
+          t.ENG_DOWN_WARMUP=IdxSum_Hourly_REC.ENG_DOWN_WARMUP            ,
+          
+          
           t.UPTIME      =IdxSum_Hourly_REC.UPTIME         ,
           t.DOWNTIME    =IdxSum_Hourly_REC.DOWNTIME       ,
           t.RUNTIME     =IdxSum_Hourly_REC.RUNTIME        ,
@@ -1129,15 +1273,17 @@ procedure InsUpdIdxHourly(IdxSum_Hourly_REC IdxSum_Hourly_REC_Type ) IS
           t.PM_PCT      =IdxSum_Hourly_REC.PM_PCT         ,
           t.PM_WARMUP_PCT  =IdxSum_Hourly_REC.PM_WARMUP_PCT     ,
           t.CHMT_PCT    =IdxSum_Hourly_REC.CHMT_PCT       ,
-          t.EQ_DOWN_PCT =IdxSum_Hourly_REC.EQ_DOWN_PCT   ,
-          t.EQ_DOWN_PCT   =IdxSum_Hourly_REC.EQ_DOWN_PCT  ,
+          t.EQ_DOWN_PCT=IdxSum_Hourly_REC.EQ_DOWN_PCT   ,
+          t.ENG_DOWN_PCT   =IdxSum_Hourly_REC.ENG_DOWN_PCT      ,
           t.ALARM_PCT   =IdxSum_Hourly_REC.ALARM_PCT      ,
-          t.EQ_WARMUP_PCT   =IdxSum_Hourly_REC.EQ_WARMUP_PCT ,
+          t.EQ_WARMUP_PCT   =IdxSum_Hourly_REC.EQ_WARMUP_PCT      ,
           t.OFF_PCT     =IdxSum_Hourly_REC.OFF_PCT        ,
           
-          t.PE_DOWN_PCT     =IdxSum_Hourly_REC.PE_DOWN_PCT        ,
+          t.PE_DOWN_PCT =IdxSum_Hourly_REC.PE_DOWN_PCT        ,
           t.PE_WARMUP_PCT     =IdxSum_Hourly_REC.PE_WARMUP_PCT        ,
           t.ENG_DOWN_WARMUP_PCT     =IdxSum_Hourly_REC.ENG_DOWN_WARMUP_PCT        ,
+          
+          
           t.UPTIME_PCT  =IdxSum_Hourly_REC.UPTIME_PCT     ,
           t.DOWNTIME_PCT=IdxSum_Hourly_REC.DOWNTIME_PCT   ,
           t.RUNTIME_PCT =IdxSum_Hourly_REC.RUNTIME_PCT    ,
@@ -1181,8 +1327,27 @@ procedure InsUpdIdxDaily(IdxSum_Daily_REC IdxSum_Daily_REC_Type,source_type varc
               and   t.cutoffcycle=IdxSum_Daily_REC.Cutoffcycle
               and   t.cutoffkey=IdxSum_Daily_REC.Cutoffkey    
               and   t.motherequipmentid=IdxSum_Daily_REC.Motherequipmentid
-              and   t.equipmentid=t.motherequipmentid;          
-         elsif(source_type='NormalData') then
+              and   t.equipmentid=t.motherequipmentid;
+         elsif(source_type='ReworkData') then
+              update em_idxsumdaily t set 
+              t.rework_qty=IdxSum_Daily_REC.Rework_Qty,
+              t.savedtime=IdxSum_Daily_REC.Savedtime
+              where t.line=IdxSum_Daily_REC.Line     
+              and   t.cutoffcycle=IdxSum_Daily_REC.Cutoffcycle
+              and   t.cutoffkey=IdxSum_Daily_REC.Cutoffkey    
+              and   t.motherequipmentid=IdxSum_Daily_REC.Motherequipmentid
+              and   t.equipmentid=t.motherequipmentid;  
+          elsif(source_type='ScrapData') then
+              update em_idxsumdaily t set 
+              t.scrap_qty=IdxSum_Daily_REC.Scrap_Qty,
+              t.savedtime=IdxSum_Daily_REC.Savedtime
+              where t.line=IdxSum_Daily_REC.Line     
+              and   t.cutoffcycle=IdxSum_Daily_REC.Cutoffcycle
+              and   t.cutoffkey=IdxSum_Daily_REC.Cutoffkey    
+              and   t.motherequipmentid=IdxSum_Daily_REC.Motherequipmentid
+              and   t.equipmentid=t.motherequipmentid;       
+                 
+           elsif(source_type='NormalData') then
               insert  /*+APPEND */ into em_idxsumdaily values IdxSum_Daily_REC;
          end if ;
       
@@ -1307,6 +1472,9 @@ procedure InsUpdIdxWeekly(IdxSum_Weekly_REC IdxSum_Weekly_REC_Type,source_type v
                 t.ALARM_PCT   =IdxSum_Weekly_REC.ALARM_PCT      ,
                 t.EQ_WARMUP_PCT=IdxSum_Weekly_REC.EQ_WARMUP_PCT      ,
                 t.OFF_PCT     =IdxSum_Weekly_REC.OFF_PCT        ,
+                t.PE_DOWN_PCT =IdxSum_Weekly_REC.PE_DOWN_PCT        ,
+                t.PE_WARMUP_PCT=IdxSum_Weekly_REC.PE_WARMUP_PCT        ,
+                t.ENG_DOWN_WARMUP_PCT=IdxSum_Weekly_REC.ENG_DOWN_WARMUP_PCT        ,
                 t.UPTIME_PCT  =IdxSum_Weekly_REC.UPTIME_PCT     ,
                 t.DOWNTIME_PCT=IdxSum_Weekly_REC.DOWNTIME_PCT   ,
                 t.RUNTIME_PCT =IdxSum_Weekly_REC.RUNTIME_PCT    ,
@@ -1388,6 +1556,9 @@ procedure InsUpdIdxMonthly(IdxSum_Monthly_REC IdxSum_Monthly_REC_Type,source_typ
                 t.ALARM_PCT   =IdxSum_Monthly_REC.ALARM_PCT      ,
                 t.EQ_WARMUP_PCT=IdxSum_Monthly_REC.EQ_WARMUP_PCT      ,
                 t.OFF_PCT     =IdxSum_Monthly_REC.OFF_PCT        ,
+                t.PE_DOWN_PCT =IdxSum_Monthly_REC.PE_DOWN_PCT        ,
+                t.PE_WARMUP_PCT=IdxSum_Monthly_REC.PE_WARMUP_PCT        ,
+                t.ENG_DOWN_WARMUP_PCT=IdxSum_Monthly_REC.ENG_DOWN_WARMUP_PCT        ,
                 t.UPTIME_PCT  =IdxSum_Monthly_REC.UPTIME_PCT     ,
                 t.DOWNTIME_PCT=IdxSum_Monthly_REC.DOWNTIME_PCT   ,
                 t.RUNTIME_PCT =IdxSum_Monthly_REC.RUNTIME_PCT    ,
@@ -1499,8 +1670,3 @@ function ChkDataTime(inETL_Basepcg_Name varchar2,inETL_name varchar2,inUnit varc
    end;      
 -----------------------------------------------------------      
 end;
-
-
-
-
-
