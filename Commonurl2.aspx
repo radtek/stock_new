@@ -11,14 +11,39 @@
     <div>
         常用的網址<br />
         <br />
+        <asp:HyperLink ID="HyperLink39" runat="server" NavigateUrl="checkview.aspx"
+            Target="_blank" Text="上帝視角"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink11" target="_blank" Text="選擇權大額交易人未沖銷部位"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/largeTraderOptQry"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink7" target="_blank" Text="三大法人區分各區期貨未平倉餘額"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/futContractsDate"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink17" runat="server" NavigateUrl="https://www.wantgoo.com/stock/futures/optionstoday"
+            Target="_blank" Text="選擇權支撐壓力表"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="https://stock.wearn.com/taifexphoto.asp" Target="_blank">期貨法人未平倉</asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink4" target="_blank" Text="現貨三大法人"  runat="server" NavigateUrl="http://www.tse.com.tw/zh/page/trading/fund/BFI82U.html"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink13" target="_blank" Text="國發會景氣燈號"  runat="server" NavigateUrl="https://index.ndc.gov.tw//n/zh_tw"></asp:HyperLink><br />
+        <br />
         <asp:HyperLink ID="HyperLink34" runat="server" NavigateUrl="http://quote.eastmoney.com/gb/zsTWII.html"
             Target="_blank" Text="台灣加權指數(東方)"></asp:HyperLink><br />
         <br />
         <asp:HyperLink ID="HyperLink35" runat="server" NavigateUrl="http://quote.eastmoney.com/globalfuture/YM00Y.html"
             Target="_blank" Text="小道期貨(東方)"></asp:HyperLink><br />
         <br />
+        <asp:HyperLink ID="HyperLink37" runat="server" NavigateUrl="http://quote.eastmoney.com/globalfuture/DINI.html"
+            Target="_blank" Text="美元指數(東方)"></asp:HyperLink><br />
+        <br />
         <asp:HyperLink ID="HyperLink36" runat="server" NavigateUrl="http://quote.eastmoney.com/gb/zsGDAXI.html"
-            Target="_blank" Text="DAX指數(東方)"></asp:HyperLink><br /><br />
+            Target="_blank" Text="DAX指數(東方)"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink38" runat="server" NavigateUrl="https://rate.bot.com.tw/xrt/quote/ltm/USD"
+            Target="_blank" Text="台幣匯率"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink33" runat="server" NavigateUrl="http://acer2266.com/blog/"
+            Target="_blank" Text="交易醫生"></asp:HyperLink><br /><br />
         <asp:HyperLink ID="HyperLink28" runat="server" NavigateUrl="https://www.moneydj.com/funddj/ya/YP051000.djhtm?a=FA000004"
             Target="_blank" Text="市場風向球"></asp:HyperLink><br />
         <br />
@@ -41,20 +66,9 @@
         <asp:HyperLink ID="HyperLink25" runat="server" NavigateUrl="https://hk.investing.com/indices/sgx-msci-taiwan-futures-technical"
             Target="_blank" Text="摩台技術分析"></asp:HyperLink><br />
         <br />
-        <asp:HyperLink ID="HyperLink17" runat="server" NavigateUrl="https://www.wantgoo.com/stock/futures/optionstoday"
-            Target="_blank" Text="選擇權支撐壓力表"></asp:HyperLink><br />
-        <br />
-        <asp:HyperLink ID="HyperLink7" target="_blank" Text="三大法人區分各區期貨未平倉餘額"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/futContractsDate"></asp:HyperLink><br />
-        <br />
         <asp:HyperLink ID="HyperLink6" target="_blank" Text="小台指總未平倉量(*未沖銷契約量)"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/futDailyMarketExcel?commodity_id=MTX"></asp:HyperLink><br />
         <br />
-        <asp:HyperLink ID="HyperLink11" target="_blank" Text="選擇權大額交易人未沖銷部位"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/largeTraderOptQry"></asp:HyperLink><br />
-        <br />
         <asp:HyperLink ID="HyperLink8" target="_blank" Text="選擇權多空未平倉"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/optContractsDate"></asp:HyperLink><br />
-        <br />
-        <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="https://stock.wearn.com/taifexphoto.asp" Target="_blank">期貨法人未平倉</asp:HyperLink><br />
-        <br />
-        <asp:HyperLink ID="HyperLink4" target="_blank" Text="現貨三大法人"  runat="server" NavigateUrl="http://www.tse.com.tw/zh/page/trading/fund/BFI82U.html"></asp:HyperLink><br />
         <br />
         <asp:HyperLink ID="HyperLink27" runat="server" NavigateUrl="https://goodinfo.tw/StockInfo/ShowBearishChart.asp?STOCK_ID=%E5%8A%A0%E6%AC%8A%E6%8C%87%E6%95%B8&CHT_CAT=DATE"
             Target="_blank" Text="融資融卷餘額"></asp:HyperLink><br />
@@ -90,9 +104,6 @@
          
          <br />
         <asp:HyperLink ID="HyperLink12" target="_blank" Text="東方財富"  runat="server" NavigateUrl="http://quote.eastmoney.com/centerv2/hszs"></asp:HyperLink><br />
-         
-         <br />
-        <asp:HyperLink ID="HyperLink13" target="_blank" Text="國發會景氣燈號"  runat="server" NavigateUrl="https://index.ndc.gov.tw//n/zh_tw"></asp:HyperLink><br />
         <br />
         <asp:HyperLink ID="HyperLink16" runat="server" NavigateUrl="https://www.wantgoo.com/global"
             Target="_blank" Text="全球指數"></asp:HyperLink><br />
@@ -106,8 +117,7 @@
         <asp:HyperLink ID="HyperLink29" runat="server" NavigateUrl="http://jow.win168.com.tw/z/zg/zg_DD_0_3.djhtm"
             Target="_blank" Text="投信三日買超"></asp:HyperLink><br />
         <br />
-        <asp:HyperLink ID="HyperLink33" runat="server" NavigateUrl="http://acer2266.com/blog/"
-            Target="_blank" Text="交易醫生"></asp:HyperLink><br />
+        <br />
         <br />
         <br />
         <br />

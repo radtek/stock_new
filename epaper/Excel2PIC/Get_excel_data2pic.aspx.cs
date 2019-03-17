@@ -146,9 +146,9 @@ window.close();
         //if(1==1)
         if (Convert.ToInt32(today_HH)==17)
         {
-            initailExcel();
+            //initailExcel();
 
-            openExcel();
+            //openExcel();
             //initailExcel();
 
             //openExcelDelta();
