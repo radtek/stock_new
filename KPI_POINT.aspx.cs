@@ -340,19 +340,19 @@ protected void  Button1_Click(object sender, EventArgs e)
         Double LowerPrice = 0;
         Double UpperPrice = 0;
 
-        LowerPrice = NowPrice * Math.Pow(1 + WaveRate / 16, DueDay / 3);
-        UpperPrice = NowPrice * Math.Pow(1 - WaveRate / 16, DueDay / 3);
-        Label31.Text=LowerPrice.ToString("N0");
-        Label30.Text=UpperPrice.ToString("N0");
+        UpperPrice = NowPrice * Math.Pow(1 + WaveRate / 16, DueDay / 3);
+        LowerPrice = NowPrice * Math.Pow(1 - WaveRate / 16, DueDay / 3);
+        Label31.Text = UpperPrice.ToString("N0");
+        Label30.Text = LowerPrice.ToString("N0");
 
 
 
-        LowerPrice = Math.Round(LowerPrice / 100, MidpointRounding.AwayFromZero) * 100;
-        UpperPrice = Math.Round(UpperPrice / 100, MidpointRounding.AwayFromZero) * 100;
+        LowerPrice = Math.Round((LowerPrice-25 )/ 50, MidpointRounding.AwayFromZero) * 50;
+        UpperPrice = Math.Round((UpperPrice+25) / 50, MidpointRounding.AwayFromZero) * 50;
 
 
-        Label33.Text = LowerPrice.ToString("N0");
-        Label32.Text = UpperPrice.ToString("N0");
+        Label33.Text = UpperPrice.ToString("N0");
+        Label32.Text = LowerPrice.ToString("N0");
 
 
     }
