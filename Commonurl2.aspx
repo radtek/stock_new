@@ -14,6 +14,16 @@
         <asp:HyperLink ID="HyperLink39" runat="server" NavigateUrl="checkview.aspx"
             Target="_blank" Text="上帝視角"></asp:HyperLink><br />
         <br />
+        <asp:HyperLink ID="HyperLink40" runat="server" NavigateUrl="KPI_POINT.aspx"
+            Target="_blank" Text="指數計算"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink42" runat="server" NavigateUrl="https://www.taifex.com.tw/cht/5/optIndxFSP" Target="_blank"
+            Text="指數最後結算價格"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink41" runat="server" NavigateUrl="http://info512.taifex.com.tw/Future/VIXQuote_Norl.aspx"
+            Target="_blank" Text="臺指選擇權波動率指數"></asp:HyperLink><br />
+        
+        <br />
         <asp:HyperLink ID="HyperLink11" target="_blank" Text="選擇權大額交易人未沖銷部位"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/largeTraderOptQry"></asp:HyperLink><br />
         <br />
         <asp:HyperLink ID="HyperLink7" target="_blank" Text="三大法人區分各區期貨未平倉餘額"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/futContractsDate"></asp:HyperLink><br />
