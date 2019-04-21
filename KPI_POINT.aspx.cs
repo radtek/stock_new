@@ -56,7 +56,8 @@ public partial class KPI_POINT : System.Web.UI.Page
             Label31.Text = "";
             Label32.Text = "";
             Label33.Text = "";
-            TextBox5.Text = "0.17";
+            TextBox5.Text = "0.16";
+            TextBox6.Text = "1";
 
         }
 
