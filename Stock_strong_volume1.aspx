@@ -39,7 +39,7 @@
                                             <selecteditemstyle backcolor="#C5BBAF" font-bold="True" forecolor="#333333" />
                                             <itemtemplate>
                                   
-                                        <asp:HyperLink ID="HyperLink1" NavigateUrl='<%#"http://vsoscar007.ddns.net:8080/Stock_new/stock_pic.aspx?stock=" + DataBinder.Eval(Container.DataItem, "stock_id") %> '
+                                        <asp:HyperLink ID="HyperLink1" NavigateUrl='<%#"http://vsoscar101.ddns.net:8080/Stock_new/stock_pic.aspx?stock=" + DataBinder.Eval(Container.DataItem, "stock_id") %> '
                                             Text='<%# Bind("stock_id") %>' runat="server" Target="_blank"></asp:HyperLink>
                                     </itemtemplate>
                                             <headerstyle backcolor="#1C5E55" font-bold="True" forecolor="White" />
@@ -123,7 +123,7 @@
                                             <selecteditemstyle backcolor="#C5BBAF" font-bold="True" forecolor="#333333" />
                                             <itemtemplate>
                                   
-                                        <asp:HyperLink ID="HyperLink1" NavigateUrl='<%#"http://vsoscar007.ddns.net:8080/Stock_new/stock_pic.aspx?stock=" + DataBinder.Eval(Container.DataItem, "stock_id") %> '
+                                        <asp:HyperLink ID="HyperLink1" NavigateUrl='<%#"http://vsoscar101.ddns.net:8080/Stock_new/stock_pic.aspx?stock=" + DataBinder.Eval(Container.DataItem, "stock_id") %> '
                                             Text='<%# Bind("stock_id") %>' runat="server" Target="_blank"></asp:HyperLink>
                                     </itemtemplate>
                                             <headerstyle backcolor="#1C5E55" font-bold="True" forecolor="White" />

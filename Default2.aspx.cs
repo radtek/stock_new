@@ -41,15 +41,15 @@ public partial class Default2 : System.Web.UI.Page
             TextBox7.Text = "87654321";
 
 
-            HyperLink1.NavigateUrl = "http://vsoscar007.ddns.net:8080/stocK_new/" + "a.txt";
+            HyperLink1.NavigateUrl = "http://vsoscar101.ddns.net:8080/stocK_new/" + "a.txt";
             HyperLink1.Text = "欲加密網址";
             HyperLink1.Target = "_blank";
 
-            HyperLink2.NavigateUrl = "http://vsoscar007.ddns.net:8080/stocK_new/" + "b.txt";
+            HyperLink2.NavigateUrl = "http://vsoscar101.ddns.net:8080/stocK_new/" + "b.txt";
             HyperLink2.Text = "加密後網址";
             HyperLink2.Target = "_blank";
 
-            HyperLink3.NavigateUrl = "http://vsoscar007.ddns.net:8080/stocK_new/" + "c.txt";
+            HyperLink3.NavigateUrl = "http://vsoscar101.ddns.net:8080/stocK_new/" + "c.txt";
             HyperLink3.Text = "解密後網址";
             HyperLink3.Target = "_blank";
 

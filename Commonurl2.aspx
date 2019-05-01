@@ -19,6 +19,10 @@
         <br />
         <asp:HyperLink ID="HyperLink42" runat="server" NavigateUrl="https://www.taifex.com.tw/cht/5/optIndxFSP" Target="_blank"
             Text="指數最後結算價格"></asp:HyperLink><br />
+    
+        <br />
+        <asp:HyperLink ID="HyperLink43" runat="server" NavigateUrl="https://www.wantgoo.com/option" Target="_blank"
+            Text="期貨與選擇權當日行情"></asp:HyperLink><br />
         <br />
         <asp:HyperLink ID="HyperLink41" runat="server" NavigateUrl="http://info512.taifex.com.tw/Future/VIXQuote_Norl.aspx"
             Target="_blank" Text="臺指選擇權波動率指數"></asp:HyperLink><br />
