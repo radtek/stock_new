@@ -131,6 +131,20 @@
         <asp:HyperLink ID="HyperLink29" runat="server" NavigateUrl="http://jow.win168.com.tw/z/zg/zg_DD_0_3.djhtm"
             Target="_blank" Text="投信三日買超"></asp:HyperLink><br />
         <br />
+        <asp:HyperLink ID="HyperLink47" runat="server" NavigateUrl="http://stock.nlog.cc/G/1593"
+            Target="_blank" Text="定存概念股"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink44" runat="server" NavigateUrl="http://invest.wessiorfinance.com/stock.html"
+            Target="_blank" Text="存股試算"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink45" runat="server" NavigateUrl="Stock_pic.aspx?stock=2330"
+            Target="_blank" Text="股票寫真"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink46" runat="server" NavigateUrl="http://www.cmoney.tw/finance/f00043.aspx?s=1730&o=3"
+            Target="_blank" Text="股票ROE/ROA"></asp:HyperLink><br />
+        <br />
+        <br />
+        <br />
         <br />
         <br />
         <br />
