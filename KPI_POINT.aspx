@@ -11,12 +11,16 @@
                 現在指數:<asp:TextBox ID="TextBox3" runat="server" Width="60px"></asp:TextBox><br />
                 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Query" Width="69px" /></td>
             <td style="border-right: #000033 thin solid; border-top: #000033 thin solid; border-left: #000033 thin solid; width: 143px; border-bottom: #000033 thin solid">
-                現在指數:<br />
+                現在指數: &nbsp;
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="https://tw.stock.yahoo.com/s/tse.php"
+                    Target="_blank">指數查詢</asp:HyperLink><br />
                 <asp:TextBox ID="TextBox4" runat="server" Width="63px"></asp:TextBox><br />
                 隱含波動率:<br />
                 <asp:TextBox ID="TextBox5" runat="server" Width="63px"></asp:TextBox><br />
                 到期天數:<br />
-                <asp:TextBox ID="TextBox6" runat="server"  Width="63px"></asp:TextBox>
+                <asp:TextBox ID="TextBox6" runat="server"  Width="63px"></asp:TextBox><br />
+                已經開盤幾小時<br />
+                <asp:TextBox ID="TextBox7" runat="server" Width="63px"></asp:TextBox><br />
                 <asp:Button ID="Button2" runat="server" Text="Query" OnClick="Button2_Click" /><br />
                 下限: &nbsp;
                 <asp:Label ID="Label30" runat="server" Text="Label" Width="68px"></asp:Label>

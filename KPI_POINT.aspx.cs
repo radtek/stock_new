@@ -14,7 +14,10 @@ public partial class KPI_POINT : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-      
+        string today_detail = DateTime.Now.AddDays(+0).ToString("HH:mm");
+        Double lefthour = 0;
+        today_detail = today_detail.Replace(":", "");
+
         if(!IsPostBack)
         {
 
@@ -57,10 +60,68 @@ public partial class KPI_POINT : System.Web.UI.Page
             Label32.Text = "";
             Label33.Text = "";
             TextBox5.Text = "0.16";
-            TextBox6.Text = "1";
+
+            DateTime dt = DateTime.Now.AddDays(+0);
+           
+            string tmp2 = dt.DayOfWeek.ToString("d");//tmp2 = 4 
+            string leftdaytmp = "1";
+            switch (tmp2)
+            {
+                case "1":
+                    leftdaytmp = "3";
+                    break;
+                case "2":
+                    leftdaytmp = "2";
+                    break;
+                case "3":
+                    leftdaytmp = "1";
+                    break;
+                case "4":
+                    leftdaytmp = "5";
+                    break;
+                case "5":
+                    leftdaytmp = "4";
+                    break;
+                case "6":
+                    leftdaytmp = "3";
+                    break;
+                case "0":
+                    leftdaytmp = "3";
+                    break;
+                
+                default:
+                    break;
+            }
+
+
+            TextBox6.Text = leftdaytmp;
+
+            if (string.Compare(today_detail, "0845") > 0 && string.Compare(today_detail, "1345") < 0)
+            {
+                lefthour = Convert.ToDouble(today_detail.Substring(0, 2).ToString()) - 8;
+                TextBox6.Text = Convert.ToString(Convert.ToDouble(TextBox6.Text) - Convert.ToDouble(lefthour / 5));
+            }
+
+            if (string.Compare(today_detail, "1500") > 0 && string.Compare(today_detail, "2359") < 0)
+            {
+                lefthour = Convert.ToDouble(today_detail.Substring(0, 2).ToString()) - 15;
+                TextBox6.Text = Convert.ToString(Convert.ToDouble(TextBox6.Text) - Convert.ToDouble(lefthour / 14));
+            }
+            if (string.Compare(today_detail, "0000") > 0 && string.Compare(today_detail, "0500") < 0)
+            {
+                lefthour = 9 + 5 - Convert.ToDouble(today_detail.Substring(0, 2).ToString());
+                TextBox6.Text = Convert.ToString(Convert.ToDouble(TextBox6.Text) - Convert.ToDouble(lefthour / 14));
+            }
+            
+
+
 
         }
 
+
+        
+
+        TextBox7.Text = lefthour.ToString();
 
 
 
@@ -357,4 +418,5 @@ protected void  Button1_Click(object sender, EventArgs e)
 
 
     }
+ 
 }
