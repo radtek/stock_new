@@ -68,19 +68,57 @@ public partial class KPI_POINT : System.Web.UI.Page
             switch (tmp2)
             {
                 case "1":
-                    leftdaytmp = "3";
+                    if (string.Compare(today_detail, "1345") < 0)
+                    {
+                        leftdaytmp = "3";
+                    }
+                    else
+                    {
+                        leftdaytmp = "3";
+                    }
                     break;
                 case "2":
-                    leftdaytmp = "2";
+                    
+                    if (string.Compare(today_detail, "1345") < 0)
+                    {
+                        leftdaytmp = "2";
+                    }
+                    else
+                    {
+                        leftdaytmp = "1";
+                    }
                     break;
                 case "3":
-                    leftdaytmp = "1";
+                    
+                    if (string.Compare(today_detail, "1345") < 0)
+                    {
+                        leftdaytmp = "1";
+                    }
+                    else
+                    {
+                        leftdaytmp = "5";
+                    }
                     break;
                 case "4":
-                    leftdaytmp = "5";
+                    
+                    if (string.Compare(today_detail, "1345") < 0)
+                    {
+                        leftdaytmp = "5";
+                    }
+                    else
+                    {
+                        leftdaytmp = "4";
+                    }
                     break;
                 case "5":
-                    leftdaytmp = "4";
+                    if (string.Compare(today_detail, "1345") < 0)
+                    {
+                        leftdaytmp = "4";
+                    }
+                    else
+                    {
+                        leftdaytmp = "3";
+                    }
                     break;
                 case "6":
                     leftdaytmp = "3";
@@ -105,23 +143,25 @@ public partial class KPI_POINT : System.Web.UI.Page
             if (string.Compare(today_detail, "1500") > 0 && string.Compare(today_detail, "2359") < 0)
             {
                 lefthour = Convert.ToDouble(today_detail.Substring(0, 2).ToString()) - 15;
-                TextBox6.Text = Convert.ToString(Convert.ToDouble(TextBox6.Text) - Convert.ToDouble(lefthour / 14));
+                
+                TextBox6.Text = Convert.ToString(Math.Round(Convert.ToDouble(TextBox6.Text) - Convert.ToDouble(lefthour )/ 14, 2, MidpointRounding.AwayFromZero));
             }
             if (string.Compare(today_detail, "0000") > 0 && string.Compare(today_detail, "0500") < 0)
             {
-                lefthour = 9 + 5 - Convert.ToDouble(today_detail.Substring(0, 2).ToString());
-                TextBox6.Text = Convert.ToString(Convert.ToDouble(TextBox6.Text) - Convert.ToDouble(lefthour / 14));
+                lefthour = 9+Convert.ToDouble(today_detail.Substring(0, 2).ToString());
+
+                TextBox6.Text = Convert.ToString(Math.Round(Convert.ToDouble(TextBox6.Text) - Convert.ToDouble(lefthour )/ 14, 2, MidpointRounding.AwayFromZero));
             }
-            
 
 
+
+            TextBox7.Text = lefthour.ToString();
 
         }
 
 
         
 
-        TextBox7.Text = lefthour.ToString();
 
 
 
