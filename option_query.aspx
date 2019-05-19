@@ -5,13 +5,13 @@
 <%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.UI" TagPrefix="asp" %>
   <form id="form1">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">  
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">  
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>  
     <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js">
     </script>  
     <link rel="stylesheet" href="/resources/demos/style.css">
 <link href="app_themes/layout/layout.css" rel="stylesheet" type="text/css" />
-            <table id="Table3"   align="center"  border="0" cellpadding="0" cellspacing="0" width="98%">
+    <table id="Table3"   align="center"  border="0" cellpadding="0" cellspacing="0" width="98%">
                 <tr>
                     <td style="height: 9px; width: 10px;">
                         <img src="images/tables/default_lt.gif" /></td>

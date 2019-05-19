@@ -143,6 +143,9 @@
         <asp:HyperLink ID="HyperLink46" runat="server" NavigateUrl="http://www.cmoney.tw/finance/f00043.aspx?s=1730&o=3"
             Target="_blank" Text="股票ROE/ROA"></asp:HyperLink><br />
         <br />
+        <asp:HyperLink ID="HyperLink48" runat="server" NavigateUrl="OP_COST.aspx" Target="_blank"
+            Text="算數學"></asp:HyperLink><br />
+        <br />
         <br />
         <br />
         <br />
