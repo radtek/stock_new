@@ -52,7 +52,7 @@ public partial class option_data_insert_daily : System.Web.UI.Page
         // 下載 Yahoo 奇摩股市資料 (範例為 2317 鴻海)
         WebClient client = new WebClient();
         MemoryStream ms = new MemoryStream(client.DownloadData(
-    "http://www.taifex.com.tw/cht/3/optDailyMarketReport" + stock_id + ""));
+    "http://www.taifex.com.tw/cht/3/optDailyMarketExcel" + stock_id + ""));
 
     //http://www.taifex.com.tw/cht/3/optDailyMarketReport
         
@@ -68,6 +68,9 @@ public partial class option_data_insert_daily : System.Web.UI.Page
         {
             docStockContext.LoadHtml(doc.DocumentNode.SelectSingleNode(
 "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/table[1]/").InnerHtml);
+
+//            docStockContext.LoadHtml(doc.DocumentNode.SelectSingleNode(
+//"/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[2]/td[1]/table[2]/tbody[1]").InnerHtml);
 
         }
         catch (Exception)
@@ -88,10 +91,10 @@ public partial class option_data_insert_daily : System.Web.UI.Page
 
           // 取得個股標頭  get tr node number_count
         HtmlNodeCollection nodeHeaders =
-     docStockContext.DocumentNode.SelectNodes("./tr");
+     docStockContext.DocumentNode.SelectNodes("./tr[1]/th");
         // 取得個股數值
         Int32 j = 2;  //from tr[4] to tr[i-4]
-        for (int i = 0; i <= nodeHeaders.Count-4; i++)
+        for (int i = 0; i <= nodeHeaders.Count; i++)
         {
             Int32 index = i + 2;
 

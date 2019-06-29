@@ -15,8 +15,9 @@ public partial class epaper_OP_Modifield : System.Web.UI.Page
 
     string conn = System.Configuration.ConfigurationSettings.AppSettings["jump"];
     string today = DateTime.Now.AddDays(+0).ToString("yyyy/MM/dd");
+    string tomorrow = DateTime.Now.AddDays(+1).ToString("yyyy/MM/dd");
 
-    string today_minus17 = DateTime.Now.AddDays(-17).ToString("yyyy/MM/dd");
+    string today_minus17 = DateTime.Now.AddDays(-60).ToString("yyyy/MM/dd");
     
     string today_detail = DateTime.Now.AddDays(+0).ToString("yyyy/MM/dd HH:mm");
     string sql_temp = "";
@@ -37,7 +38,7 @@ WHERE a.交易日期>=format('{0}','yyyy/MM/dd') And a.交易日期<format('{1}'
 ORDER BY a.到期月份, a.買賣權, a.履約價, a.交易日期;
 ";
 
-        sql_temp = string.Format(sql_temp, today_minus17, today);
+        sql_temp = string.Format(sql_temp, today_minus17, tomorrow);
 
         ds_temp = func.get_dataSet_access(sql_temp, conn);
 

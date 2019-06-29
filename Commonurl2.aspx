@@ -17,28 +17,53 @@
         <asp:HyperLink ID="HyperLink40" runat="server" NavigateUrl="KPI_POINT.aspx"
             Target="_blank" Text="指數計算"></asp:HyperLink><br />
         <br />
-        <asp:HyperLink ID="HyperLink42" runat="server" NavigateUrl="https://www.taifex.com.tw/cht/5/optIndxFSP" Target="_blank"
-            Text="指數最後結算價格"></asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink53" runat="server" NavigateUrl="http://www.tse.com.tw/zh/page/trading/fund/BFI82U.html"
+            Target="_blank" Text="三大法人現貨未平倉"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink57" runat="server" NavigateUrl="https://stockcharts.com/h-sc/ui?s=%24INDU&p=D&b=5&g=0&id=p71333981028"
+            Target="_blank" Text="StockChart道瓊"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink58" runat="server" NavigateUrl="https://stockcharts.com/h-sc/ui?s=%24TWII&p=D&b=5&g=0&id=p50926176308"
+            Target="_blank" Text="StockChart台灣加權"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink59" runat="server" NavigateUrl="https://stockcharts.com/h-sc/ui?s=%24SOX&p=D&b=5&g=0&id=p08797142880"
+            Target="_blank" Text="StockChart費城半導體"></asp:HyperLink><br />
     
         <br />
-        <asp:HyperLink ID="HyperLink43" runat="server" NavigateUrl="https://www.wantgoo.com/option" Target="_blank"
-            Text="期貨與選擇權當日行情"></asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink43" runat="server" NavigateUrl="https://www.taifex.com.tw/cht/5/optIndxFSP" Target="_blank"
+            Text="台指期貨最後結算價履歷"></asp:HyperLink><br />
         <br />
         <asp:HyperLink ID="HyperLink41" runat="server" NavigateUrl="http://info512.taifex.com.tw/Future/VIXQuote_Norl.aspx"
             Target="_blank" Text="臺指選擇權波動率指數"></asp:HyperLink><br />
         
         <br />
-        <asp:HyperLink ID="HyperLink11" target="_blank" Text="選擇權大額交易人未沖銷部位"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/largeTraderOptQry"></asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink11" target="_blank" Text="台指期選 P/C Ratio"  runat="server" NavigateUrl="https://www.taifex.com.tw/cht/3/pcRatio"></asp:HyperLink><br />
         <br />
-        <asp:HyperLink ID="HyperLink7" target="_blank" Text="三大法人區分各區期貨未平倉餘額"  runat="server" NavigateUrl="http://www.taifex.com.tw/cht/3/futContractsDate"></asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink7" target="_blank" Text="三大法人選擇權"  runat="server" NavigateUrl="https://www.taifex.com.tw/cht/3/optContractsDate"></asp:HyperLink><br />
         <br />
-        <asp:HyperLink ID="HyperLink17" runat="server" NavigateUrl="https://www.wantgoo.com/stock/futures/optionstoday"
-            Target="_blank" Text="選擇權支撐壓力表"></asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink17" runat="server" NavigateUrl="https://www.taifex.com.tw/cht/3/largeTraderOptQry"
+            Target="_blank" Text="大額交易人"></asp:HyperLink><br />
         <br />
-        <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="https://stock.wearn.com/taifexphoto.asp" Target="_blank">期貨法人未平倉</asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl="https://www.taifex.com.tw/cht/3/futContractsDate" Target="_blank">三大法人期貨</asp:HyperLink><br />
         <br />
-        <asp:HyperLink ID="HyperLink4" target="_blank" Text="現貨三大法人"  runat="server" NavigateUrl="http://www.tse.com.tw/zh/page/trading/fund/BFI82U.html"></asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink4" target="_blank" Text="選擇權支撐壓力表"  runat="server" NavigateUrl="https://www.wantgoo.com/stock/futures/optionstoday"></asp:HyperLink><br />
         <br />
+        <asp:HyperLink ID="HyperLink48" target="_blank" Text="台指期未平倉"  runat="server" NavigateUrl="https://stock.wearn.com/taifexphoto.asp"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink49" target="_blank" Text="台灣加權指數技術分析"  runat="server" NavigateUrl="https://hk.investing.com/indices/taiwan-weighted-technical"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink50" target="_blank" Text="MSCI Taiwan期貨技術分析"  runat="server" NavigateUrl="https://hk.investing.com/indices/sgx-msci-taiwan-futures-technical"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink54" runat="server" NavigateUrl="https://www.yuanta.com.tw/eYuanta/securities/Node/Index?MainId=00430&C1=2018040402289271&C2=2018040409866486&ID=2018040409866486&Level=2&rnd=33637"
+            Target="_blank" Text="現貨外資買賣超個股"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink60" runat="server" NavigateUrl="http://jsjustweb.jihsun.com.tw/z/zg/zgb/zgb0.djhtm?a=8440&b=8440&c=B&d=1"
+            Target="_blank" Text="卷商買賣超個股"></asp:HyperLink><br />
+        <br />
+        <asp:HyperLink ID="HyperLink52" runat="server" NavigateUrl="https://histock.tw/stock/exdividendtable.aspx"
+            Target="_blank" Text="除權息扣抵點數"></asp:HyperLink><br />
+        <br />
+        
         <asp:HyperLink ID="HyperLink13" target="_blank" Text="國發會景氣燈號"  runat="server" NavigateUrl="https://index.ndc.gov.tw//n/zh_tw"></asp:HyperLink><br />
         <br />
         <asp:HyperLink ID="HyperLink34" runat="server" NavigateUrl="http://quote.eastmoney.com/gb/zsTWII.html"
@@ -143,8 +168,10 @@
         <asp:HyperLink ID="HyperLink46" runat="server" NavigateUrl="http://www.cmoney.tw/finance/f00043.aspx?s=1730&o=3"
             Target="_blank" Text="股票ROE/ROA"></asp:HyperLink><br />
         <br />
-        <asp:HyperLink ID="HyperLink48" runat="server" NavigateUrl="OP_COST.aspx" Target="_blank"
-            Text="算數學"></asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink51" runat="server" NavigateUrl="https://www.buyiju.com/lhl/caishen/"
+            Target="_blank" Text="財神方位"></asp:HyperLink><br />
+        <br />
+        <br />
         <br />
         <br />
         <br />
