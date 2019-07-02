@@ -63,6 +63,9 @@
         <asp:HyperLink ID="HyperLink52" runat="server" NavigateUrl="https://histock.tw/stock/exdividendtable.aspx"
             Target="_blank" Text="除權息扣抵點數"></asp:HyperLink><br />
         <br />
+        <asp:HyperLink ID="HyperLink61" runat="server" NavigateUrl="http://m.istock.tw/post/SGXMSCITaiwanIndexFutures?m=1&back=future"
+            Target="_blank" Text="摩台未平倉履歷"></asp:HyperLink><br />
+        <br />
         
         <asp:HyperLink ID="HyperLink13" target="_blank" Text="國發會景氣燈號"  runat="server" NavigateUrl="https://index.ndc.gov.tw//n/zh_tw"></asp:HyperLink><br />
         <br />
