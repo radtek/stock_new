@@ -86,8 +86,8 @@ ORDER BY a.到期月份, a.買賣權, a.履約價, a.交易日期;
 
             
             func.get_sql_execute(sql_temp1, conn);
-            func.write_log("OP_COST_summary", Server.MapPath("..\\") + "\\RUN_LOG\\", "log");
-            func.delete_log_file(Server.MapPath("..\\") + "\\RUN_LOG\\", "*.log", -30);
+           
+            func.delete_log_file(Server.MapPath("..\\") + "\\FILE\\", "*.csv", -30);
             
             dUE_TIME = ds_temp.Tables[0].Rows[i]["到期月份"].ToString();
             tRADE_TYPE = ds_temp.Tables[0].Rows[i]["買賣權"].ToString();
@@ -96,6 +96,8 @@ ORDER BY a.到期月份, a.買賣權, a.履約價, a.交易日期;
 
 
         }
+
+        func.delete_log_file(Server.MapPath("..\\") + "\\RUN_LOG\\", "*.log", -30);
 
         //sql_temp1 = "select t.* from virtual_current_buy t where t.finished='F' ";
         //ds_temp2 = func.get_dataSet_access(sql_temp1, conn);
