@@ -174,6 +174,11 @@
         <asp:HyperLink ID="HyperLink51" runat="server" NavigateUrl="https://www.buyiju.com/lhl/caishen/"
             Target="_blank" Text="財神方位"></asp:HyperLink><br />
         <br />
+        <asp:HyperLink ID="HyperLink42" runat="server" NavigateUrl="http://white5168.blogspot.com/2016/12/google-spredsheet-txf.html#.XRtR2NR97s0"
+            Target="_blank" Text="網路台指期換倉成本"></asp:HyperLink><br />
+        <br />
+        <br />
+        <br />
         <br />
         <br />
         <br />
