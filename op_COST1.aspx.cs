@@ -50,6 +50,12 @@ public partial class op_COST1 : System.Web.UI.Page
             txtCalendar1.Text = today_minus30;
             txtCalendar2.Text = tomorrow;
             CheckBox1.Checked = true;
+
+            Label30.Text = "";
+            Label31.Text = "";
+            Label32.Text = "";
+            Label33.Text = "";
+
             sql_temp = @" 
 
 SELECT distinct(t.DUE_TIME) as DUE_TIME
@@ -801,8 +807,29 @@ ORDER BY t.DUE_TIME, t.PRODUCT_TYPE
 
 
         }
-        
-      
+
+        #region calculator  UPPER BOUND/LOW BOUND
+        Double NowPrice = Convert.ToDouble(TextBox2.Text);
+        Double WaveRate = Convert.ToDouble(TextBox3.Text);
+        Double DueDay = Convert.ToDouble(TextBox4.Text);
+
+        Double LowerPrice = 0;
+        Double UpperPrice = 0;
+
+        UpperPrice = NowPrice * Math.Pow(1 + WaveRate / 16, DueDay / 3);
+        LowerPrice = NowPrice * Math.Pow(1 - WaveRate / 16, DueDay / 3);
+        Label31.Text = UpperPrice.ToString("N0");
+        Label30.Text = LowerPrice.ToString("N0");
+
+
+
+        LowerPrice = Math.Round((LowerPrice-25 )/ 50, MidpointRounding.AwayFromZero) * 50;
+        UpperPrice = Math.Round((UpperPrice+25) / 50, MidpointRounding.AwayFromZero) * 50;
+
+
+        Label33.Text = UpperPrice.ToString("N0");
+        Label32.Text = LowerPrice.ToString("N0");
+        #endregion
        
 
         GridView1.DataSource = ds_temp;

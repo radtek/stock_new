@@ -94,6 +94,28 @@
                                     valign="top">
                                     &nbsp;<asp:TextBox ID="TextBox1" runat="server" Width="89px"></asp:TextBox></td>
                             </tr>
+                            <tr style="font-size: 12pt">
+                                <td align="center" class="pageTD" style="width: 10%; height: 18px; text-align: center"
+                                    valign="middle">
+                                    &nbsp;</td>
+                                <td style="width: 341px; height: 18px; text-align: left" valign="top">
+                                    &nbsp;</td>
+                                <td class="pageTD" style="width: 10%; height: 18px; text-align: center">
+                                    上周結算價/波動率/到期天數</td>
+                                <td align="left" colspan="1" style="width: 327px; height: 18px; text-align: left"
+                                    valign="top">
+                                    &nbsp;<asp:TextBox ID="TextBox2" runat="server" Width="89px">0</asp:TextBox>&nbsp;
+                                    /<asp:TextBox ID="TextBox3" runat="server" Width="31px">0.16</asp:TextBox>/<asp:TextBox
+                                        ID="TextBox4" runat="server" Width="19px">5</asp:TextBox><br />
+                                    下限: &nbsp;
+                                    <asp:Label ID="Label30" runat="server" Text="Label" Width="68px"></asp:Label>
+                                    ==&gt; &nbsp;
+                                    <asp:Label ID="Label32" runat="server" Text="Label" Width="68px"></asp:Label><br />
+                                    上限: &nbsp;
+                                    <asp:Label ID="Label31" runat="server" Text="Label" Width="68px"></asp:Label>
+                                    ==&gt; &nbsp;
+                                    <asp:Label ID="Label33" runat="server" Text="Label" Width="68px"></asp:Label></td>
+                            </tr>
                             <tr>
                                 <td class="pageTD" colspan="8" style="height: 35px; text-align: left;">
                                     <table style="width: 236px; height: 7px">
