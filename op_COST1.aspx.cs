@@ -55,6 +55,7 @@ public partial class op_COST1 : System.Web.UI.Page
             Label31.Text = "";
             Label32.Text = "";
             Label33.Text = "";
+            Label2.Text = "";
 
             sql_temp = @" 
 
@@ -815,12 +816,13 @@ ORDER BY t.DUE_TIME, t.PRODUCT_TYPE
 
         Double LowerPrice = 0;
         Double UpperPrice = 0;
+        Double Middle = 0;
 
         UpperPrice = NowPrice * Math.Pow(1 + WaveRate / 16, DueDay / 3);
         LowerPrice = NowPrice * Math.Pow(1 - WaveRate / 16, DueDay / 3);
         Label31.Text = UpperPrice.ToString("N0");
         Label30.Text = LowerPrice.ToString("N0");
-
+        Label2.Text = Middle.ToString("N0");
 
 
         LowerPrice = Math.Round((LowerPrice-25 )/ 50, MidpointRounding.AwayFromZero) * 50;
@@ -829,6 +831,8 @@ ORDER BY t.DUE_TIME, t.PRODUCT_TYPE
 
         Label33.Text = UpperPrice.ToString("N0");
         Label32.Text = LowerPrice.ToString("N0");
+        Middle = (LowerPrice + UpperPrice)/2;
+        Label2.Text = Middle.ToString("N0");
         #endregion
        
 

@@ -92,7 +92,11 @@
                                     當時指數</td>
                                 <td align="left" colspan="1" style="width: 327px; height: 22px; text-align: left"
                                     valign="top">
-                                    &nbsp;<asp:TextBox ID="TextBox1" runat="server" Width="89px"></asp:TextBox></td>
+                                    &nbsp;<asp:TextBox ID="TextBox1" runat="server" Width="89px"></asp:TextBox>
+                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="https://www.yuanta.com.tw/eYuanta/Securities/Node/Index?MainId=00430&C1=2018040303170547&ID=2018040303170547&Level=1"
+                                        Target="_blank">大盤K線</asp:HyperLink>&nbsp;
+                                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="https://www.wantgoo.com/stock/futures/optionstoday"
+                                        Target="_blank">最大未平倉</asp:HyperLink></td>
                             </tr>
                             <tr style="font-size: 12pt">
                                 <td align="center" class="pageTD" style="width: 10%; height: 18px; text-align: center"
@@ -106,11 +110,15 @@
                                     valign="top">
                                     &nbsp;<asp:TextBox ID="TextBox2" runat="server" Width="89px">0</asp:TextBox>&nbsp;
                                     /<asp:TextBox ID="TextBox3" runat="server" Width="31px">0.16</asp:TextBox>/<asp:TextBox
-                                        ID="TextBox4" runat="server" Width="19px">5</asp:TextBox><br />
+                                        ID="TextBox4" runat="server" Width="19px">5</asp:TextBox>
+                                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="https://www.taifex.com.tw/cht/5/optIndxFSP"
+                                        Target="_blank">上周結算價</asp:HyperLink><br />
                                     下限: &nbsp;
                                     <asp:Label ID="Label30" runat="server" Text="Label" Width="68px"></asp:Label>
                                     ==&gt; &nbsp;
                                     <asp:Label ID="Label32" runat="server" Text="Label" Width="68px"></asp:Label><br />
+                                    中心點 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; ==&gt; &nbsp;
+                                    <asp:Label ID="Label2" runat="server" Text="Label" Width="68px"></asp:Label><br />
                                     上限: &nbsp;
                                     <asp:Label ID="Label31" runat="server" Text="Label" Width="68px"></asp:Label>
                                     ==&gt; &nbsp;
