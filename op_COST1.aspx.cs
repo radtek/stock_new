@@ -225,6 +225,11 @@ ORDER BY t.DUE_TIME, t.PRODUCT_TYPE
 
             sql_temp = @" 
 
+SELECT format(MAX(a.交易日期),'yyyy/MM/dd') as SHIFT_DATE
+FROM OP_PRICE AS a where 1=1
+
+union all
+
 SELECT format(MAX(t.SHIFT_DATE),'yyyy/MM/dd') as SHIFT_DATE
 FROM OP_MODIFIED AS t where 1=1
 {0}
@@ -237,8 +242,10 @@ And t.TRADE_TIME='一般' And t.PRICE<>'-' And t.OI<>'-'
 ";
             sql_temp = string.Format(sql_temp, condition1, condition2);
             ds_temp = func.get_dataSet_access(sql_temp, conn);
+            Label3.Text = ds_temp.Tables[0].Rows[0][0].ToString();
 
-            Label1.Text = ds_temp.Tables[0].Rows[0][0].ToString();
+
+            Label1.Text = ds_temp.Tables[0].Rows[1][0].ToString();
 
         }
         

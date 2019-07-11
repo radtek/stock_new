@@ -136,8 +136,9 @@
                                                 <asp:Button ID="Button1" runat="server" Text="ExportToExcel" OnClick="Button1_Click" /></td>
                                         </tr>
                                     </table>
-                                    資料最大時間:
-                                    <asp:Label ID="Label1" runat="server" Text="Label" Width="130px"></asp:Label></td>
+                                    RawData最大時間:
+                                    <asp:Label ID="Label3" runat="server" Text="Label" Width="80px"></asp:Label>,結算資料最大時間:
+                                    <asp:Label ID="Label1" runat="server" Text="Label" Width="80px"></asp:Label></td>
                             </tr>
                             <tr>
                                 <td colspan="8" style="height: 271px">
