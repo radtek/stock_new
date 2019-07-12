@@ -19,7 +19,7 @@ public partial class epaper_OP_Modifield : System.Web.UI.Page
 
     string today_minus17 = DateTime.Now.AddDays(-60).ToString("yyyy/MM/dd");
     
-    string today_detail = DateTime.Now.AddDays(+0).ToString("yyyy/MM/dd HH:mm");
+    string today_detail = DateTime.Now.AddDays(+1).ToString("yyyy/MM/dd HH:mm");
     string sql_temp = "";
     string sql_temp1 = "";
     string sql_temp2 = "";

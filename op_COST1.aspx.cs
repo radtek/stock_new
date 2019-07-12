@@ -227,7 +227,7 @@ ORDER BY t.DUE_TIME, t.PRODUCT_TYPE
 
 SELECT format(MAX(a.交易日期),'yyyy/MM/dd') as SHIFT_DATE
 FROM OP_PRICE AS a where 1=1
-
+and a.交易時段='一般'
 union all
 
 SELECT format(MAX(t.SHIFT_DATE),'yyyy/MM/dd') as SHIFT_DATE
