@@ -101,9 +101,12 @@
                             <tr style="font-size: 12pt">
                                 <td align="center" class="pageTD" style="width: 10%; height: 18px; text-align: center"
                                     valign="middle">
-                                    &nbsp;</td>
+                                    &nbsp;未平倉量/成交量</td>
                                 <td style="width: 341px; height: 18px; text-align: left" valign="top">
-                                    &nbsp;</td>
+                                    &nbsp;<asp:RadioButtonList ID="RadioButtonList1" runat="server">
+                                        <asp:ListItem Selected="True">未平倉量</asp:ListItem>
+                                        <asp:ListItem>成交量</asp:ListItem>
+                                    </asp:RadioButtonList></td>
                                 <td class="pageTD" style="width: 10%; height: 18px; text-align: center">
                                     上周結算價/波動率/到期天數</td>
                                 <td align="left" colspan="1" style="width: 327px; height: 18px; text-align: left"
@@ -134,9 +137,10 @@
                                             </td>
                                             <td align='left' valign='top' style="width: 25px; height: 17px;">
                                                 <asp:Button ID="Button1" runat="server" Text="ExportToExcel" OnClick="Button1_Click" /></td>
+                                                <td align='left' valign='top' style="width: 25px; height: 17px;">
+                                                <asp:Button ID="Button4" runat="server" Text="大道至簡56789" OnClick="Button4_Click"  /></td>
                                         </tr>
-                                    </table>
-                                    RawData最大時間:
+                                    </table>RawData最大時間:
                                     <asp:Label ID="Label3" runat="server" Text="Label" Width="80px"></asp:Label>,結算資料最大時間:
                                     <asp:Label ID="Label1" runat="server" Text="Label" Width="80px"></asp:Label></td>
                             </tr>
@@ -188,6 +192,18 @@
                                                         <EditRowStyle BackColor="#2461BF" />
                                                         <AlternatingRowStyle BackColor="White" />
                                                     </asp:GridView>
+                                                    <br />
+                                                    <asp:GridView ID="GridView3" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                                                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                                        <EditRowStyle BackColor="#999999" />
+                                                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                                    </asp:GridView>
+                                                    <br />
+                                                    <br />
                                                     <asp:Label runat="server" ID="lblAIExpand" Style="display: none"></asp:Label>
                                                 </td>
                                             </tr>

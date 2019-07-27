@@ -48,7 +48,7 @@ public partial class op_COST1 : System.Web.UI.Page
         if (!IsPostBack)
         {
             txtCalendar1.Text = today_minus30;
-            txtCalendar2.Text = tomorrow;
+            txtCalendar2.Text = today;
             CheckBox1.Checked = true;
 
             Label30.Text = "";
@@ -1205,5 +1205,130 @@ ORDER BY t.DUE_TIME, t.PRODUCT_TYPE
 
        
         // parser_data_in_DB();
+    }
+    protected void Button4_Click(object sender, EventArgs e)
+    {
+
+        string deletesql = @"DELETE FROM OP_TMP   where 1=1 ";
+
+        func.get_sql_execute(deletesql, conn);
+
+        if (RadioButtonList1.SelectedValue.Equals("未平倉量"))
+        {
+
+
+            sql_temp = @"
+                     SELECT Format(OP_PRICE.交易日期,'yyyy/MM/dd') as 交易日期, OP_PRICE.到期月份, OP_PRICE.買賣權, OP_PRICE.履約價, Sum(OP_PRICE.未沖銷契約數) AS sumcount
+FROM OP_PRICE
+WHERE (((Format([OP_PRICE].[交易日期],'yyyy/MM/dd'))='{0}') AND ((OP_PRICE.到期月份)='{1}') AND ((OP_PRICE.未沖銷契約數)<>'-'))
+GROUP BY Format(OP_PRICE.交易日期,'yyyy/MM/dd'), OP_PRICE.到期月份, OP_PRICE.買賣權, OP_PRICE.履約價
+ORDER BY Format(OP_PRICE.交易日期,'yyyy/MM/dd'), OP_PRICE.到期月份, OP_PRICE.履約價
+
+
+
+                    ";
+        }
+        else
+        {
+
+            sql_temp = @"
+                     SELECT Format(OP_PRICE.交易日期,'yyyy/MM/dd') as 交易日期, OP_PRICE.到期月份, OP_PRICE.買賣權, OP_PRICE.履約價, Sum(OP_PRICE.成交量) AS sumcount
+FROM OP_PRICE
+WHERE (((Format([OP_PRICE].[交易日期],'yyyy/MM/dd'))='{0}') AND ((OP_PRICE.到期月份)='{1}') )
+GROUP BY Format(OP_PRICE.交易日期,'yyyy/MM/dd'), OP_PRICE.到期月份, OP_PRICE.買賣權, OP_PRICE.履約價
+ORDER BY Format(OP_PRICE.交易日期,'yyyy/MM/dd'), OP_PRICE.到期月份, OP_PRICE.履約價
+
+
+
+                    ";
+        }
+
+
+        sql_temp = string.Format(sql_temp, txtCalendar2.Text, DropDownList2.SelectedValue);
+
+        ds_temp = func.get_dataSet_access(sql_temp, conn);
+
+
+        string poducttype = "";
+        string choseproduct = "";
+        string currentdate = "";
+        Int32 lastput = 0;
+        Int32 currentput = 0;
+
+        Int32 currentcall = 0;
+
+        Int32 finaloi = 0;
+
+        for (int i = 0; i <= ds_temp.Tables[0].Rows.Count-1; i++)
+        {
+
+            if (i == 1)
+            {
+                
+                poducttype = ds_temp.Tables[0].Rows[i]["到期月份"].ToString();
+                choseproduct = ds_temp.Tables[0].Rows[i]["履約價"].ToString();
+                lastput = Convert.ToInt32(ds_temp.Tables[0].Rows[i]["sumcount"].ToString());
+            }
+            if (i > 1)
+            {
+                if (ds_temp.Tables[0].Rows[i]["買賣權"].ToString().Equals("買權"))
+                {
+
+                    currentcall = Convert.ToInt32(ds_temp.Tables[0].Rows[i]["sumcount"].ToString());
+                    choseproduct = ds_temp.Tables[0].Rows[i]["履約價"].ToString();
+                    poducttype = ds_temp.Tables[0].Rows[i]["到期月份"].ToString();
+                   
+                }
+                if (ds_temp.Tables[0].Rows[i]["買賣權"].ToString().Equals("賣權"))
+                {
+
+                    currentput = Convert.ToInt32(ds_temp.Tables[0].Rows[i]["sumcount"].ToString());
+                    choseproduct = ds_temp.Tables[0].Rows[i]["履約價"].ToString();
+                    poducttype = ds_temp.Tables[0].Rows[i]["到期月份"].ToString();
+                    currentdate = ds_temp.Tables[0].Rows[i]["交易日期"].ToString();
+                    finaloi = lastput + currentcall;
+
+                    lastput = currentput;
+
+                    sql_temp2= @"insert into op_tmp
+                                              (履約價,未平倉量,交易日期)
+                                              
+                                         values( '{0}','{1}','{2}');
+
+                                               
+                                              
+
+                                             ";
+
+                    sql_temp2 = string.Format(sql_temp2, choseproduct, finaloi, currentdate);
+                    func.get_sql_execute(sql_temp2,conn);
+                
+
+
+                }
+               
+            }
+
+        }
+
+        sql_temp2 = @" select 交易日期,'{0}' as DUE_TIME,履約價,未平倉量 as {1},最大未平倉量 as 最大{1},round(未平倉量/最大未平倉量,4)*100 as ratio from (
+
+
+                             select 交易日期,履約價,未平倉量,(select max(未平倉量) from op_tmp )as 最大未平倉量 from op_tmp 
+                         )
+
+                    
+
+                    
+
+
+                ";
+        sql_temp2 = string.Format(sql_temp2, DropDownList2.SelectedValue, RadioButtonList1.SelectedValue);
+         ds_temp = func.get_dataSet_access(sql_temp2, conn);
+
+         GridView3.DataSource = ds_temp;
+
+         GridView3.DataBind();
+
     }
 }
