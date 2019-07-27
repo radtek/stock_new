@@ -7,7 +7,7 @@
 <%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.UI" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-<%--<link href="app_themes/layout/layout.css" rel="stylesheet" type="text/css" />--%>
+<link href="app_themes/layout/layout.css" rel="stylesheet" type="text/css" />
     <form id="form1">
         <div style="display: inline; z-index: 105; left: 10px; width: 90%; color: black;
             top: 0px; height: 16px; background-color: white">
@@ -193,8 +193,8 @@
                                                         <AlternatingRowStyle BackColor="White" />
                                                     </asp:GridView>
                                                     <br />
-                                                    <asp:GridView ID="GridView3" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
-                                                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                                    <asp:GridView ID="GridView3" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="GridView3_RowDataBound">
+                                                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333"  />
                                                         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                                                         <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                                                         <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />

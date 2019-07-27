@@ -35,16 +35,21 @@ public partial class op_COST1 : System.Web.UI.Page
     string callsql = "";
     string putsql = "";
     string combinesql = "";
-
+    string whichday = "";
     DataSet ds_temp = new DataSet();
     DataSet ds_temp1 = new DataSet();
     DataSet ds_temp2 = new DataSet();
     string condition1 = "";
     string condition2 = "";
     string condition3 = "";
+   
+    Double[] targetValueArray = { 80, 90,50, 60, 70,70,70 };
 
     protected void Page_Load(object sender, EventArgs e)
     {
+       
+
+        
         if (!IsPostBack)
         {
             txtCalendar1.Text = today_minus30;
@@ -247,10 +252,15 @@ And t.TRADE_TIME='一般' And t.PRICE<>'-' And t.OI<>'-'
 
             Label1.Text = ds_temp.Tables[0].Rows[1][0].ToString();
 
+
+          
+
+
         }
-        
 
+        DateTime Day3 = DateTime.Parse(txtCalendar2.Text);
 
+         whichday = Day3.DayOfWeek.ToString("d");//tmp2 = 4 
 
     }
     public DataSet Bind_data1(string sqlX, string connx)
@@ -614,6 +624,213 @@ And t.TRADE_TIME='一般' And t.PRICE<>'-' And t.OI<>'-'
 
 //            GridView2.DataSource = ds_temp2.Tables[0];
 //            GridView2.DataBind();
+
+
+
+
+
+            //if (ds_temp2.Tables[0].Rows.Count == 0)
+            //{
+            //    System.Web.UI.WebControls.Image btnShowDetail = new System.Web.UI.WebControls.Image();
+            //    btnShowDetail = (System.Web.UI.WebControls.Image)e.Row.FindControl("btnShowDetail");
+            //    btnShowDetail.Visible = false;
+            //}
+            //else
+            //{
+
+            //    #region
+            //    GridViewRow r = new GridViewRow(-1, -1, DataControlRowType.DataRow, DataControlRowState.Normal);
+            //    StringWriter sw = new StringWriter();
+            //    HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            //    r.Cells.Add(new TableCell());
+            //    r.Cells.Add(new TableCell());
+
+            //    r.Cells[1].ColumnSpan = GridView2.Columns.Count - 1;
+
+            //    GridView2.Visible = true;
+            //    GridView2.RenderControl(hw);
+            //    GridView2.Visible = false;
+
+            //    r.Cells[1].Text = sw.ToString();
+            //    sw.Close();
+
+            //    r.ID = "Detail_" + e.Row.RowIndex.ToString();
+
+            //    r.HorizontalAlign = HorizontalAlign.Left;
+            //    e.Row.Parent.Controls.Add(r);
+
+            //    System.Web.UI.WebControls.Image btnShowDetail = new System.Web.UI.WebControls.Image();
+
+
+
+            //    btnShowDetail = (System.Web.UI.WebControls.Image)e.Row.FindControl("btnShowDetail");
+
+            //    //btnShowDetail.Attributes.Add("onclick", "showHideAnswer('GridView1_" + r.ID + "','" + e.Row.ClientID.ToString() + "_" + btnShowDetail.ID + "');"); 
+            //    btnShowDetail.Attributes.Add("onclick", "showHideAnswer('ctl00_ContentPlaceHolder1_GridView1_" + r.ID + "','" + e.Row.ClientID.ToString() + "_" + btnShowDetail.ID + "');");
+            //    //btnShowDetail.Attributes.Add("onclick", "showHideAnswer('" + this.ClientID.ToString() + "_GridView1_" + r.ID + "','" + e.Row.ClientID.ToString() + "_" + btnShowDetail.ID + "');"); 
+
+            //    if (lblAIExpand.Text == "Y")
+            //    {
+            //        r.Style["display"] = "block";
+            //        btnShowDetail.ImageUrl = "~/images/close13.gif";
+            //    }
+            //    else
+            //    {
+            //        r.Style["display"] = "none";
+            //        btnShowDetail.ImageUrl = "~/images/open13.gif";
+            //    }
+
+
+            //    #endregion
+
+
+            //}
+
+        }
+    }
+    protected void GridView3_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+
+        string strTaskID = string.Empty;
+
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+
+            //ImageButton btnDel = new ImageButton();
+            //btnDel = (ImageButton)e.Row.FindControl("btnDel");
+
+            //btnDel.Attributes["onclick"] = "javascript:return confirm('確認刪除否? 【Stock_id】:" + ((DataRowView)e.Row.DataItem)["stock_id"] + " 【End Time】:" + ((DataRowView)e.Row.DataItem)["date1"] + "【SN】:" + ((DataRowView)e.Row.DataItem)["SN"] + "');";
+
+
+
+
+            //string conn = System.Configuration.ConfigurationSettings.AppSettings["DBCONN_Meeting"];
+            //string strSql_Pro;
+            //string snn1;
+
+            ////GridViewRow row = GridView2.Rows[e.RowIndex];
+
+
+
+            //DataSet ds = new DataSet();
+
+            //strSql_Pro = "select distinct(t.prod_name) from tlms_tmp t ";
+            //strSql_Pro += "where t.tool_id='" + ((DataRowView)e.Row.DataItem)["TOOL_ID"] + "'";
+
+
+            //ds = func.get_dataSet_access(strSql_Pro, conn);
+
+
+            //((DataList)e.Row.FindControl("DataList1")).DataSource = ds.Tables[0];
+            //((DataList)e.Row.FindControl("DataList1")).DataBind();
+
+
+
+            //strTaskID = ((DataRowView)e.Row.DataItem)["task_id"].ToString();
+            // dv.RowFilter = "task_id=" + strTaskID;
+            //dv.Sort = "is_owner desc";
+
+            //task member datalist
+            //((DataList)e.Row.FindControl("dlTaskMember")).DataSource = dv;
+            //((DataList)e.Row.FindControl("dlTaskMember")).DataBind();
+
+            //image link to task content
+
+            //string sMessage = String.Format("return(OpenTask('{0}'));", strTaskID);
+            //((ImageButton)e.Row.FindControl("btnEdit")).OnClientClick = sMessage;//"if (OpenTask('" + sMessage + "')==false) {return false;}";
+            //Int32 percent_value = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "percent1"));
+            //Int32 countX = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "count1"));
+            //Double priceX = Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "price"));
+            // Int32 priceX_top = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "avg_hot_price"));
+            // Int32 priceX_cur = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Current_price"));
+
+                Double ratioValue = Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "ratio"));
+                Double targetValue = 0;
+                targetValue = targetValueArray[Convert.ToInt32(whichday)-1];
+                //if (whichday == "3")
+                //{
+                //    //targetValue = 50;
+                //    targetValue = targetValueArray[Convert.ToInt32(whichday)];
+                //}
+                //if (whichday == "4")
+                //{
+                //    targetValue = 60;
+                //}
+                //if (whichday == "5")
+                //{
+                //    targetValue = 70;
+                //}
+                //if (whichday == "6")
+                //{
+                //    targetValue = 70;
+                //}
+                //if (whichday =="7")
+                //{
+                //    targetValue = 70;
+                //}
+                //if (whichday == "1")
+                //{
+                //    targetValue = 80;
+                //}
+                //if (whichday =="2")
+                //{
+                //    targetValue = 90;
+                //}
+
+
+
+                if (ratioValue > targetValue)
+                {
+                    e.Row.Cells[5].BackColor = Color.Pink;
+
+                }
+
+                //if (call_price > put_price )
+                //{
+
+                //    e.Row.Cells[2].BackColor = Color.Yellow;
+                //}
+
+
+                //if (put_price < 50 && put_price >0&&put_price >call_price)
+                //{
+
+                //    e.Row.Cells[2].BackColor = Color.Yellow;
+                //}
+
+
+           
+
+            //// e.Row.Cells[6].Style.Add("background-color", "#FFFF80");
+            //if (countX >= 3)
+            //    e.Row.Cells[2].Style.Add("background-color", "#95CAFF");
+            //if (countX == 2)
+            //    e.Row.Cells[2].Style.Add("background-color", "#FFFFB3");
+
+            //if (current_price < priceX)
+            //    e.Row.Cells[11].Style.Add("background-color", "#A2FFA2");
+
+
+            //if (Flag_satus == "Cancel")
+            //    e.Row.Cells[6].Style.Add("background-color", "#FF9DFF");
+ 
+            //if (e.Row.RowIndex != -1)
+            //{
+            //    int RN = e.Row.RowIndex + 1;
+            //    e.Row.Cells[0].Text = RN.ToString();
+            //}
+
+
+            //            sql_temp2 = " select format(t.date1,'yyyy/MM/dd') as date1 ,t.stock_name,t.stock_id,t.price1,t.percent1&'%' as percent1,t.volume1,t.hot_price, round(t.volume1*t.percent1/100,0) as kpi, switch(turtle is null,0, turtle is not null ,turtle) as turtle  from strong_up_history t " +
+            //" where t.stock_id='" + ((DataRowView)e.Row.DataItem)["stock_id"].ToString() + "'  " +
+            //" and t.date1>=#" + txtCalendar1.Text + "# and t.date1<=#" + txtCalendar2.Text + "# " +
+            //" order by t.date1 desc ";
+
+            //            ds_temp2 = func.get_dataSet_access(sql_temp2, conn);
+
+            //            GridView2.DataSource = ds_temp2.Tables[0];
+            //            GridView2.DataBind();
 
 
 
