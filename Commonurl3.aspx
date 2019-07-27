@@ -14,6 +14,9 @@
         <asp:HyperLink ID="HyperLink39" runat="server" NavigateUrl="checkview.aspx"
             Target="_blank" Text="上帝視角"></asp:HyperLink><br />
         <br />
+        <asp:HyperLink ID="HyperLink63" runat="server" NavigateUrl="https://report.moneydj.com/report/zd/zdb/zdb_2_E_E_E_E_1.djhtm"
+            Target="_blank" Text="盤後分析"></asp:HyperLink><br />
+        <br />
         <asp:HyperLink ID="HyperLink40" runat="server" NavigateUrl="KPI_POINT.aspx"
             Target="_blank" Text="指數計算"></asp:HyperLink><br />
         <br />
