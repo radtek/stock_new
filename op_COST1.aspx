@@ -7,7 +7,7 @@
 <%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.UI" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-<link href="app_themes/layout/layout.css" rel="stylesheet" type="text/css" />
+<%--<link href="app_themes/layout/layout.css" rel="stylesheet" type="text/css" />--%>
     <form id="form1">
         <div style="display: inline; z-index: 105; left: 10px; width: 90%; color: black;
             top: 0px; height: 16px; background-color: white">
@@ -104,8 +104,8 @@
                                     &nbsp;未平倉量/成交量</td>
                                 <td style="width: 341px; height: 18px; text-align: left" valign="top">
                                     &nbsp;<asp:RadioButtonList ID="RadioButtonList1" runat="server">
-                                        <asp:ListItem Selected="True">未平倉量</asp:ListItem>
-                                        <asp:ListItem>成交量</asp:ListItem>
+                                        <asp:ListItem Selected="True">成交量</asp:ListItem>
+                                        <asp:ListItem>未平倉量</asp:ListItem>
                                     </asp:RadioButtonList></td>
                                 <td class="pageTD" style="width: 10%; height: 18px; text-align: center">
                                     上周結算價/波動率/到期天數</td>
