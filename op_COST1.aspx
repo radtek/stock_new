@@ -193,6 +193,9 @@
                                                         <AlternatingRowStyle BackColor="White" />
                                                     </asp:GridView>
                                                     <br />
+                                                    <table style="width: 703px">
+                                                        <tr>
+                                                            <td>
                                                     <asp:GridView ID="GridView3" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="GridView3_RowDataBound">
                                                         <RowStyle BackColor="#F7F6F3" ForeColor="#333333"  />
                                                         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -202,6 +205,25 @@
                                                         <EditRowStyle BackColor="#999999" />
                                                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                                     </asp:GridView>
+                                                            </td>
+                                                            <td>
+                                                    <asp:GridView ID="GridView4" runat="server" BackColor="White" BorderColor="#DEDFDE"
+                                                        BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" OnRowDataBound="GridView3_RowDataBound">
+                                                        <RowStyle BackColor="#F7F7DE" />
+                                                        <FooterStyle BackColor="#CCCC99" />
+                                                        <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
+                                                        <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
+                                                        <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
+                                                        <AlternatingRowStyle BackColor="White" />
+                                                    </asp:GridView>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <br />
+                                          
+                                                    <br />
+                                                    <br />
+                                                    &nbsp; &nbsp;
                                                     <br />
                                                     <br />
                                                     <asp:Label runat="server" ID="lblAIExpand" Style="display: none"></asp:Label>
