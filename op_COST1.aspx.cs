@@ -1641,17 +1641,51 @@ ORDER BY t.DUE_TIME, t.PRODUCT_TYPE
 
           GetDataSet();
 
-         GridView3.DataSource = ds_temp;
 
+
+          GridView3.DataSource = AddColumn(ds_temp.Tables[0]); 
          GridView3.DataBind();
 
          RadioButtonList1.SelectedValue = "未平倉量";
 
          GetDataSet();
-         GridView4.DataSource = ds_temp;
-
+         GridView4.DataSource = AddColumn(ds_temp.Tables[0]); 
          GridView4.DataBind();
          RadioButtonList1.SelectedValue = "成交量";
+    }
+
+    private DataTable AddColumn(DataTable dt)
+    {
+
+        dt.Columns.Add("方向");
+        Double beforevalue = 0;
+        Double aftervalue = 0;
+        for (int i = 0; i <= dt.Rows.Count-1; i++)
+        {
+
+            if (Convert.ToDouble(dt.Rows[i]["ratio"]) == 100)
+            {
+
+                beforevalue = Convert.ToDouble(dt.Rows[i - 1]["ratio"]);
+
+                aftervalue = Convert.ToDouble(dt.Rows[i + 1]["ratio"]);
+
+                if (beforevalue > aftervalue)
+                {
+                    dt.Rows[i]["方向"] = "↑";
+                }
+                else
+                {
+                    dt.Rows[i]["方向"] = "↓";
+                }
+            
+            }
+
+
+        }
+        return dt;
+    
+    
     }
 
     private void GetDataSet()
