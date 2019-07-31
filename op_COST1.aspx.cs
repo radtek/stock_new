@@ -1643,7 +1643,8 @@ ORDER BY t.DUE_TIME, t.PRODUCT_TYPE
 
 
 
-          GridView3.DataSource = AddColumn(ds_temp.Tables[0]); 
+          GridView3.DataSource = AddColumn(ds_temp.Tables[0]);
+          GridView3.Attributes.Add("style", "word-break:keep-all;word-wrap:normal");
          GridView3.DataBind();
 
          RadioButtonList1.SelectedValue = "未平倉量";
@@ -1651,6 +1652,7 @@ ORDER BY t.DUE_TIME, t.PRODUCT_TYPE
          GetDataSet();
          GridView4.DataSource = AddColumn(ds_temp.Tables[0]); 
          GridView4.DataBind();
+         GridView4.Attributes.Add("style", "word-break:keep-all;word-wrap:normal");
          RadioButtonList1.SelectedValue = "成交量";
     }
 
@@ -1672,11 +1674,11 @@ ORDER BY t.DUE_TIME, t.PRODUCT_TYPE
 
                 if (beforevalue > aftervalue)
                 {
-                    dt.Rows[i]["方向"] = "↑";
+                    dt.Rows[i]["方向"] = "↑空";
                 }
                 else
                 {
-                    dt.Rows[i]["方向"] = "↓";
+                    dt.Rows[i]["方向"] = "↓多";
                 }
             
             }
@@ -1792,7 +1794,7 @@ ORDER BY Format(OP_PRICE.交易日期,'yyyy/MM/dd'), OP_PRICE.到期月份, OP_P
 
         }
 
-        sql_temp2 = @" select 交易日期,'{0}' as DUE_TIME,履約價,未平倉量 as {1},最大未平倉量 as 最大{1},round(未平倉量/最大未平倉量,4)*100 as ratio from (
+        sql_temp2 = @" select 交易日期,'{0}' as DUE_TIME,履約價,未平倉量 as {1},最大未平倉量 as 最大量,round(未平倉量/最大未平倉量,4)*100 as ratio from (
 
 
                              select 交易日期,履約價,未平倉量,(select max(未平倉量) from op_tmp )as 最大未平倉量 from op_tmp 
@@ -1804,7 +1806,7 @@ ORDER BY Format(OP_PRICE.交易日期,'yyyy/MM/dd'), OP_PRICE.到期月份, OP_P
 
 
                 ";
-        sql_temp2 = string.Format(sql_temp2, DropDownList2.SelectedValue, RadioButtonList1.SelectedValue);
+        sql_temp2 = string.Format(sql_temp2, DropDownList2.SelectedValue, RadioButtonList1.SelectedValue.Replace("未平倉量", "未平倉"));
         ds_temp = func.get_dataSet_access(sql_temp2, conn);
     }
 }
