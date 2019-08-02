@@ -42,6 +42,9 @@ public partial class op_COST1 : System.Web.UI.Page
     string condition1 = "";
     string condition2 = "";
     string condition3 = "";
+    string callmaxproduct = "";
+    string putmaxproduct = "";
+
    
     Double[] targetValueArray = { 80, 90,50, 60, 70,70,70 };
 
@@ -1638,10 +1641,8 @@ ORDER BY t.DUE_TIME, t.PRODUCT_TYPE
     }
     protected void Button4_Click(object sender, EventArgs e)
     {
-
+          GetMAXProduct(); 
           GetDataSet();
-
-
 
           GridView3.DataSource = AddColumn(ds_temp.Tables[0]);
           GridView3.Attributes.Add("style", "word-break:keep-all;word-wrap:normal");
@@ -1649,21 +1650,109 @@ ORDER BY t.DUE_TIME, t.PRODUCT_TYPE
 
          RadioButtonList1.SelectedValue = "未平倉量";
 
-         GetDataSet();
+         GetMAXProduct(); 
+        GetDataSet();
+         
          GridView4.DataSource = AddColumn(ds_temp.Tables[0]); 
          GridView4.DataBind();
          GridView4.Attributes.Add("style", "word-break:keep-all;word-wrap:normal");
          RadioButtonList1.SelectedValue = "成交量";
     }
 
+    private void GetMAXProduct()
+    {
+        if (RadioButtonList1.SelectedValue.Equals("成交量"))
+        {
+            sql_temp1 = @"
+                      select  oa.交易日期,oa.到期月份,oa.買賣權,ob.履約價,oa.maxvalue  from (
+SELECT OP_PRICE.交易日期, OP_PRICE.到期月份, OP_PRICE.買賣權, max(val(OP_PRICE.成交量)) AS maxvalue
+
+FROM OP_PRICE
+WHERE (((Format([OP_PRICE].[交易日期],'yyyy/MM/dd'))='{0}') AND ((OP_PRICE.到期月份)='{1}') )
+GROUP BY OP_PRICE.交易日期, OP_PRICE.到期月份, OP_PRICE.買賣權
+ORDER BY OP_PRICE.交易日期, OP_PRICE.到期月份
+) oa, (
+
+select * from OP_PRICE
+)ob 
+where oa.交易日期=ob.交易日期   
+and oa.到期月份=ob.到期月份
+and oa.maxvalue=val(ob.成交量)
+
+
+
+                     ";
+
+        }
+        else
+        {
+            sql_temp1 = @"
+                      select  oa.交易日期,oa.到期月份,oa.買賣權,ob.履約價,oa.maxvalue  from (
+SELECT OP_PRICE.交易日期, OP_PRICE.到期月份, OP_PRICE.買賣權, max(val(OP_PRICE.未沖銷契約數)) AS maxvalue
+
+FROM OP_PRICE
+WHERE (((Format([OP_PRICE].[交易日期],'yyyy/MM/dd'))='{0}') AND ((OP_PRICE.到期月份)='{1}') )
+GROUP BY OP_PRICE.交易日期, OP_PRICE.到期月份, OP_PRICE.買賣權
+ORDER BY OP_PRICE.交易日期, OP_PRICE.到期月份
+) oa, (
+
+select * from OP_PRICE
+)ob 
+where oa.交易日期=ob.交易日期   
+and oa.到期月份=ob.到期月份
+and oa.maxvalue=val(ob.未沖銷契約數)
+
+
+
+                     ";
+        
+        }
+       
+
+
+        sql_temp1 = string.Format(sql_temp1, txtCalendar2.Text, DropDownList2.SelectedValue);
+
+        ds_temp = func.get_dataSet_access(sql_temp1, conn);
+
+        for (int i = 0; i <= ds_temp.Tables[0].Rows.Count-1; i++)
+        {
+
+            if (ds_temp.Tables[0].Rows[i]["買賣權"].ToString().Equals("賣權"))
+            {
+                putmaxproduct = ds_temp.Tables[0].Rows[i]["履約價"].ToString();
+            
+            }
+            if (ds_temp.Tables[0].Rows[i]["買賣權"].ToString().Equals("買權"))
+            {
+                callmaxproduct = ds_temp.Tables[0].Rows[i]["履約價"].ToString();
+
+            }
+
+        }
+
+
+
+       
+    }
+
+
     private DataTable AddColumn(DataTable dt)
     {
-
+        dt.Columns.Add("P/C Max");
         dt.Columns.Add("方向");
+        
         Double beforevalue = 0;
         Double aftervalue = 0;
         for (int i = 0; i <= dt.Rows.Count-1; i++)
         {
+            if (dt.Rows[i]["履約價"].ToString().Equals(callmaxproduct))
+            {
+                dt.Rows[i]["P/C Max"] = "Call";
+            }
+            if (dt.Rows[i]["履約價"].ToString().Equals(putmaxproduct))
+            {
+                dt.Rows[i]["P/C Max"] = "Put ";
+            }
 
             if (Convert.ToDouble(dt.Rows[i]["ratio"]) == 100)
             {
@@ -1674,11 +1763,11 @@ ORDER BY t.DUE_TIME, t.PRODUCT_TYPE
 
                 if (beforevalue > aftervalue)
                 {
-                    dt.Rows[i]["方向"] = "↑空";
+                    dt.Rows[i]["方向"] +=  "↑空";
                 }
                 else
                 {
-                    dt.Rows[i]["方向"] = "↓多";
+                    dt.Rows[i]["方向"] +=  "↓多";
                 }
             
             }
