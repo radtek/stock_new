@@ -131,7 +131,7 @@ FROM OP_price AS t where 1=1
             
             DropDownList2.DataBind();
 
-            //DropDownList2.Items.Insert(0, "201802W1");
+            //DropDownList2.Items.Insert(0, "201810W1");
 
 
             if (!CheckBox1.Checked)
@@ -1820,9 +1820,19 @@ and oa.maxvalue=val(ob.未沖銷契約數)
         }
 
         DateTime Day5 = DateTime.Parse(txtCalendar2.Text);
-        Day5.AddDays(-1).ToString("yyyy/MM/dd");
+        DateTime Day6 = new DateTime();
+        if (Day5.DayOfWeek == DayOfWeek.Monday)
+        {
+            Day6=Day5.AddDays(-3);
+        }
+        else
+        {
+            Day6=Day5.AddDays(-1);
+        
+        }
 
-        sql_temp1 = string.Format(sql_temp1, Day5.AddDays(-1).ToString("yyyy/MM/dd"), DropDownList2.SelectedValue);
+
+        sql_temp1 = string.Format(sql_temp1, Day6.ToString("yyyy/MM/dd"), DropDownList2.SelectedValue);
 
         ds_temp = func.get_dataSet_access(sql_temp1, conn);
 
